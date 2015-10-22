@@ -5,6 +5,7 @@ var config = require('../../knexfile.js');
 
 // Configure knex with the correct environment configuration
 var env = process.env.NODE_ENV || 'development';
+console.log('db line 9:', env);
 console.log('db line 8:', config[env]);
 var db = require('knex')(config[env]);
 
