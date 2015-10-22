@@ -1,4 +1,4 @@
-require('dotenv').load({ silent: process.env.TRAVIS || false });
+require('dotenv').load({ silent: process.env.TRAVIS === 'true' || false });
 
 process.env.NODE_ENV = 'test';
 
