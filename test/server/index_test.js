@@ -1,5 +1,5 @@
 var request = require('supertest');
-var routes = require(__server + '/index.js');
+var routes = require(__server + '/app.js');
 
 describe('The Server', function() {
 
