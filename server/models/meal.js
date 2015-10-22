@@ -8,6 +8,8 @@ Meal.create = function (attrs) {
       var newMeal = {
         name: attrs.name,
         location: attrs.location,
+        rating: attrs.rating,
+        notes: attrs.notes,
         id: rows[0]
       };
       return newMeal;
