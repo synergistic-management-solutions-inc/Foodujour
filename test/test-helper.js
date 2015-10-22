@@ -1,5 +1,5 @@
-require('dotenv').load({ silent: process.env.TRAVIS === 'true' || false });
-
+console.log('line2 helper: ', process.env.TRAVIS);
+require('dotenv').load({ silent: process.env.TRAVIS === 'True' });
 process.env.NODE_ENV = 'test';
 
 // The following allows you to require files independent of
