@@ -4,9 +4,9 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 
-//
+var env = process.env.NODE_ENV || 'dev';
+
 //route to your index.html
-//
 var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
@@ -29,12 +29,11 @@ routes.get('/api/tags-example', function(req, res) {
   res.send(['node', 'express', 'angular']);
 });
 
-if(process.env.NODE_ENV !== 'test') {
-  //
+if (process.env.NODE_ENV !== 'test') {
+
   // The Catch-all Route
   // This is for supporting browser history pushstate.
   // NOTE: Make sure this route is always LAST.
-  //
   routes.get('/*', function(req, res) {
     res.sendFile( assetFolder + '/index.html' );
   });
