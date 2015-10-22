@@ -1,4 +1,4 @@
-;process.env.NODE_ENV = 'test'
+process.env.NODE_ENV = 'test';
 
 // The following allows you to require files independent of
 // the location of your test file.
