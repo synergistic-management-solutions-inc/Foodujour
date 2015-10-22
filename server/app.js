@@ -2,7 +2,10 @@ require('dotenv').load();
 var browserify = require('browserify-middleware');
 var express = require('express');
 var Path = require('path');
+
 var routes = express.Router();
+var mealRouter = require('./apis/meals-api');
+var entryRouter = require('./apis/entries-api');
 
 var env = process.env.NODE_ENV || 'dev';
 
@@ -48,6 +51,8 @@ if (process.env.NODE_ENV !== 'test') {
   app.use( require('body-parser').json() );
 
   // Mount our main router
+  app.use('/meals', mealRouter);
+  app.use('/entries', entryRouter);
   app.use('/', routes);
 
   // Start the server!
