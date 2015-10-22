@@ -1,5 +1,6 @@
-process.env.NODE_ENV = 'test';
+console.log('line1', process.env.PG_TEST);
 require('dotenv').load({ silent: process.env.TRAVIS === 'true' });
+process.env.NODE_ENV = 'test';
 
 // The following allows you to require files independent of
 // the location of your test file.
