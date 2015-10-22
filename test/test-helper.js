@@ -1,4 +1,6 @@
-require('dotenv').load();
+if (!process.env.TRAVIS_CI) {
+  require('dotenv').load();
+}
 process.env.NODE_ENV = 'test';
 
 // The following allows you to require files independent of
