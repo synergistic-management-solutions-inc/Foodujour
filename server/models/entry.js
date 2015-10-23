@@ -10,8 +10,8 @@ Entry.create = function (attrs) {
         meal_id: attrs.meal_id,
         name: attrs.name,
         rating: attrs.rating,
-        notes: attr.notes,
-        image: attr.image
+        notes: attrs.notes,
+        image: attrs.image
       };
       return newEntry;
     });
@@ -20,3 +20,5 @@ Entry.create = function (attrs) {
 Entry.all = function () {
   return db('entries').select('*');
 };
+
+module.exports = Entry;
