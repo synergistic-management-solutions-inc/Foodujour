@@ -1,5 +1,6 @@
 require('dotenv').load();
 var browserify = require('browserify-middleware');
+var ngAnnotate = require('browserify-ngannotate');
 var express = require('express');
 var Path = require('path');
 
@@ -19,8 +20,7 @@ var env = process.env.NODE_ENV || 'dev';
 var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
-routes.get('/js/app-bundle.js', browserify('./client/app.js'));
-routes.get('/js/angular.js', browserify([
+var sharedAngular = [
   'angular',
   'angular-animate',
   'angular-cookies',
@@ -30,7 +30,16 @@ routes.get('/js/angular.js', browserify([
   'angular-touch',
   'angular-ui-router',
   './node_modules/angular-materialize/src/angular-materialize'
-]));
+];
+
+// Serve our app. Use ngAnnotate to transform code so that
+// ng injections dont get broken when minified
+routes.get('/js/app-bundle.js', browserify('./client/app.js', {
+  transform: ngAnnotate
+}));
+routes.get('/js/angular.js', browserify(sharedAngular));
+routes.get('/js/jquery.js', browserify('./node_modules/jquery/dist/jquery.js'));
+// routes.get('/js/materialize.js', browserify('./node_modules/materialize-css/dist/js/materialize.js'));
 
 //
 // Example endpoint (also tested in test/server/index_test.js)
