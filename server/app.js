@@ -39,7 +39,6 @@ routes.get('/js/app-bundle.js', browserify('./client/app.js', {
 }));
 routes.get('/js/angular.js', browserify(sharedAngular));
 routes.get('/js/jquery.js', browserify('./node_modules/jquery/dist/jquery.js'));
-// routes.get('/js/materialize.js', browserify('./node_modules/materialize-css/dist/js/materialize.js'));
 
 //
 // Example endpoint (also tested in test/server/index_test.js)
