@@ -6,12 +6,12 @@ Entry.create = function (attrs) {
   return db('entries').insert(attrs).returning('id')
     .then(function(rows) {
       var newEntry = {
+        id: rows[0],
+        meal_id: attrs.meal_id,
         name: attrs.name,
         rating: attrs.rating,
         notes: attr.notes,
-        image: attr.image,
-        meal_id: attr.mealId,
-        id: rows[0]
+        image: attr.image
       };
       return newEntry;
     });
@@ -20,5 +20,3 @@ Entry.create = function (attrs) {
 Entry.all = function () {
   return db('entries').select('*');
 };
-
-module.exports = Entry;
