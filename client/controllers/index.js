@@ -1,3 +1,3 @@
 require('./main');
 require('./about');
-require('./signin');
+require('./auth');
