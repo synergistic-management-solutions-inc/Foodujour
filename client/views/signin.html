@@ -1,10 +1,18 @@
 <!-- SIGN IN VIEW -->
-<div id='signin'>
-	<h1>Sign In</h1>
-	<form name = 'signinForm' ng-submit = 'signin()'>
-		<input type = 'text' ng-model = 'user.username'><br>
-		<input type = 'password' ng-model = 'user.password'><br>
-		<button>Sign In</button>
-	</form>
-	<a href ='#/signup'>Don't have an account?</a>
+<div id='signIn' class="row">
+  <h1>Sign In</h1>
+  <form name="signInForm" ng-submit='signIn()' class='col s12'>
+    <div class="row">
+     <div class="input-field col s6">
+      <input type='text' placeholder="Username" id="username">
+    </div>
+    </div>
+     <div class="row">
+     <div class="input-field col s6">
+      <input type="password" placeholder="Password" id="password">
+      </div>
+      </div>
+    <button>Sign In</button>
+  </form>
+  <a href="#/signup">Not a member?</a>
 </div>
