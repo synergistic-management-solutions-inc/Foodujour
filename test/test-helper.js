@@ -1,5 +1,5 @@
-console.log('line1', process.env.PG_TEST);
-require('dotenv').load({ silent: process.env.TRAVIS === 'true' });
+var travis = (process.env.TRAVIS ? process.env.TRAVIS.trim().toLowerCase() === 'true' : false);
+require('dotenv').load({ silent: travis });
 process.env.NODE_ENV = 'test';
 
 // The following allows you to require files independent of

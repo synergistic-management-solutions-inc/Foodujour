@@ -5,22 +5,21 @@ var config = require('../../knexfile.js');
 
 // Configure knex with the correct environment configuration
 var env = process.env.NODE_ENV || 'development';
-console.log('db line 9:', env);
-console.log('db line 8:', config[env]);
-console.log('db line 10:', process.env.PG_TEST);
 var db = require('knex')(config[env]);
 
 // Export the db object, which will be able to make database connections
 // module.exports = db;
+var db = require('knex')(config[env]);
 
+// Export the db object, which will be able to make database connections
+// module.exports = db;
+//
 // Function for your testing suite
 db.deleteEverything = function () {
   if (env !== 'test') { return bPromise.reject(); }
 
-  // TODO: Delete data from all tables (useful for testing)
   return db('meals').delete();
 };
-
 
 //Table schema for Meals that will contain entries
 db.schema.hasTable('meals').then(function(exists) {
@@ -30,7 +29,7 @@ db.schema.hasTable('meals').then(function(exists) {
       meal.string('user', 255);
       meal.string('name', 255);
       meal.string('location', 255);
-      meal.integer('date')
+      meal.integer('date');
       meal.integer('rating');
       meal.string('notes');
     }).then(function (table) {
@@ -68,7 +67,5 @@ db.schema.hasTable('entries').then(function(exists) {
 //     });
 //   }
 // });
-
-
 
 module.exports = db;

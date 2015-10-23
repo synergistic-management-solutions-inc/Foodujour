@@ -10,6 +10,7 @@
     "angular": "^1.4.7",
     "angular-animate": "^1.4.7",
     "angular-cookies": "^1.4.7",
+    "angular-materialize": "git+https://github.com/Foodujour/angular-materialize.git",
     "angular-mocks": "^1.4.7",
     "angular-resource": "^1.4.7",
     "angular-sanitize": "^1.4.7",
