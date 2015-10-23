@@ -30,7 +30,7 @@ db.knex.schema.hasTable('meals').then(function(exists) {
       meal.string('user', 255);
       meal.string('name', 255);
       meal.string('location', 255);
-      meal.string('date')
+      meal.integer('date')
       meal.integer('rating');
       meal.string('notes');
     }).then(function (table) {
