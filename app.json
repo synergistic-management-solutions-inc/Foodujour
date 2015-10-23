@@ -1,7 +1,6 @@
 {
   "name": "foodujour",
   "script": "server/app.js",
-  "watch": true,
   "ignore_watch": [
     "client/",
     "node_modules/"
