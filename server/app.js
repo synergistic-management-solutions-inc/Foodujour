@@ -22,7 +22,8 @@ routes.get('/js/angular.js', browserify([
   'angular-resource',
   'angular-sanitize',
   'angular-touch',
-  'angular-ui-router'
+  'angular-ui-router',
+  './node_modules/angular-materialize/src/angular-materialize'
 ]));
 
 //
