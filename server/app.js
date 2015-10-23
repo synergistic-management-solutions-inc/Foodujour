@@ -11,8 +11,11 @@ var entryRouter = require('./apis/entries-api');
 var UsersRouter = require('./apis/users-api');
 
 //Requires for passport
+
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
+
 
 
 var env = process.env.NODE_ENV || 'dev';
@@ -73,7 +76,8 @@ if (process.env.NODE_ENV !== 'test') {
   app.use('/', routes);
 
 
-  //uses of passport
+
+  //*****************PASSPORT USES START
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -86,11 +90,34 @@ if (process.env.NODE_ENV !== 'test') {
     done(null, user);
   });
 
-  passport.use(new LocalStrategy(function(username, password, done) {
-    process.nextTick(function() {
-      // Auth Check Logic
-    });
-  }));
+ 
+
+  passport.use(new GoogleStrategy({
+      clientID:     config.GoogleAuth.clientId,
+      clientSecret: config.GoogleAuth.clientSecret,
+      //NOTE :
+      //Carefull ! and avoid usage of Private IP, otherwise you will get the device_id device_name issue for Private IP during authentication
+      //The workaround is to set up thru the google cloud console a fully qualified domain name such as http://mydomain:3000/ 
+      //then edit your /etc/hosts local file to point on your private IP. 
+      //Also both sign-in button + callbackURL has to be share the same url, otherwise two cookies will be created and lead to lost your session
+      //if you use it.
+      callbackURL: config.GoogleAuth.callbackUrl,
+      passReqToCallback   : true
+    },
+    function(request, accessToken, refreshToken, profile, done) {
+      console.log('passport.use Google');
+      // asynchronous verification, for effect...
+      process.nextTick(function () {
+        
+        // To keep the example simple, the user's Google profile is returned to
+        // represent the logged-in user.  In a typical application, you would want
+        // to associate the Google account with a user record in your database,
+        // and return that user instead.
+        return done(null, profile);
+      });
+    }
+  ));
+  //*****************PASSPORT USES END
 
   // Start the server!
   var port = process.env.PORT || 4000;
