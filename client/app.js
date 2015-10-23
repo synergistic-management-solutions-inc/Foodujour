@@ -20,7 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/about',
     templateUrl: 'views/about.html',
     controller: 'AboutCtrl'
-  });
+  })
 
   .state('signin', {
     url: '/signin',
@@ -32,7 +32,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/signup',
     templateUrl: 'views/signup.html',
     controller: 'AuthCtrl',
-  })      
+  })
 });
 
 require('./controllers');
