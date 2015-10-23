@@ -18,7 +18,13 @@ var db = require('knex')(config[env]);
 db.deleteEverything = function () {
   if (env !== 'test') { return bPromise.reject(); }
 
-  return db('meals').delete();
+  return db('meals').delete()
+    .then(function() {
+      return db('entries').delete();
+    });
+    // .then(function() {
+    //   return db('users').delete();
+    // });
 };
 
 //Table schema for Meals that will contain entries
