@@ -39,6 +39,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/entryForm',
     templateUrl: 'views/entryForm.html'
   })
+
+  .state('mealForm', {
+    url: '/mealForm',
+    templateUrl: 'views/mealForm.html'
+  })
 });
 
 require('./controllers');
