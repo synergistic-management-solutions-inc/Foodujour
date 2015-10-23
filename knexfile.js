@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 module.exports = {
 
   development: {
@@ -21,7 +23,8 @@ module.exports = {
     },
     debug: true,
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: 'knex_migrations',
+      directory: __dirname + '/migrations'
     }
   },
 
