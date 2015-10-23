@@ -13,7 +13,11 @@ EntriesAPI.post('/', function(req, res) {
   Entry.create(req.body)
     .then(function(newEntry) {
       res.status(201).send(newEntry);
+    })
+    .catch(function(err) {
+      console.log(err);
     });
+
 });
 
 module.exports = EntriesAPI;
