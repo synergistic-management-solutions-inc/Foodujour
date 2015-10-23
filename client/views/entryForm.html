@@ -2,11 +2,57 @@
 <div id= 'entryForm'>
 	<h1>Record an Entry: </h1>
 	<form name = 'entryForm' ng-submit = 'entryForm()'>
-		<h4>Name: </h4><input type = 'text' placeholder = 'Name'>
-		<h4>Date: </h4><input type = 'text' placeholder - 'Date'> <h4>Location: </h4><input type = 'text'>
-		<h4>Rating: </h4><h4>Img URl: </h4><input type = 'text' placeholder = 'Insert Img URL'>
-		<h4>Notes/Comments: </h4><input type = 'text' placeholder = 'Add comments about the item.'><br>
 
-		<button>Submit Entry</button>
+		<div class="row">
+		    <form class="col s12">
+
+					<!-- Entry Name -->
+		      <div class="row">
+		        <div class="input-field col s6">
+		          <input id="entryName" type="text" class="validate">
+		          <label for="entryName">Entry Name: </label>
+		        </div>
+		      </div>
+
+					<!-- ITEM NAME -->
+		      <div class="row">
+		        <div class="input-field col s6">
+		          <input id="entryItem" type="text" class="validate">
+		          <label for="entryItem">Item Name: </label>
+		        </div>
+		      </div>
+
+					<!-- Rating/ImgURL -->
+		      <div class="row">
+		      	<!-- ADD ABILITY TO RATE HERE -->
+		        <form action="#">
+					    <div class="file-field input-field">
+					      <div class="btn">
+					        <span>Img URL: </span>
+					        <input type="file">
+					      </div>
+					      <div class="file-path-wrapper">
+					        <input class="file-path validate" type="text">
+					      </div>
+					    </div>
+					  </form>
+		      </div>
+
+					 <!-- Notes -->
+		       <div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <textarea id="entryNotes" class="materialize-textarea" length="300"></textarea>
+				          <label for="entryNotes">Entry Notes: </label>
+				        </div>
+				      </div>
+				    </form>
+				  </div>
+
+		    </form>
+		 </div>
+
 	</form>
 </div>
+

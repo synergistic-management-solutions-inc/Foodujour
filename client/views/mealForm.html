@@ -1,14 +1,65 @@
 <!-- MEAL FORM VIEW -->
 <div id= 'mealForm'>
 	<h1>Record your Meal: </h1>
-	<form name = 'mealForm' ng-submit = 'mForm()'>
-		<h4>Name: </h4><input type = 'text' placeholder = 'Name'>
-		<h4>Date: </h4><input type = 'text'> <h4>Location: </h4><input type = 'text'>
-		<h4>Rating: </h4><h4>Img URl: </h4><input type = 'text'>
-		<h4>Notes/Comments: </h4><input type = 'text'><br>
+	<form name = 'mealForm' ng-submit = 'mealForm()'>
 
-		<button>Add Entry</button> <button>Submit Meal</button>
+		<div class="row">
+		    <form class="col s12">
+		    	
+		    	<!-- Meal Name -->
+		      <div class="row">
+		        <div class="input-field col s6">
+		          <input id="mealName" type="text" class="validate">
+		          <label for="mealName">Meal Name: </label>
+		        </div>
+		      </div>
+
+		      <!-- Date/location -->
+		      <div class="row">
+		      	<div class="input-field col s6">
+		          <input id ="date" type="date" class="datepicker">
+		          <label for="date">Date: </label>
+		        </div>
+		        <div class="input-field col s6">
+		          <input id="location" type="text" class="validate">
+		          <label for="location">Location: </label>
+		        </div>
+		      </div>
+
+
+		      <!-- Rating/ImgURL -->
+		      <div class="row">
+		      	<!-- ADD ABILITY TO RATE HERE -->
+		        <form action="#">
+					    <div class="file-field input-field">
+					      <div class="btn">
+					        <span>Img URL: </span>
+					        <input type="file">
+					      </div>
+					      <div class="file-path-wrapper">
+					        <input class="file-path validate" type="text">
+					      </div>
+					    </div>
+					  </form>
+		      </div>
+
+		      <!-- Notes -->
+		       <div class="row">
+				    <form class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <textarea id="mealNotes" class="materialize-textarea" length="300"></textarea>
+				          <label for="mealNotes">Meal Notes: </label>
+				        </div>
+				      </div>
+				    </form>
+				  </div>
+
+		    </form>
+		 </div>
+
 	</form>
 </div>
 
+<button>Add Entry</button> <button>Submit Meal</button>
 
