@@ -11,7 +11,7 @@ console.log('db line 10:', process.env.PG_TEST);
 var db = require('knex')(config[env]);
 
 // Export the db object, which will be able to make database connections
-module.exports = db;
+// module.exports = db;
 
 // Function for your testing suite
 db.deleteEverything = function () {
@@ -23,9 +23,9 @@ db.deleteEverything = function () {
 
 
 //Table schema for Meals that will contain entries
-db.knex.schema.hasTable('meals').then(function(exists) {
+db.schema.hasTable('meals').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('meals', function (meal) {
+    db.schema.createTable('meals', function (meal) {
       meal.increments('id').primary();
       meal.string('user', 255);
       meal.string('name', 255);
@@ -40,9 +40,9 @@ db.knex.schema.hasTable('meals').then(function(exists) {
 });
 
 // Table schema for entries 'sub-table of Meals'
-db.knex.schema.hasTable('entries').then(function(exists) {
+db.schema.hasTable('entries').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('entries', function (ent) {
+    db.schema.createTable('entries', function (ent) {
       ent.increments('id').primary();
       ent.string('name');
       ent.string('notes');
