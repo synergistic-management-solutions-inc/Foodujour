@@ -1,4 +1,5 @@
 var express = require('express');
+var Meal = require('../models/meal');
 var MealsAPI = express.Router();
 
 MealsAPI.get('/', function(req, res) {

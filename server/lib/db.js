@@ -14,6 +14,11 @@ module.exports = db;
 db.deleteEverything = function () {
   if (env !== 'test') { return bPromise.reject(); }
 
-  // TODO: Delete data from all tables (useful for testing)
-  return db('meals').delete();
+  return db('meals').delete()
+    .then(function() {
+      return db('entries').delete();
+    });
+    // .then(function() {
+    //   return db('users').delete();
+    // });
 };
