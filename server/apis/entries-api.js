@@ -1,4 +1,5 @@
 var express = require('express');
+var Entry = require('../models/entry');
 var EntriesAPI = express.Router();
 
 EntriesAPI.get('/', function(req, res) {

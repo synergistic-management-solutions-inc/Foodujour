@@ -12,7 +12,7 @@ describe('Meals API', function() {
     return db.deleteEverything();
   });
 
-  xit('creates and retrieves a meal', function() {
+ xit('creates and retrieves a meal', function() {
 
     return request(app)
       .post('/meals')
