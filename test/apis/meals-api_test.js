@@ -12,8 +12,7 @@ describe('Meals API', function() {
     return db.deleteEverything();
   });
 
- it('creates and retrieves a meal', function() {
-
+ it('POST /meals creates a meal', function() {
     return request(app)
       .post('/meals')
       .send({
@@ -34,7 +33,6 @@ describe('Meals API', function() {
         expect(newPet.location).to.equal('Hollaville, USA');
       })
       .then(function(){
-
         return request(app)
           .get('/meals')
           .expect(200)
