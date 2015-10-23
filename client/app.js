@@ -13,25 +13,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('home', {
     url: '/',
     templateUrl: 'views/main.html',
-    controller: 'MainCtrl'
+    // controller: 'MainCtrl'
   })
 
   .state('about', {
     url: '/about',
     templateUrl: 'views/about.html',
-    controller: 'AboutCtrl'
+    // controller: 'AboutCtrl'
   })
 
   .state('signin', {
     url: '/signin',
     templateUrl: 'views/signin.html',
-    controller: 'AuthCtrl',
+    // controller: 'AuthCtrl',
   })
 
   .state('signup', {
     url: '/signup',
     templateUrl: 'views/signup.html',
-    controller: 'AuthCtrl',
+    // controller: 'AuthCtrl',
   })
 });
 
