@@ -1,4 +1,3 @@
-//SignIn and SignUp Controller
-
-app.controller('AuthCrl', [])
-	$scope.user = {};
+app.controller('AuthCtrl', ['$scope', function($scope) {
+  $scope.user = {};
+}]);
