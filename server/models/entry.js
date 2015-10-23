@@ -20,3 +20,5 @@ Entry.create = function (attrs) {
 Entry.all = function () {
   return db('entries').select('*');
 };
+
+module.exports = Entry;
