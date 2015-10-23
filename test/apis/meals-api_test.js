@@ -12,11 +12,13 @@ describe('Meals API', function() {
     return db.deleteEverything();
   });
 
- xit('creates and retrieves a meal', function() {
+ it('creates and retrieves a meal', function() {
 
     return request(app)
       .post('/meals')
       .send({
+        user_id: 1,
+        date: Math.floor(Date.now() / 1000),
         name: 'Hollaburger',
         location: 'Hollaville, USA',
         rating: 2,

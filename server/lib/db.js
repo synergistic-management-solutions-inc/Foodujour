@@ -7,58 +7,22 @@ var config = require('../../knexfile.js');
 var env = process.env.NODE_ENV || 'development';
 var db = require('knex')(config[env]);
 
+db.migrate.latest(config[env]);
 // Export the db object, which will be able to make database connections
 // module.exports = db;
-var db = require('knex')(config[env]);
 
-// Export the db object, which will be able to make database connections
-// module.exports = db;
-//
 // Function for your testing suite
 db.deleteEverything = function () {
   if (env !== 'test') { return bPromise.reject(); }
 
-  return db('meals').delete()
-    .then(function() {
-      return db('entries').delete();
-    });
+  return db('meals').delete();
+    // .then(function() {
+    //   return db('entries').delete();
+    // });
     // .then(function() {
     //   return db('users').delete();
     // });
 };
-
-//Table schema for Meals that will contain entries
-db.schema.hasTable('meals').then(function(exists) {
-  if (!exists) {
-    db.schema.createTable('meals', function (meal) {
-      meal.increments('id').primary();
-      meal.string('user', 255);
-      meal.string('name', 255);
-      meal.string('location', 255);
-      meal.integer('date');
-      meal.integer('rating');
-      meal.string('notes');
-    }).then(function (table) {
-      console.log('Created Table', table);
-    });
-  }
-});
-
-// Table schema for entries 'sub-table of Meals'
-db.schema.hasTable('entries').then(function(exists) {
-  if (!exists) {
-    db.schema.createTable('entries', function (ent) {
-      ent.increments('id').primary();
-      ent.string('name');
-      ent.string('notes');
-      ent.string('image');
-      ent.integer('meal_id');
-      ent.integer('rating');
-    }).then(function (table) {
-      console.log('Created Table', table);
-    });
-  }
-});
 
 //Depends on Passport behavior 
 
