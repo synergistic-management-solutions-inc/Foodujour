@@ -1,9 +1,27 @@
 <!-- Meal VIEW -->
-<div>
-	<ul class = 'entries'>
-		<h3>Entries</h3>
-		<li ng-repeat = "meal in meals">
-			
-		</li>
-	</ul>
-</div>
+<ul class="collapsible popout" data-collapsible="accordion" watch>
+	<li>
+		<!-- Meals -->
+		<div class="collapsible-header">
+    	Meal :<br>
+    	Date : Date   Rating<br> 
+    	Location: <br>
+    	(image)
+    </div>
+    <div class="collapsible-body">
+			<!-- Entries -->
+	    <div class="collapsible-header">
+	    Entry
+	    </div>
+			<div class="collapsible-body">
+				Entry: <br>
+				Rating: <br>
+				Notes: <br>
+				images
+			</div>
+		</div>
+	</li>
+</ul>
+
+
+
