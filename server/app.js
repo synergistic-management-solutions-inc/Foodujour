@@ -1,4 +1,5 @@
 require('dotenv').load();
+var config = require('./config');
 var browserify = require('browserify-middleware');
 var ngAnnotate = require('browserify-ngannotate');
 var express = require('express');
