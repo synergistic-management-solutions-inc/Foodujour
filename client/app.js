@@ -34,6 +34,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'views/signup.html',
     // controller: 'AuthCtrl',
   })
+
+  .state('entryForm', {
+    url: '/entryForm',
+    templateUrl: 'views/entryForm.html'
+  })
 });
 
 require('./controllers');
