@@ -42,7 +42,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   .state('mealForm', {
     url: '/mealForm',
-    templateUrl: 'views/mealForm.html'
+    templateUrl: 'views/mealForm.html',
   })
 });
 
