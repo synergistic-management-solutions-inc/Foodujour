@@ -2,6 +2,20 @@ var db = require('../lib/db');
 
 var Entry = {};
 
+Entry.all = function () {
+  return db('entries').select('*');
+};
+
+Entry.findMealEntries = function(mealId) {
+  return db('entries').select('*').where({ meal_id: mealId })
+    .then(function(rows) {
+      return rows;
+    });
+};
+
+// ******************* //
+// singular entries
+// ******************* //
 Entry.create = function (attrs) {
   return db('entries').insert(attrs).returning('id')
     .then(function(rows) {
@@ -17,8 +31,31 @@ Entry.create = function (attrs) {
     });
 };
 
-Entry.all = function () {
-  return db('entries').select('*');
+Entry.findOne = function(id) {
+  return db('entries').select('*').where({id: id}).limit(1)
+  .then(function(rows) {
+    if (!rows.length) { /* reject */ }
+    return rows[0];
+  });
 };
 
+Entry.updateOne = function(attrs) {
+  if (!attrs.id) { /* reject */ }
+
+  return db('entries').update(attrs).where({ id: attrs.id })
+  .then(function(updatedCount) {
+    if (!updatedCount) { /* reject */ }
+    return attrs;
+  });
+};
+
+Entry.destroyOne = function(id) {
+  return db('entries').where({ id: id }).delete();
+};
+
+
 module.exports = Entry;
+
+
+
+
