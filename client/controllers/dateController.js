@@ -1,3 +1,6 @@
+/* controller for calendar functionality
+used for date input on meal entry form
+*/
 app.controller('dateController', function($scope) {
   var currentTime = new Date();
   $scope.currentTime = currentTime;
@@ -12,22 +15,4 @@ app.controller('dateController', function($scope) {
   var days = 15;
   $scope.minDate = (new Date($scope.currentTime.getTime() - (1000 * 60 * 60 * 24 * days))).toISOString();
   $scope.maxDate = (new Date($scope.currentTime.getTime() + (1000 * 60 * 60 * 24 * days))).toISOString();
-  $scope.onStart = function() {
-    console.log('onStart');
-  };
-  $scope.onRender = function() {
-    console.log('onRender');
-  };
-  $scope.onOpen = function() {
-    console.log('onOpen');
-  };
-  $scope.onClose = function() {
-    console.log('onClose');
-  };
-  $scope.onSet = function() {
-    console.log('onSet');
-  };
-  $scope.onStop = function() {
-    console.log('onStop');
-  };
 });

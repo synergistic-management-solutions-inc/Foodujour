@@ -2,60 +2,45 @@
 <div id= 'entryForm'>
 	<h1>Record Your Entry</h1>
 	<form name = 'entryFrom' ng-submit = 'entryForm()'>
-
 		<div class="row">
-		    <form class="col s12">
-
-		    	<!-- Entry Name -->
-		      <div class="row">
-		        <div class="input-field col s4 offset-s1">
-		          <input id="entryName" type="text" class="validate">
-		          <label for="entryName">Entry Name</label>
-		        </div>
-		        <div class="input-field col s4">
-		        	<input id="itemName" type="text" class="validate">
-		        	<label for="itemName">Item</label>
-		      </div>
-
-
-
-
-		      <!-- Notes -->
-		       <div class="row">
-				    <form class="col s12">
-				      <div class="row">
-				        <div class="input-field col s8 offset-s1">
-				          <textarea id="entryNotes" class="materialize-textarea"></textarea>
-				          <label for="entryNotes">Entry Notes</label>
-				        </div>
-				      </div>
-				    </form>
-				  </div>
-
-		      <!-- Rating/ImgURL -->
-		      <div class="row">
-		      	<!-- ADD ABILITY TO RATE HERE -->
-		        <div class="col offset-s1">
-		        <form action="#">
-					    <div class="file-field input-field">
-					      <div class="btn offset">
-					        <span>Upload Image</span>
-					        <input type="file">
-
-					      </div>
+			<form class="col s12">
+				<!-- Entry Name -->
+				<div class="row">
+					<div class="input-field col s4 offset-s1">
+						<input id="entryName" type="text" class="validate">
+						<label for="entryName">Entry Name</label>
+					</div>
+					<div class="input-field col s4">
+						<input id="itemName" type="text" class="validate">
+						<label for="itemName">Item</label>
+					</div>
+					<!-- Notes -->
+					<div class="row">
+						<form class="col s12">
+							<div class="row">
+								<div class="input-field col s8 offset-s1">
+									<textarea id="entryNotes" class="materialize-textarea"></textarea>
+									<label for="entryNotes">Entry Notes</label>
+								</div>
 							</div>
-					  </form>
-					  </div>
-
-		      </div>
-
-
-		    </form>
-
-		 </div>
-
-	</form>
-</div>
-
-<button>Submit Entry</button>
-
+						</form>
+					</div>
+					<!-- Rating/ImgURL -->
+					<div class="row">
+						<!-- ADD ABILITY TO RATE HERE -->
+						<div class="col offset-s1">
+							<form action="#">
+								<div class="file-field input-field">
+									<div class="btn offset">
+										<span>Upload Image</span>
+										<input type="file">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</form>
+			</div>
+		</form>
+	</div>
+	<button>Submit Entry</button>
