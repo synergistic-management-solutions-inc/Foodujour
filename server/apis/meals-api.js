@@ -9,13 +9,22 @@ MealsAPI.get('/', function(req, res) {
   Meal.all()
     .then(function(meals) {
       res.send(meals);
+    })
+    .catch(function(err) {
+      console.log('Meals GET meals/ Error-', err);
+      res.status(400).send();
     });
 });
 
 MealsAPI.post('/', function(req, res) {
+  // Need to validate user before allowing post
   Meal.create(req.body)
     .then(function(newMeal) {
       res.status(201).send(newMeal);
+    })
+    .catch(function(err) {
+      console.log('Meals POST meals/ Error-', err);
+      res.status(400).send();
     });
 });
 
@@ -27,7 +36,15 @@ MealsAPI.get('/:id', function(req, res) {
 
   Meal.findOne(mealId)
   .then(function(meal) {
-    res.send(meal);
+    if (meal) {
+      res.send(meal);
+    } else {
+      res.status(404).send({error: 'No Meal With This ID'});
+    }
+  })
+  .catch(function(err) {
+    console.log('Meals GET meals/:id Error-', err);
+    res.status(400).send();
   });
 });
 
