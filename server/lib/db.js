@@ -1,5 +1,4 @@
 var bPromise = require('bluebird');
-var Fixture = require('./fixtures');
 // Read configuration file
 var config = require('../../knexfile.js');
 
@@ -22,7 +21,5 @@ db.deleteEverything = function () {
     //   return db('users').delete();
     // });
 };
-
-Fixture.populateDB();
 
 module.exports = db;
