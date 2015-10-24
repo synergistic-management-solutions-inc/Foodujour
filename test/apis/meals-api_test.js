@@ -31,6 +31,8 @@ describe('Meals API', function() {
         expect(newPet.id).to.not.be.undefined;
         expect(newPet.name).to.equal('Hollaburger');
         expect(newPet.location).to.equal('Hollaville, USA');
+        expect(newPet.rating).to.equal(2);
+        expect(newPet.image).to.equal('https://img.google.com/horsehead.png');
       })
       .then(function(){
         return request(app)
