@@ -53,7 +53,7 @@ MealsAPI.get('/:id', function(req, res) {
   });
 });
 
-MealsAPI.post('/:id', function(req, res) {
+MealsAPI.put('/:id', function(req, res) {
   Meal.updateOne(req.body)
     .then(function(meal) {
       if (meal) {
