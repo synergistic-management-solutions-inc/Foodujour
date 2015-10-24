@@ -53,4 +53,19 @@ MealsAPI.get('/:id', function(req, res) {
   });
 });
 
+MealsAPI.post('/:id', function(req, res) {
+  Meal.updateOne(req.body)
+    .then(function(meal) {
+      if (meal) {
+        Entry.findMealEntries(meal.id)
+        .then(function(entries) {
+          meal.entries = entries;
+          res.send(meal);
+        });
+      } else {
+        res.status(400).send();
+      }
+    });
+});
+
 module.exports = MealsAPI;

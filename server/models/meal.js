@@ -35,7 +35,7 @@ Meal.findOne = function(id) {
 };
 
 Meal.updateOne = function(attrs) {
-  if (!attrs.id) { /* reject */ }
+  if (!attrs.id) { /* reject */return; }
 
   return db('meals').update(attrs).where({ id: attrs.id })
     .then(function(updatedCount) {
