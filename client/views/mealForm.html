@@ -2,82 +2,68 @@
 <div id= 'mealForm'>
 	<h1>Record Your Meal</h1>
 	<form name = 'mealForm' ng-submit = 'mealForm()'>
-
 		<div class="row">
-		    <form class="col s12">
-
-		    	<!-- Meal Name -->
-		      <div class="row">
-		        <div class="input-field col s6 offset-s1">
-		          <input id="mealName" type="text" class="validate">
-		          <label for="mealName">Meal Name</label>
-		        </div>
-		      </div>
-
-		      <!-- Date/location -->
-		      <div class="row" ng-controller="dateController">
-		      	<div class="input-field col s3 offset-s1">
-		      	<label for="inputCreated">Input date</label>
+			<form class="col s12">
+				<!-- Meal Name -->
+				<div class="row">
+					<div class="input-field col s6 offset-s1">
+						<input id="mealName" type="text" class="validate">
+						<label for="mealName">Meal Name</label>
+					</div>
+				</div>
+				<!-- Date/location -->
+				<div class="row" ng-controller="dateController">
+					<div class="input-field col s3 offset-s1">
+						<label for="inputCreated">Input date</label>
 						<input input-date
-						    type="text"
-						    name="created"
-						    id="inputCreated"
-						    ng-model="currentTime"
-						    format="mm/dd/yyyy"
-								today="today"
-						    clear="clear"
-						    close="close"
-						    select-years="15"
-						    on-start="onStart()"
-						    on-render="onRender()"
-						    on-open="onOpen()"
-						    on-close="onClose()"
-						    on-set="onSet()"
-						    on-stop="onStop()" />
-
-		        </div>
-		        <div class="input-field col s6 offset-s1">
-		          <input id="location" type="text" class="validate col s">
-		          <label for="location">Location</label>
-		        </div>
-		      </div>
-
-		      <!-- Notes -->
-		       <div class="row">
-				    <form class="col s12">
-				      <div class="row">
-				        <div class="input-field col s10 offset-s1">
-				          <textarea id="mealNotes" class="materialize-textarea"></textarea>
-				          <label for="mealNotes">Meal Notes</label>
-				        </div>
-				      </div>
-				    </form>
-				  </div>
-
-		      <!-- Rating/ImgURL -->
-		      <div class="row">
-		      	<!-- ADD ABILITY TO RATE HERE -->
-		        <div class="col offset-s1">
-		        <form action="#">
-					    <div class="file-field input-field">
-					      <div class="btn offset">
-					        <span>Upload Image</span>
-					        <input type="file">
-
-					      </div>
+						type="text"
+						name="created"
+						id="inputCreated"
+						ng-model="currentTime"
+						format="mm/dd/yyyy"
+						today="today"
+						clear="clear"
+						close="close"
+						select-years="15"
+						on-start="onStart()"
+						on-render="onRender()"
+						on-open="onOpen()"
+						on-close="onClose()"
+						on-set="onSet()"
+						on-stop="onStop()" />
+					</div>
+					<div class="input-field col s6 offset-s1">
+						<input id="location" type="text" class="validate col s">
+						<label for="location">Location</label>
+					</div>
+				</div>
+				<!-- Notes -->
+				<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<div class="input-field col s10 offset-s1">
+								<textarea id="mealNotes" class="materialize-textarea"></textarea>
+								<label for="mealNotes">Meal Notes</label>
 							</div>
-					  </form>
-					  </div>
-
-		      </div>
-
-
-		    </form>
-
-		 </div>
-
+						</div>
+					</form>
+				</div>
+				<!-- Rating/ImgURL -->
+				<div class="row">
+					<!-- ADD ABILITY TO RATE HERE -->
+					<div class="col offset-s1">
+						<form action="#">
+							<div class="file-field input-field">
+								<div class="btn offset">
+									<span>Upload Image</span>
+									<input type="file">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</form>
+		</div>
 	</form>
 </div>
-
 <button>Add Entry</button> <button>Submit Meal</button>
-
