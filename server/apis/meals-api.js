@@ -1,5 +1,6 @@
 var express = require('express');
 var Meal = require('../models/meal');
+var Entry = require('../models/entry');
 var MealsAPI = express.Router();
 
 // ******************* //
@@ -37,7 +38,11 @@ MealsAPI.get('/:id', function(req, res) {
   Meal.findOne(mealId)
   .then(function(meal) {
     if (meal) {
-      res.send(meal);
+      Entry.findMealEntries(meal.id)
+      .then(function(entries) {
+        meal.entries = entries;
+        res.send(meal);
+      });
     } else {
       res.status(404).send({error: 'No Meal With This ID'});
     }
