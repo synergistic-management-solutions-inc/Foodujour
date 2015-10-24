@@ -1,5 +1,5 @@
 var bPromise = require('bluebird');
-
+var Fixture = require('./fixtures');
 // Read configuration file
 var config = require('../../knexfile.js');
 
@@ -23,18 +23,6 @@ db.deleteEverything = function () {
     // });
 };
 
-//Depends on Passport behavior 
-
-// db.knex.schema.hasTable('users').then(function(exists) {
-//   if (!exists) {
-//     db.knex.schema.createTable('users', function(user) {
-//       user.increments('id').primary();
-//       user.string('username', 255);
-//       user.string('password', 255);
-//     }).then(function (table) {
-//       console.log('Created Table', table);
-//     });
-//   }
-// });
+Fixture.populateDB();
 
 module.exports = db;
