@@ -1,3 +1,6 @@
+/* controller for calendar functionality
+used for date input on meal entry form
+*/
 app.controller('dateController', function($scope) {
   var currentTime = new Date();
   $scope.currentTime = currentTime;
