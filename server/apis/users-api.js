@@ -6,9 +6,9 @@ var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
 var UsersAPI = express.Router();
 
-UsersAPI.get('/auth/google', asdf,
+UsersAPI.get('/auth/google',
   passport.authenticate('google', { scope: 
-    [ 'https://www.googleapis.com/auth/plus.login',
+    [ 'https://www.googleapis.com/auth/plus.login','https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email',
     , 'https://www.googleapis.com/auth/plus.profile.emails.read' ] }
 ));
  
@@ -18,9 +18,5 @@ UsersAPI.get( '/auth/google/callback',
         failureRedirect: '/auth/google/failure'
 }));
 
-function asdf(req, res, next) {
-  console.log('here');
-  next();
-}
 
 module.exports = UsersAPI;
