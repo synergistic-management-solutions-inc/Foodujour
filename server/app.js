@@ -17,9 +17,11 @@ routes.use(express.static(assetFolder));
 //Requires for passport
 var session = require('express-session');
 var passport = require('passport');
-// var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+var user = require('./models/user');
+
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 var env = process.env.NODE_ENV || 'dev';
 
@@ -74,13 +76,13 @@ if (process.env.NODE_ENV !== 'test') {
   app.use('/', routes);
 
   // ************* PASSPORT CODE STARTS *****************
-  passport.serializeUser(function(user, done) {
-    done(null, user);
-  });
+  // passport.serializeUser(function(user, done) {
+  //   done(null, user);
+  // });
 
-  passport.deserializeUser(function(user, done) {
-    done(null, user);
-  });
+  // passport.deserializeUser(function(user, done) {
+  //   done(null, user);
+  // });
 
 //Google Strategy
   passport.use(new GoogleStrategy({
@@ -112,6 +114,8 @@ if (process.env.NODE_ENV !== 'test') {
     }
   ));
 
+//Facebook Strategy
+
   passport.use(new FacebookStrategy({
       clientID:     config.FacebookAuth.clientId,
       clientSecret: config.FacebookAuth.clientSecret,
@@ -126,6 +130,31 @@ if (process.env.NODE_ENV !== 'test') {
       });
     }
   ));
+
+// Local Strategy
+passport.use(new LocalStrategy(
+  function(username, password, cb) {
+    user.findByUsername(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+  }));
+
+  passport.serializeUser(function(user, cb) {
+    console.log('i am serializing')
+    cb(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, cb) {
+    console.log('i am deserializing')
+    user.findById(id, function (err, user) {
+      if (err) { return cb(err); }
+      cb(null, user);
+    });
+  });
+
   // ************* PASSPORT CODE ENDS *****************
 
   // Server Starts
