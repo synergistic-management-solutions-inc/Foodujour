@@ -15,8 +15,11 @@ var assetFolder = Path.resolve(__dirname, '../client/');
 routes.use(express.static(assetFolder));
 
 //Requires for passport
+var session = require('express-session');
 var passport = require('passport');
-var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+// var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var env = process.env.NODE_ENV || 'dev';
 
@@ -60,16 +63,17 @@ if (process.env.NODE_ENV !== 'test') {
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() );
 
+  //Passport Uses
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   // Mount routers
   app.use('/meals', mealRouter);
   app.use('/entries', entryRouter);
   app.use('/users', userRouter);
   app.use('/', routes);
 
-  // PASSPORT USES START
-  app.use(passport.initialize());
-  app.use(passport.session());
-
+  // ************* PASSPORT CODE STARTS *****************
   passport.serializeUser(function(user, done) {
     done(null, user);
   });
@@ -78,35 +82,51 @@ if (process.env.NODE_ENV !== 'test') {
     done(null, user);
   });
 
+//Google Strategy
   passport.use(new GoogleStrategy({
       clientID:     config.GoogleAuth.clientId,
       clientSecret: config.GoogleAuth.clientSecret,
-      //NOTE :
-      //Carefull ! and avoid usage of Private IP,
-      //otherwise you will get the device_id device_name issue for Private IP during authentication
-      //The workaround is to set up thru the google cloud console a
-      //fully qualified domain name such as http://mydomain:3000/
+      callbackURL: config.GoogleAuth.callbackURL,
+      passReqToCallback   : true
+       //NOTE :
+      //Carefull ! and avoid usage of Private IP, otherwise you will get the
+      //device_id device_name issue for Private IP during authentication
+      //The workaround is to set up thru the google cloud console a fully qualified
+      //domain name such as http://mydomain:3000/
       //then edit your /etc/hosts local file to point on your private IP.
       //Also both sign-in button + callbackURL has to be share the same url,
       //otherwise two cookies will be created and lead to lost your session
       //if you use it.
-      callbackURL: config.GoogleAuth.callbackUrl,
-      passReqToCallback   : true
     },
     function(request, accessToken, refreshToken, profile, done) {
-      console.log('passport.use Google');
-      // asynchronous verification, for effect...
+
       process.nextTick(function () {
         // To keep the example simple, the user's Google profile is returned to
         // represent the logged-in user.  In a typical application, you would want
         // to associate the Google account with a user record in your database,
         // and return that user instead.
-        console.log('Saving the user in the daatabase');
+        console.log('google profile: ', profile);
+
         return done(null, profile);
       });
     }
   ));
-  // PASSPORT USES END
+
+  passport.use(new FacebookStrategy({
+      clientID:     config.FacebookAuth.clientId,
+      clientSecret: config.FacebookAuth.clientSecret,
+      callbackURL:  config.FacebookAuth.callbackURL,
+      enableProof: false
+    },
+  function(accessToken, refreshToken, profile, done) {
+
+      process.nextTick(function () {
+        console.log('facebook profile: ', profile);
+        return done(null, profile);
+      });
+    }
+  ));
+  // ************* PASSPORT CODE ENDS *****************
 
   // Server Starts
   var port = process.env.PORT || 4000;

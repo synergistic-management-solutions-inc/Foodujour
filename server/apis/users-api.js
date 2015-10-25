@@ -6,6 +6,7 @@ var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
 var UsersAPI = express.Router();
 
+// GOOGLE PASSPORT REQUESTS
 UsersAPI.get('/auth/google',
   passport.authenticate('google', {
     scope: [
@@ -17,6 +18,26 @@ UsersAPI.get('/auth/google',
   })
 );
 
+UsersAPI.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+
+// FACEBOOK PASSPORT REQUESTS
+
+UsersAPI.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+UsersAPI.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 UsersAPI.get( '/auth/google/callback',
   passport.authenticate( 'google', {
     successRedirect: '/auth/google/success',
@@ -25,3 +46,5 @@ UsersAPI.get( '/auth/google/callback',
 );
 
 module.exports = UsersAPI;
+
+

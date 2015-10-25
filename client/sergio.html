@@ -1,39 +1,21 @@
 <html>
   <body>
-  SIGN UP
+    GOOGLE
     <form action="users/auth/google" method="get">
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" />
-        <br/>
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" />
-      </div>
-      <div>
         <input type="submit" value="Submit" />
       </div>
     </form>
 
-    SIGN IN
-    <form action="/users/login" method="post">
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" />
-        <br/>
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" />
-      </div>
+    FACEBOOK
+    <form action="/users/auth/facebook" method="get">
+  
       <div>
         <input type="submit" value="Submit" />
       </div>
     </form>
 
 
-    SIGN OUT
+    OLD SCHOOL
     <form action="/users/logout" method="get">
       <div>
         <label>Username:</label>
