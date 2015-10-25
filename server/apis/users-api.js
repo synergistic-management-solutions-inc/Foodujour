@@ -8,12 +8,17 @@ var UsersAPI = express.Router();
 
 // GOOGLE PASSPORT REQUESTS
 UsersAPI.get('/auth/google',
-  passport.authenticate('google', { scope: 
-    [ 'https://www.googleapis.com/auth/plus.login','https://www.googleapis.com/auth/userinfo.profile','https://www.googleapis.com/auth/userinfo.email',
-    , 'https://www.googleapis.com/auth/plus.profile.emails.read' ] }
-));
- 
-UsersAPI.get('/auth/google/callback', 
+  passport.authenticate('google', {
+    scope: [
+      'https://www.googleapis.com/auth/plus.login',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/plus.profile.emails.read'
+    ]
+  })
+);
+
+UsersAPI.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     // Successful authentication, redirect home.
@@ -33,6 +38,12 @@ UsersAPI.get('/auth/facebook/callback',
     res.redirect('/');
   });
 
+UsersAPI.get( '/auth/google/callback',
+  passport.authenticate( 'google', {
+    successRedirect: '/auth/google/success',
+    failureRedirect: '/auth/google/failure'
+  })
+);
 
 module.exports = UsersAPI;
 
