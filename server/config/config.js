@@ -1,4 +1,3 @@
-
 var Config = {
   GoogleAuth: {
     clientId: process.env.GOOGLE_CLIENT_ID,
@@ -9,8 +8,7 @@ var Config = {
     clientId: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL: process.env.FACEBOOK_CALLBACK_URL
-  },
-
+  }
 };
 
 module.exports = Config;

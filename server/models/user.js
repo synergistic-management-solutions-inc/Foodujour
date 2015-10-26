@@ -1,43 +1,46 @@
-var db = require('../lib/db');
+var db     = require('../lib/db');
+var bcrypt = require('bcrypt-nodejs');
 
 var User = {};
 
-//*************TESTING PASSPORT WITHOUT DATABASE START*******************
-//this needs to be erased
-User.records = [
-    { id: 1, username: 'rob', password: 'secret', displayName: 'robsoule', emails: [ { value: 'robi@example.com' } ] }
-  , { id: 2, username: 'adam', password: 'iloveconsole', displayName: 'AdamNator', emails: [ { value: 'adam@example.com' } ] }
-];
+User.all = function () {
+  return db('users').select('*');
+};
 
-
-// We will want something like this but interacting with the database maybe with email address instead of username
 User.findByUsername = function(username, cb) {
- 
-    for (var i = 0, len = User.records.length; i < len; i++) {
-      var record = User.records[i];
-      if (record.username === username) {
-        return cb(null, record);
-      }
-    }
-    return cb(null, null);
-}
-
-User.createUser = function(username){
-// We want to check if the username exist User.findUsername()
-  //if exist redirect with message
-  //if it does not exist create and redirect to home page
-
-}  
-
-//*************TESTING PASSPORT WITHOUT DATABASE ENDS*******************
-
+  return db('users').select('*').where({name: username}).limit(1)
+    .then(function(rows) {
+      if (!rows.length) { /* reject */ }
+      return cb(null, rows[0]);
+    })
+    .catch(function(err) {
+      throw err;
+    });
+};
 
 User.signUp = function (attrs) {
+  return db('users').insert(attrs).returning('id')
+    .then(function(rows) {
+      var newUser = {
+        id: rows[0],
+        name: attrs.name,
+        passHash: attrs.passHash
+      };
+      return newUser;
+    });
+};
 
+User.generateHash = function(password) {
+  // replace this with aSync
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+User.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.passHash);
 };
 
 User.logIn = function (attrs) {
-  
+
 };
 
 User.logOut = function(){
