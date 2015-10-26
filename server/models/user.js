@@ -2,24 +2,17 @@ var db = require('../lib/db');
 
 var User = {};
 
+//*************TESTING PASSPORT WITHOUT DATABASE START*******************
+//this needs to be erased
 User.records = [
-    { id: 1, username: 'jack', password: 'secret', displayName: 'Jack', emails: [ { value: 'jack@example.com' } ] }
-  , { id: 2, username: 'jill', password: 'birthday', displayName: 'Jill', emails: [ { value: 'jill@example.com' } ] }
+    { id: 1, username: 'rob', password: 'secret', displayName: 'robsoule', emails: [ { value: 'robi@example.com' } ] }
+  , { id: 2, username: 'adam', password: 'iloveconsole', displayName: 'AdamNator', emails: [ { value: 'adam@example.com' } ] }
 ];
 
-User.findById = function(id, cb) {
-  process.nextTick(function() {
-    var idx = id - 1;
-    if (User.records[idx]) {
-      cb(null, User.records[idx]);
-    } else {
-      cb(new Error('User ' + id + ' does not exist'));
-    }
-  });
-}
 
+// We will want something like this but interacting with the database maybe with email address instead of username
 User.findByUsername = function(username, cb) {
-  process.nextTick(function() {
+ 
     for (var i = 0, len = User.records.length; i < len; i++) {
       var record = User.records[i];
       if (record.username === username) {
@@ -27,8 +20,17 @@ User.findByUsername = function(username, cb) {
       }
     }
     return cb(null, null);
-  });
 }
+
+User.createUser = function(username){
+// We want to check if the username exist User.findUsername()
+  //if exist redirect with message
+  //if it does not exist create and redirect to home page
+
+}  
+
+//*************TESTING PASSPORT WITHOUT DATABASE ENDS*******************
+
 
 User.signUp = function (attrs) {
 

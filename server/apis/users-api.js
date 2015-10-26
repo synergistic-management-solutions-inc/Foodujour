@@ -1,8 +1,7 @@
 var express = require('express');
 var User = require('../models/user');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
 
 var UsersAPI = express.Router();
 
