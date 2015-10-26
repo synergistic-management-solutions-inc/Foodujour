@@ -17,7 +17,7 @@ routes.use(express.static(assetFolder));
 //Requires for passport
 var session = require('express-session');
 var passport = require('passport');
-var user = require('./models/user');
+var User = require('./models/user');
 
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -65,26 +65,34 @@ if (process.env.NODE_ENV !== 'test') {
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() );
 
-  //Passport Uses
+  
+  //**********PASSPORT USES & DEPENDENCIES END*******************
+  // this two lines need to be declared before the router
   app.use(passport.initialize());
   app.use(passport.session());
 
-  // Mount routers
+  passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+
+  passport.deserializeUser(function(user, done) {
+    done(null, user);
+  });
+  // this middleware is required by passport-local in order to work
+  app.use(require('morgan')('combined'));
+  app.use(require('cookie-parser')());
+  app.use(require('body-parser').urlencoded({ extended: true }));
+  app.use(require('express-session')({ secret: '????', resave: false, saveUninitialized: false }));
+  //**********PASSPORT USES & DEPENDENCIES END*******************
+
+ // Mount routers
   app.use('/meals', mealRouter);
   app.use('/entries', entryRouter);
   app.use('/users', userRouter);
   app.use('/', routes);
 
-  // ************* PASSPORT CODE STARTS *****************
-  // passport.serializeUser(function(user, done) {
-  //   done(null, user);
-  // });
-
-  // passport.deserializeUser(function(user, done) {
-  //   done(null, user);
-  // });
-
-//Google Strategy
+  // ************* PASSPORT STRATEGY STARTS *****************
+  //Google Strategy
   passport.use(new GoogleStrategy({
       clientID:     config.GoogleAuth.clientId,
       clientSecret: config.GoogleAuth.clientSecret,
@@ -114,8 +122,7 @@ if (process.env.NODE_ENV !== 'test') {
     }
   ));
 
-//Facebook Strategy
-
+  //Facebook Strategy
   passport.use(new FacebookStrategy({
       clientID:     config.FacebookAuth.clientId,
       clientSecret: config.FacebookAuth.clientSecret,
@@ -131,31 +138,18 @@ if (process.env.NODE_ENV !== 'test') {
     }
   ));
 
-// Local Strategy
-passport.use(new LocalStrategy(
+  // Local Strategy
+  passport.use(new LocalStrategy(
   function(username, password, cb) {
-    user.findByUsername(username, function(err, user) {
+    
+    User.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
       return cb(null, user);
     });
   }));
-
-  passport.serializeUser(function(user, cb) {
-    console.log('i am serializing')
-    cb(null, user.id);
-  });
-
-  passport.deserializeUser(function(id, cb) {
-    console.log('i am deserializing')
-    user.findById(id, function (err, user) {
-      if (err) { return cb(err); }
-      cb(null, user);
-    });
-  });
-
-  // ************* PASSPORT CODE ENDS *****************
+  // ************* PASSPORT STRATEGY ENDS *****************
 
   // Server Starts
   var port = process.env.PORT || 4000;
