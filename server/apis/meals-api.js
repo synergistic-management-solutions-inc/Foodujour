@@ -102,4 +102,10 @@ MealsAPI.put('/:id', function(req, res) {
     });
 });
 
+// MealsAPI.delete('/:id', function(req, res) {
+//   Meal.destroyOne(req.body)
+//     .then()
+//   Entry.deleteByMeal();
+// });
+
 module.exports = MealsAPI;
