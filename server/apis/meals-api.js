@@ -30,7 +30,6 @@ MealsAPI.get('/user', function(req, res) {
 });
 
 MealsAPI.post('/', function(req, res) {
-  req.body.date = Math.floor(+new Date(req.body.date) / 1000);
   var entries = req.body.entries;
   delete req.body.entries;
   var meal = req.body;

@@ -2,7 +2,7 @@ var db = require(__server + '/lib/db');
 var request = require('supertest-as-promised');
 var EntriesAPI = require(__server + '/apis/entries-api');
 
-describe('Entries API', function() {
+xdescribe('Entries API', function() {
 
   var app = TestHelper.createApp();
   app.use('/entries', EntriesAPI);
