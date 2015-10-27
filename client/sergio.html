@@ -7,16 +7,15 @@
     </form>
 
     FACEBOOK
-    <form action="/users/auth/facebook" method="get">
-  
+    <form action="users/auth/facebook" method="get">
       <div>
         <input type="submit" value="Submit" />
       </div>
     </form>
 
 
-    OLD SCHOOL
-    <form action="/users/auth/login" method="post">
+    SIGNUP
+    <form action="users/auth/signup" method="post">
       <div>
         <label>Username:</label>
         <input type="text" name="username" />
@@ -30,5 +29,29 @@
         <input type="submit" value="Submit" />
       </div>
     </form>
+
+    LOGIN
+    <form action="users/auth/login" method="post">
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username" />
+        <br/>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" />
+      </div>
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+
+    LOGOUT
+    <form action="users/auth/logout" method="get">
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+    </form>
+
   </body>
 </html>
