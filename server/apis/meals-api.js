@@ -1,6 +1,7 @@
 var express = require('express');
 var Meal = require('../models/meal');
 var Entry = require('../models/entry');
+var User = require('../models/user');
 var MealsAPI = express.Router();
 
 // ******************* //
@@ -14,6 +15,17 @@ MealsAPI.get('/', function(req, res) {
     .catch(function(err) {
       console.log('Meals GET meals/ Error-', err);
       res.status(400).send();
+    });
+});
+
+MealsAPI.get('/user', function(req, res) {
+  User.findByUsername(req.session.passport.user)
+    .then(function(user) {
+      console.log('user', user);
+      Meal.findByUser(user.id)
+        .then(function(meals) {
+          res.send(meals);
+        });
     });
 });
 

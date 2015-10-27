@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
       rating: 2, notes: 'This is a note here but no image'
     },
     {
-      meal_id: 5, name: 'Fet UP',
+      meal_id: 4, name: 'Fet UP',
       rating: 0, image: 'http://not.anote.here'
     },
     {
