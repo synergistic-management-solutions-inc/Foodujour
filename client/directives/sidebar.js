@@ -6,5 +6,5 @@ app.directive('sidebar', function() {
     restrict: 'AE',
     // use sidebar view as template
     templateUrl: '../views/sidebar.html'
-  }
+  };
 });
