@@ -7,18 +7,18 @@ var MealsAPI = express.Router();
 // ******************* //
 // all meals
 // ******************* //
-MealsAPI.get('/', function(req, res) {
+MealsAPI.get('/all', function(req, res) {
   Meal.all()
     .then(function(meals) {
       res.send(meals);
     })
     .catch(function(err) {
-      console.log('Meals GET /meals Error-', err);
+      console.log('Meals GET /meals/all Error-', err);
       res.status(400).send();
     });
 });
 
-MealsAPI.get('/user', function(req, res) {
+MealsAPI.get('/', function(req, res) {
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
       console.log('user', user);
