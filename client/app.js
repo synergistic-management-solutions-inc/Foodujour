@@ -46,5 +46,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
 });
 
+require('./models');
 require('./controllers');
 require('./directives');

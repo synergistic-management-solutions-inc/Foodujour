@@ -45,6 +45,7 @@ MealsAPI.post('/', function(req, res) {
       }
     })
     .then(function(meal) {
+      console.log('Creating entries');
       entries.forEach(function(entry) {
         entry.meal_id = meal.id;
         Entry.create(entry);

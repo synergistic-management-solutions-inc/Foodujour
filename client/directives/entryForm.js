@@ -1,9 +1,10 @@
 // entry input form component for re-use
 // components will be appended to end of meal entry form
-app.directive('entryForm', function() {
+app.directive('entryform', function() {
   return  {
-    restrict: 'AE',
+    restrict: 'E',
     // use entryForm template view
-    templateUrl: '../views/entryForm.html'
+    templateUrl: '../views/entryForm.html',
+    controller: 'EntryForm'
   };
 });
