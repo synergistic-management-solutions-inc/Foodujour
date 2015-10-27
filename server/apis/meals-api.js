@@ -31,9 +31,24 @@ MealsAPI.get('/user', function(req, res) {
 
 MealsAPI.post('/', function(req, res) {
   // Need to validate user before allowing post
-  Meal.create(req.body)
+
+  var entries = req.body.entries;
+  delete req.body.entries;
+  var meal = req.body;
+
+  Meal.create(meal)
     .then(function(newMeal) {
-      res.status(201).send(newMeal);
+      if (Array.isArray(entries) && entries.length > 0) {
+        return newMeal;
+      } else {
+        res.status(201).send(newMeal);
+      }
+    })
+    .then(function(meal) {
+      entries.forEach(function(entry) {
+        entry.meal_id = meal.id;
+        Entry.create(entry);
+      });
     })
     .catch(function(err) {
       console.log('Meals POST meals/ Error-', err);
