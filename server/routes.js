@@ -57,6 +57,6 @@ module.exports = function(app, passport) {
       return next();
     }
     //change when angular login setup
-    res.redirect('/sergio.html');
+    res.status(401).json({isAuthenticated: false, error: true});
   }
 };
