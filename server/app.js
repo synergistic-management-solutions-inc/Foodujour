@@ -12,9 +12,20 @@ var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 
+var knex = require('./lib/db.js');
+var KnexSessionStore = require('connect-session-knex')(session);
+
 if (process.env.NODE_ENV !== 'test') {
   // If not in 'test' environment - create and run a real server
   var app = express();
+  var store = new KnexSessionStore({
+    knex: knex,
+    tablename: 'sessions'
+  });
+
+  knex('sessions').select('*').then(function(rows) {
+    console.log('sessions:', rows);
+  });
 
   // pass Passport into configuration that contains Strategies
   require('./config/passport')(passport);
@@ -27,6 +38,7 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(bodyParser.json());
   app.use(session({
     secret: 'thisisasecret',
+    store: store,
     resave: false,
     saveUninitialized: false
   }));

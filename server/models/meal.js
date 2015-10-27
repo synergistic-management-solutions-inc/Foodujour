@@ -2,14 +2,18 @@ var db = require('../lib/db');
 
 var Meal = {};
 
-Meal.all = function () {
+Meal.all = function() {
   return db('meals').select('*');
+};
+
+Meal.findByUser = function(userId) {
+  return db('meals').select('*').where({user_id: userId});
 };
 
 // ******************* //
 // singular meals
 // ******************* //
-Meal.create = function (attrs) {
+Meal.create = function(attrs) {
   return db('meals').insert(attrs).returning('id')
     .then(function(rows) {
       var newMeal = {

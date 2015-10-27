@@ -11,6 +11,7 @@ User.findByUsername = function(username, cb) {
   return db('users').select('*').where({name: username}).limit(1)
     .then(function(rows) {
       if (!rows.length) { /* reject */ }
+      if (!cb) { return rows[0]; }
       return cb(null, rows[0]);
     })
     .catch(function(err) {
