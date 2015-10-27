@@ -51,7 +51,7 @@ describe('Meals API', function() {
     return db.deleteEverything();
   });
 
-  it('POST meals/ returns 400 on bad data request', function() {
+  it('POST /meals returns 400 on bad data request', function() {
     return singlePost(invalidMeal, '/meals', 400)
         .then(function() {
         return request(app)
@@ -65,7 +65,7 @@ describe('Meals API', function() {
       });
   });
 
-  it('POST meals/ creates a meal and returns meal with id', function() {
+  it('POST /meals creates a meal and returns meal with id', function() {
     return singlePost(meal1, '/meals', 201)
       .expect(function(response) {
         var newPet = response.body;
@@ -90,7 +90,7 @@ describe('Meals API', function() {
       });
   });
 
-  it('GET meals/ returns an array with all the meals', function() {
+  it('GET /meals returns an array with all the meals', function() {
     return singlePost(meal1, '/meals', 201)
       .then(function() {
         return singlePost(meal2, '/meals', 201);
@@ -109,7 +109,7 @@ describe('Meals API', function() {
       });
   });
 
-  it('GET meals/:id returns 404 if ', function() {
+  it('GET /meals/:id returns 404 if meal does not exist', function() {
     return singlePost(meal1, '/meals', 201)
       .then(function() {
         return singlePost(meal2, '/meals', 201);
@@ -122,7 +122,7 @@ describe('Meals API', function() {
       });
   });
 
-  it('GET meals/:id returns meal object if it exists', function() {
+  it('GET /meals/:id returns meal object if it exists', function() {
     return singlePost(meal1, '/meals', 201)
       .then(function() {
         return singlePost(meal2, '/meals', 201);
