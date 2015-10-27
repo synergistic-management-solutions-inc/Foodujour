@@ -25,7 +25,8 @@ UsersAPI.get('/auth/logout', function(req, res, next) {
   req.logout();
   req.session.destroy(function(err) {
     if (err) { return next(err); }
-    res.redirect('/sergio.html');
+    res.header('isAuthenticated', 'false');
+    res.send();
   });
 });
 
