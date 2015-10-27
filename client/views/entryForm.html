@@ -1,25 +1,21 @@
 <!-- MEAL FORM VIEW -->
 <div id="entryForm">
   <h1>Record Your Entry</h1>
-  <form name="entryFrom" ng-submit="saveEntry()">
+  <form name="entryFrom" ng-submit="$parent.saveEntry()">
     <div class="row">
       <form class="col s12">
         <!-- Entry Name -->
         <div class="row">
           <div class="input-field col s4 offset-s1">
-            <input id="entryName" type="text" class="validate">
+            <input ng-model="entry.name" id="entryName" type="text" class="validate">
             <label for="entryName">Entry Name</label>
-          </div>
-          <div class="input-field col s4">
-            <input id="itemName" type="text" class="validate">
-            <label for="itemName">Item</label>
           </div>
           <!-- Notes -->
           <div class="row">
             <form class="col s12">
               <div class="row">
                 <div class="input-field col s8 offset-s1">
-                  <textarea id="entryNotes" class="materialize-textarea"></textarea>
+                  <textarea ng-model="entry.notes" id="entryNotes" class="materialize-textarea"></textarea>
                   <label for="entryNotes">Entry Notes</label>
                 </div>
               </div>
@@ -33,7 +29,7 @@
                 <div class="file-field input-field">
                   <div class="btn offset">
                     <span>Upload Image</span>
-                    <input type="file">
+                    <input ng-model="entry.image" type="file">
                   </div>
                 </div>
               </form>
@@ -42,5 +38,10 @@
         </form>
       </div>
     </form>
+    <div>
+      Stuff
+      {{ $parent.unsavedEntries | json }}
+      {{ stuff | json }}
+    </div>
   </div>
-  <button>Submit Entry</button>
+  <button ng-click="$parent.saveEntry(entry)">Save Entry</button>
