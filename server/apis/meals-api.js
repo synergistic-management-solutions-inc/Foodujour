@@ -30,13 +30,19 @@ MealsAPI.get('/user', function(req, res) {
 });
 
 MealsAPI.post('/', function(req, res) {
-  // Need to validate user before allowing post
-
+  req.body.date = Math.floor(+new Date(req.body.date) / 1000);
   var entries = req.body.entries;
   delete req.body.entries;
   var meal = req.body;
 
-  Meal.create(meal)
+  User.findByUsername(req.session.passport.user)
+    .then(function(user) {
+      meal.user_id = user.id;
+      return meal;
+    })
+    .then(function(meal) {
+      return Meal.create(meal);
+    })
     .then(function(newMeal) {
       if (Array.isArray(entries) && entries.length > 0) {
         return newMeal;
