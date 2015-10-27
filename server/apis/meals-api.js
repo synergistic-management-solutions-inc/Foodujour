@@ -13,7 +13,7 @@ MealsAPI.get('/', function(req, res) {
       res.send(meals);
     })
     .catch(function(err) {
-      console.log('Meals GET meals/ Error-', err);
+      console.log('Meals GET /meals Error-', err);
       res.status(400).send();
     });
 });
@@ -51,7 +51,7 @@ MealsAPI.post('/', function(req, res) {
       });
     })
     .catch(function(err) {
-      console.log('Meals POST meals/ Error-', err);
+      console.log('Meals POST /meals Error-', err);
       res.status(400).send();
     });
 });
@@ -75,7 +75,7 @@ MealsAPI.get('/:id', function(req, res) {
     }
   })
   .catch(function(err) {
-    console.log('Meals GET meals/:id Error-', err);
+    console.log('Meals GET /meals/:id Error-', err);
     res.status(400).send();
   });
 });

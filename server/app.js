@@ -23,9 +23,9 @@ if (process.env.NODE_ENV !== 'test') {
     tablename: 'sessions'
   });
 
-  knex('sessions').select('*').then(function(rows) {
-    console.log('sessions:', rows);
-  });
+  // knex('sessions').select('*').then(function(rows) {
+  //   console.log('sessions:', rows);
+  // });
 
   // pass Passport into configuration that contains Strategies
   require('./config/passport')(passport);
