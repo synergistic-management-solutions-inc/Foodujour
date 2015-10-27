@@ -2,5 +2,7 @@
 require('./sidebar');
 require('./mealForm');
 require('./entryForm');
-require('./datepicker.js');
-require('./mealnotes.js');
+require('./datepicker');
+require('./mealnotes');
+require('./entryImage');
+require('./entryNotes');

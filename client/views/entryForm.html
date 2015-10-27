@@ -1,47 +1,21 @@
 <!-- MEAL FORM VIEW -->
 <div id="entryForm">
   <h1>Record Your Entry</h1>
-  <form name="entryFrom" ng-submit="$parent.saveEntry()">
+  <form name="entryFrom" ng-submit="$parent.saveEntry(entry)">
     <div class="row">
-      <form class="col s12">
+      <div class="col s12">
         <!-- Entry Name -->
         <div class="row">
           <div class="input-field col s4 offset-s1">
-            <input ng-model="entry.name" id="entryName" type="text" class="validate">
+            <input ng-model="entry.name" ng-change="$parent.saveEntry(entry)" id="entryName" type="text" class="validate">
             <label for="entryName">Entry Name</label>
           </div>
           <!-- Notes -->
-          <div class="row">
-            <form class="col s12">
-              <div class="row">
-                <div class="input-field col s8 offset-s1">
-                  <textarea ng-model="entry.notes" id="entryNotes" class="materialize-textarea"></textarea>
-                  <label for="entryNotes">Entry Notes</label>
-                </div>
-              </div>
-            </form>
-          </div>
-          <!-- Rating/ImgURL -->
-          <div class="row">
-            <!-- ADD ABILITY TO RATE HERE -->
-            <div class="col offset-s1">
-              <form action="#">
-                <div class="file-field input-field">
-                  <div class="btn offset">
-                    <span>Upload Image</span>
-                    <input ng-model="entry.image" type="file">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </form>
+          <entrynotes></entrynotes>
+        </div>
+        <entryimage></entryimage>
       </div>
-    </form>
-    <div>
-      Stuff
-      {{ $parent.unsavedEntries | json }}
-      {{ stuff | json }}
     </div>
-  </div>
-  <button ng-click="$parent.saveEntry(entry)">Save Entry</button>
+  </form>
+</div>
+<button ng-click="$parent.saveEntry(entry)">Save Entry</button>
