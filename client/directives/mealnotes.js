@@ -1,4 +1,4 @@
-// date picker component
+// meal notes directive
 app.directive('mealnotes', function() {
   return  {
     restrict: 'E',

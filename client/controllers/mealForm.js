@@ -1,6 +1,9 @@
 // currently un-used. To be used for sign-in/sign-up
 app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $http, MealForm) {
   console.log('mealFormController');
+
+  $scope.unsavedEntries = [];
+
   $scope.meal = {};
   $scope.meal.entries = [];
   $scope.meal.name = 'Pizza';
@@ -13,18 +16,29 @@ app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $htt
   $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
 
   $scope.addEntry = function() {
-    $scope.meal.entries.push();
+    console.log('Adding entry');
+    $scope.unsavedEntries.push(1);
+  };
+
+  $scope.saveEntry = function(entry) {
+    console.log('Saving entry:', entry);
+    $scope.meal.entries.push(entry);
   };
 
   $scope.addMeal = function() {
-    console.log('Meal name:', $scope.meal.name);
-    console.log('Meal date:', $scope.meal.date);
-    console.log('Meal location:', $scope.meal.location);
-    console.log('Meal rating:', $scope.meal.rating);
-    console.log('Meal notes:', $scope.meal.notes);
-    console.log('Meal image:', $scope.meal.image);
-    console.log('Meal entries:', $scope.meal.entries);
+    var date = +new Date($scope.meal.date);
+    var meal = Object.assign({}, $scope.meal);
+    meal.date = Math.floor(date / 1000);
 
-    MealForm.addMeal($scope.meal);
+    console.log('Meal name:', meal.name);
+    console.log('Meal date:', meal.date);
+    console.log('Meal location:', meal.location);
+    console.log('Meal rating:', meal.rating);
+    console.log('Meal notes:', meal.notes);
+    console.log('Meal image:', meal.image);
+    console.log('Meal entries:', meal.entries);
+
+
+    // MealForm.addMeal(meal);
   };
 }]);

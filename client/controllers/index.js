@@ -4,3 +4,4 @@ require('./about');
 require('./auth');
 require('./dateController');
 require('./mealForm');
+require('./entryForm');

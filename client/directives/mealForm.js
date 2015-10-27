@@ -6,6 +6,7 @@ app.directive('mealform', function() {
     restrict: 'E',
     // use meal form template for directive
     templateUrl: '../views/mealForm.html',
-    controller: 'MealForm'
+    controller: 'MealForm',
+    controllerAs: 'meal'
   };
 });

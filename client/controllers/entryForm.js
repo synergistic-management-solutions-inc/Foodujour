@@ -1,16 +1,11 @@
 // currently un-used. To be used for sign-in/sign-up
 app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
   console.log('entryForm Controller');
-  // $scope.meal = {};
-  // $scope.meal.entries = [];
-  // $scope.meal.name = 'Pizza';
-  // $scope.meal.date = '10/16/2015';
-  // $scope.meal.location = 'Tenochtitlan';
-  // // TODO : Add rating input field
-  // $scope.meal.rating = 0;
-  // $scope.meal.notes = 'Meal was out of this world';
-  // // TODO : Add image upload input field functionality
-  // $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
+  $scope.entry = {};
+  $scope.entry.name = 'Pickles';
+  $scope.entry.rating = 10;
+  $scope.entry.notes = 'Tasted like cucumbers';
+  $scope.entry.image = '';
 
   $scope.saveEntry = function() {
     console.log('Save Entry');

@@ -5,6 +5,7 @@ app.directive('entryform', function() {
     restrict: 'E',
     // use entryForm template view
     templateUrl: '../views/entryForm.html',
-    controller: 'EntryForm'
+    controller: 'EntryForm',
+    controllerAs: 'entry'
   };
 });
