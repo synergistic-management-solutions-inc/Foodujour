@@ -2,16 +2,16 @@
 <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "mealView">
   <li>
     <!-- Meals -->
-    <ul class="collapsible" data-collapsible="accordion" ng-repeat = "meal in meals" ng-controller = "mealView">
+    <ul class="collapsible" data-collapsible="accordion" ng-controller = "mealView" ng-repeat = "meal in meals" >
       <li>
-        <div class="collapsible-header">Meal 1</div>
+        <div class="collapsible-header">Meal {{meals.id}}</div>
         <div class="collapsible-body">
-          {{meals.name}}<br>
-          {{meals.date}}<br>
-          {{meals.location}}<br>
-          {{meals.rating}}<br>
-          {{meals.image}}<br>
-          <ul class="collapsible" data-collapsible="expandable">
+          {{meal.name}}<br>
+          {{meal.date}}<br>
+          {{meal.location}}<br>
+          {{meal.rating}}<br>
+          {{meal.image}}<br>
+          <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat = "entry in entries">
             <!-- ENTRIES GO HERE (ng-repeat)-->
             <li>
               <div class="collapsible-header">Entry 1</div>
