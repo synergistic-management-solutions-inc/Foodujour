@@ -3,7 +3,6 @@ var Entry = require('../models/entry');
 var EntriesAPI = express.Router();
 
 EntriesAPI.get('/', function(req, res) {
-  console.log('req', req.isAuthenticated());
   Entry.all()
     .then(function(entries) {
       res.send(entries);
