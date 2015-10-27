@@ -6,5 +6,5 @@ app.directive('mealForm', function() {
     restrict: 'AE',
     // use meal form template for directive
     templateUrl: '../views/mealForm.html'
-  }
+  };
 });

@@ -5,5 +5,5 @@ app.directive('entryForm', function() {
     restrict: 'AE',
     // use entryForm template view
     templateUrl: '../views/entryForm.html'
-  }
+  };
 });

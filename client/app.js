@@ -1,6 +1,6 @@
 var angular = require('angular');
 var ui = require('angular-ui-router');
-var materialize = require('../node_modules/angular-materialize/src/angular-materialize')
+var materialize = require('../node_modules/angular-materialize/src/angular-materialize');
 
 window.app = angular.module('myApp', [
   'ui.router', 'ui.materialize'

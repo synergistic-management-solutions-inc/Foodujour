@@ -1,4 +1,4 @@
 // requires for browserify
-require('./sidebar')
-require('./mealForm')
-require('./entryForm')
+require('./sidebar');
+require('./mealForm');
+require('./entryForm');
