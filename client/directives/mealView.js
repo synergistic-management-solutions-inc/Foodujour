@@ -1,4 +1,4 @@
-app.directive('mealView', function() {
+app.directive('mealview', function() {
   return  {
     restrict: 'AE',
     // use meal view template for directive
