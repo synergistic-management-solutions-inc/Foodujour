@@ -6,57 +6,32 @@ var UsersAPI = express.Router();
 
 // LOCAL PASSPORT REQUESTS
 UsersAPI.post('/auth/signup',
-  // passport.authenticate('local-signup', {
-  //   failureRedirect: '/auth'
-  // }), function(req, res, next) {
-  //   res.send({signedUp: true});
-  // }
   function(req, res, next) {
     passport.authenticate('local-signup', function(err, user, info) {
-
       if (err) {
-        // Some error
-        res.send({signedUp: false});
-        return;
-      }
-      if (!user) {
-        // Some no user error
-        res.send({signedUp: false});
+        res.status(404).send({signedUp: false, err: err});
         return;
       }
       res.send({signedUp: true});
-
     })(req, res, next);
   }
 );
 
 UsersAPI.post('/auth/login',
-  
   function(req, res, next) {
       passport.authenticate('local-login', function(err, user, info) {
-
         if (err) {
-          // Some error
-          res.send({loggedIn: false});
-          return;
+          return next(err);
         }
         if (!user) {
-          // Some no user error
-          res.send({loggedIn: false});
-          return;
+          res.status(401).send({loggedIn: false});
         }
-        res.send({loggedIn: true});
-
+        req.logIn(user, function(err) {
+          if (err) { return next(err); }
+        });
+        return res.send({loggedIn: true});
       })(req, res, next);
     }
-
-
-  // passport.authenticate('local-login', {
-  //   failureRedirect: '/auth'
-  // }), function(req, res, next) {
-  //   res.header('isAuthenticated', 'true');
-  //   res.send({loggedIn: true});
-  // }
 );
 
 UsersAPI.get('/auth/logout', function(req, res, next) {
@@ -118,20 +93,4 @@ UsersAPI.get('/', function(req, res) {
 //   })
 // );
 
-// LOCAL PASSPORT REQUESTS
-
-// UsersAPI.post('/auth/signup',
-//   passport.authenticate('local', { failureRedirect: '/auth' }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
-//
-// UsersAPI.post('/auth/login', 
-//   passport.authenticate('local', { failureRedirect: '/auth' }),
-//   function(req, res) {
-//     res.redirect('/');
-//   });
-
 module.exports = UsersAPI;
-
-
