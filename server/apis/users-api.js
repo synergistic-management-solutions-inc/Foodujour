@@ -29,16 +29,18 @@ UsersAPI.post('/auth/login',
         req.logIn(user, function(err) {
           if (err) { return next(err); }
         });
+        res.cookie('isLoggedIn', true);
         return res.send({loggedIn: true});
       })(req, res, next);
     }
 );
 
-UsersAPI.get('/auth/logout', function(req, res, next) {
+UsersAPI.post('/auth/logout', function(req, res, next) {
   req.logout();
   req.session.destroy(function(err) {
     if (err) { return next(err); }
     res.header('isAuthenticated', 'false');
+    res.clearCookie('isLoggedIn');
     res.send({loggedIn: false});
   });
 });

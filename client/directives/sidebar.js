@@ -3,8 +3,9 @@
 app.directive('sidebar', function() {
   return  {
     // use as attribute or element
-    restrict: 'AE',
+    restrict: 'E',
     // use sidebar view as template
-    templateUrl: '../views/sidebar.html'
+    templateUrl: '../views/sidebar.html',
+    controller: 'SidebarController'
   };
 });

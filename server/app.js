@@ -43,9 +43,16 @@ if (process.env.NODE_ENV !== 'test') {
     saveUninitialized: false
   }));
 
+
   // these two lines need to be declared before the router
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(function(req, res, next) {
+    if (req.isAuthenticated()) {
+      res.cookie('isLoggedIn', true);
+    }
+    next();
+  });
 
   // Routes pass in app and passport for configuration in routes
   var routes = require('./routes.js')(app, passport);
