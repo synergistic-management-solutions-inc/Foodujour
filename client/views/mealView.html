@@ -14,12 +14,13 @@
           <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat="entry in (entries | filter : {'meal_id': meal.id})">
             <!-- ENTRIES GO HERE (ng-repeat)-->
             <li>
-              <div class="collapsible-header">Entry 1</div>
+              <div class="collapsible-header">{{entry.name}}</div>
               <div class="collapsible-body">
-                {{entry.name}}
-                {{entry.rating}}
-                {{entry.notes}}
-              {{entry.image}}</div>
+                {{entry.name}}<br>
+                {{entry.rating}}<br>
+                {{entry.notes}}<br>
+                {{entry.image}}<br>
+              </div>
             </li>
           </ul>
         </div>
