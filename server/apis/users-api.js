@@ -9,7 +9,7 @@ UsersAPI.post('/auth/signup',
   passport.authenticate('local-signup', {
     successRedirect: '/',
     failureRedirect: '/sergio.html',
-    failureFlash: true
+    // failureFlash: true
   })
 );
 
@@ -17,7 +17,7 @@ UsersAPI.post('/auth/login',
   passport.authenticate('local-login', {
     successRedirect: '/',
     failureRedirect: '/sergio.html',
-    failureFlash: true
+    // failureFlash: true
   })
 );
 

@@ -23,15 +23,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     // controller: 'AboutCtrl'
   })
 
-  .state('signin', {
-    url: '/signin',
-    templateUrl: 'views/signin.html',
-    // controller: 'AuthCtrl',
-  })
-
-  .state('signup', {
-    url: '/signup',
-    templateUrl: 'views/signup.html',
+  .state('auth', {
+    url: '/auth',
+    templateUrl: 'views/auth.html',
     // controller: 'AuthCtrl',
   })
 
