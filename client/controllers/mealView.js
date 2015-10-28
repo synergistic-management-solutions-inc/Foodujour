@@ -14,9 +14,9 @@ app.controller('mealView', ['$scope', '$http', function($scope,$http) {
    	 $scope.meals = data.data;
     // console.log(data.data[i])
     // }
-
-    $http.get("/meals" + "/" + data.data[i].id)
+    $http.get("/meals" + "/" + $scope.meals[i].id)
      .then(function(data){
+
 
 
      // 	console.log("haha", data.data.entries.length)
@@ -33,9 +33,16 @@ app.controller('mealView', ['$scope', '$http', function($scope,$http) {
     	// if(data.data.entries[j].meal_id === data.data[j].id){
 
         $scope.entries = data.data.entries;
+
+     	// console.log("ID", $scope.meals.id)
+      for(var j = 0; j< data.data.entries.length; j++){
+     	// console.log("Meal_id: ",data.data.entries[j])
+
       }
+        $scope.entries = data.data.entries;
      
      })
  	}
    })
+
 }]);
