@@ -46,7 +46,7 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
 
     console.log('this is the data rob, ', userData);
 
-    $http.post('/users/auth/signup',userData)
+    $http.post('/users/auth/signup', userData)
     .then(function(response){
       if(response.data.signedUp === true) {
         $scope.logIn();
@@ -60,13 +60,13 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
 
   $scope.google = function(){
 
-    $http.get('/users/auth/google')
+    console.log('submitting');
 
   };
 
     $scope.facebook = function(){
 
-    $http.get('/users/auth/facebook')
+    console.log('submitting');
 
   };
 

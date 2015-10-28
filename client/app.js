@@ -58,11 +58,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
   .state('entryForm', {
     url: '/entryForm',
+    authenticate: true,
     templateUrl: 'views/entryForm.html'
   })
 
   .state('mealForm', {
     url: '/mealForm',
+    authenticate: true,
     templateUrl: 'views/mealForm.html',
   });
 })
