@@ -13,13 +13,12 @@ app.controller('mealView', ['$scope', '$http', function($scope,$http) {
 
     $http.get("/meals" + "/" + data.data[i].id)
      .then(function(data){
-     	console.log("haha", data.data.entries.length)
-      for(var i = 0; i< data.data.entries.length; i++){
-     	// console.log("Entry data: ", data.data.entries[i])
-     	console.log("Meal_id: ",data.data.entries[i])
-    	// if(data.data.entries[i].meal_id === data.data[i].id){
-      }
+      for(var j = 0; j< data.data.entries.length; j++){
+     	// console.log("Entry data: ", data.data.entries[j])
+     	console.log("Meal_id: ",data.data.entries[j])
+    	// if(data.data.entries[j].meal_id === data.data[j].id){
         $scope.entries = data.data.entries;
+      }
      
      })
  	}
