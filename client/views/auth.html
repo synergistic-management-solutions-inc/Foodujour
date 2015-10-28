@@ -1,6 +1,6 @@
 <!-- SIGN IN VIEW -->
 
-  <div id="signIn" class="row">
+  <div id="signIn" class="row" ng-controller="AuthCtrl">
     <div class="col m6 s10 offset-s1 offset-m3">
      
       <img src="./assets/logo.png" width="200" height="100">
@@ -12,15 +12,15 @@
           <div class="collapsible-body">
             <!-- sign in function not defined yet -->
 
-            <form name="signInForm" action="users/auth/login" method="post" class="col s12">
+            <form name="signInForm" ng-submit="logIn()"  class="col s12">
               <div class="row">
                 <div class="input-field col s6">
-                  <input type="text" placeholder="E-mail Adress" id="username">
+                  <input type="text" placeholder="E-mail Adress" id="username" ng-model="user.mail">
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s6">
-                  <input type="password" placeholder="Password" id="password">
+                  <input type="password" placeholder="Password" id="password" ng-model="user.password">
                 </div>
               </div>
               <button type="submit" class="btn waves-effect waves-light">Log in</button>
@@ -33,13 +33,13 @@
           <div class="collapsible-header"><i class="material-icons">chat_bubble_outline</i>Using Your Google+/Facebook</div><br>
           <div class="collapsible-body row">   
               <div class='col m3 offset-m3'> 
-                <a href ='/auth/google'>
+                <a ng-click='google()'>
                   <img src="./assets/google_icon.png" width="25" height="25">
                 </a>
                 <span>Google+</span>
               </div>
               <div class='col m3'>
-                <a href = '/auth/facebook'>
+                <a ng-click='facebook()'>
                   <img src="./assets/facebook_icon.png" width="23" height="23">
                 </a>
                 <span>Facebook</span><br><br>
@@ -53,12 +53,12 @@
             <form name="signUpForm" ng-submit="signUp()" class="col s12">
               <div class="row">
                 <div class="input-field col s6">
-                  <input type="text" placeholder="E-mail Adress" id="username">
+                  <input type="text" placeholder="E-mail Adress" id="username" ng-model="user.mail">
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s6">
-                  <input type="password" placeholder="Password" id="password">
+                  <input type="password" placeholder="Password" id="password" ng-model="user.password">
                 </div>
               </div>
               <button class="btn waves-effect waves-light">Sign Up</button><br><br>
@@ -68,5 +68,7 @@
 
       </ul>
     </div>
+    {{user.mail}}
+    {{user.password}}
   </div>
 
