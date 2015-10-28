@@ -6,18 +6,57 @@ var UsersAPI = express.Router();
 
 // LOCAL PASSPORT REQUESTS
 UsersAPI.post('/auth/signup',
-  passport.authenticate('local-signup', {
-    failureRedirect: '/sergio.html'
-  })
+  // passport.authenticate('local-signup', {
+  //   failureRedirect: '/auth'
+  // }), function(req, res, next) {
+  //   res.send({signedUp: true});
+  // }
+  function(req, res, next) {
+    passport.authenticate('local-signup', function(err, user, info) {
+
+      if (err) {
+        // Some error
+        res.send({signedUp: false});
+        return;
+      }
+      if (!user) {
+        // Some no user error
+        res.send({signedUp: false});
+        return;
+      }
+      res.send({signedUp: true});
+
+    })(req, res, next);
+  }
 );
 
 UsersAPI.post('/auth/login',
-  passport.authenticate('local-login', {
-    failureRedirect: '/sergio.html'
-  }), function(req, res, next) {
-    res.header('isAuthenticated', 'true');
-    res.send({loggedIn: true});
-  }
+  
+  function(req, res, next) {
+      passport.authenticate('local-login', function(err, user, info) {
+
+        if (err) {
+          // Some error
+          res.send({loggedIn: false});
+          return;
+        }
+        if (!user) {
+          // Some no user error
+          res.send({loggedIn: false});
+          return;
+        }
+        res.send({loggedIn: true});
+
+      })(req, res, next);
+    }
+
+
+  // passport.authenticate('local-login', {
+  //   failureRedirect: '/auth'
+  // }), function(req, res, next) {
+  //   res.header('isAuthenticated', 'true');
+  //   res.send({loggedIn: true});
+  // }
 );
 
 UsersAPI.get('/auth/logout', function(req, res, next) {

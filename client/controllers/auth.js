@@ -5,21 +5,40 @@ app.controller('AuthCtrl', ['$scope','$http', function($scope,$http) {
     password: ''
   };
 
-  $scope.logIn = function(){
-    console.log('submitting')
+  $scope.logIn = function(userObj){
 
-    $http.post("/users/auth/login")
-    .then(function(data){
-    console.log('logged in ', data)
+    var userData = {
+      username:$scope.user.mail,
+      password:$scope.user.password
+    };
+
+    $http.post("/users/auth/login",userData)
+    .then(function(response){
+      console.log('logged in?', response);
+
     })
-    // .catch{
-    //   console.log('rejected mf')
-    // }
+    
   };
+
 
   $scope.signUp = function(){
 
-    console.log('submitting')
+    var userData = {
+      username:$scope.user.mail,
+      password:$scope.user.password
+    };
+
+    console.log('this is the data rob, ',userData)
+
+    $http.post("/users/auth/signup",userData)
+    .then(function(response){
+      if(response.data.signedUp === true) {
+        $scope.logIn();
+      }
+      else{
+        console.log('wow we got an error! fu', response);
+      }
+    })
 
   };
 
