@@ -1,4 +1,4 @@
-app.directive('entryView', function() {
+app.directive('entryview', function() {
   return  {
     restrict: 'AE',
     // use entry view template for directive
