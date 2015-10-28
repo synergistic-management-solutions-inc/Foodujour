@@ -38,7 +38,6 @@ app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $htt
     console.log('Meal image:', meal.image);
     console.log('Meal entries:', meal.entries);
 
-
-    // MealForm.addMeal(meal);
+    MealForm.addMeal(meal);
   };
 }]);

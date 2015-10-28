@@ -21,7 +21,5 @@ app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
     // console.log('Meal entries:', $scope.meal.entries);
 
     // MealForm.addMeal($scope.meal);
-    MealForm.addMeal($scope.meal);
-
   };
 }]);
