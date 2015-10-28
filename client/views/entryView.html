@@ -1,8 +1,19 @@
 <!-- ENTRY VIEW -->
-<div>
+<!-- <div>
   <ul class="entries">
     <h3>Entries</h3>
     <li ng-repeat="entry in meal.entries">
     </li>
   </ul>
-</div>
+</div> -->
+ <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat = "entry in entries">
+            <!-- ENTRIES GO HERE (ng-repeat)-->
+            <li>
+              <div class="collapsible-header">Entry 1</div>
+              <div class="collapsible-body">
+                {{entry.name}}
+                {{entry.rating}}
+                {{entry.notes}}
+              {{entry.image}}</div>
+            </li>
+          </ul>
