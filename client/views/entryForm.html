@@ -1,13 +1,13 @@
 <!-- MEAL FORM VIEW -->
 <div id="entryForm">
   <h1>Record Your Entry</h1>
-  <form name="entryFrom" ng-submit="$parent.saveEntry(entry)">
+  <form name="entryFrom" ng-submit="saveEntry($parent)">
     <div class="row">
       <div class="col s12">
         <!-- Entry Name -->
         <div class="row">
           <div class="input-field col s4 offset-s1">
-            <input ng-model="entry.name" ng-change="$parent.saveEntry(entry)" id="entryName" type="text" class="validate">
+            <input ng-model="entry.name" ng-change="saveEntry($parent)" id="entryName" type="text" class="validate">
             <label for="entryName">Entry Name</label>
           </div>
           <!-- Notes -->
@@ -18,4 +18,4 @@
     </div>
   </form>
 </div>
-<button ng-click="$parent.saveEntry(entry)">Save Entry</button>
+<button ng-click="saveEntry($parent)">Save Entry</button>

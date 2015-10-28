@@ -15,16 +15,25 @@ app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $htt
   // TODO : Add image upload input field functionality
   $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
 
+  // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
     console.log('Adding entry');
     $scope.unsavedEntries.push(1);
   };
 
+  // Attaches an entry to this meal
   $scope.saveEntry = function(entry) {
     console.log('Saving entry:', entry);
-    $scope.meal.entries.push(entry);
+    return $scope.meal.entries.push(entry) - 1;
   };
 
+  // Updates an existing entry in this meal
+  $scope.updateEntry = function(position, entry) {
+    console.log('Updating entry:', position);
+    $scope.meal.entries[position] = entry;
+  };
+
+  // Has MealForm model send the meal to the server
   $scope.addMeal = function() {
     var date = +new Date($scope.meal.date);
     var meal = Object.assign({}, $scope.meal);
