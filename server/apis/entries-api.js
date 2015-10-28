@@ -17,7 +17,6 @@ EntriesAPI.post('/', function(req, res) {
     .catch(function(err) {
       console.log(err);
     });
-
 });
 
 module.exports = EntriesAPI;
