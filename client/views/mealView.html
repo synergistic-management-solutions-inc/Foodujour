@@ -11,7 +11,7 @@
           {{meal.location}}<br>
           {{meal.rating}}<br>
           {{meal.image}}<br>
-          <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat = "entry in entries | filter: entries">
+          <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat="entry in (entries | filter : {'meal_id': meal.id})">
             <!-- ENTRIES GO HERE (ng-repeat)-->
             <li>
               <div class="collapsible-header">Entry 1</div>
