@@ -27,7 +27,7 @@ module.exports = function(passport) {
           }
 
           if (user) {
-            return done(null, false);
+            return done(null, false, { message: 'User Already exists' });
           }
           User.generateHash(password)
           .then(function(passHash) {
@@ -36,7 +36,10 @@ module.exports = function(passport) {
               passHash: passHash
             })
             .then(function(newUser) {
-              return done(null, newUser);
+              return done(null, newUser, { message: 'Successfully Signed Up' });
+            })
+            .catch(function(err) {
+              throw err;
             });
           })
           .catch(function(err) {
@@ -55,16 +58,15 @@ module.exports = function(passport) {
           return done(err);
         }
         if (!user) {
-          return done(null, false);
+          return done(null, false, { message: 'Incorrect username' });
         }
 
         User.validPassword.call(user, password)
           .then(function(valid) {
-            console.log('valid', valid);
             if (!valid) {
-              return done(null, false);
+              return done(null, false, { message: 'Incorrect password' });
             }
-            return done(null, user);
+            return done(null, user, { message: 'Successfully Logged In' });
           });
       });
     })

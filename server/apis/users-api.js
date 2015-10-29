@@ -8,8 +8,12 @@ var UsersAPI = express.Router();
 UsersAPI.post('/auth/signup',
   function(req, res, next) {
     passport.authenticate('local-signup', function(err, user, info) {
+      if (!user) {
+        res.send({ signedUp: false, info });
+        return;
+      }
       if (err) {
-        res.status(404).send({ signedUp: false, err: err });
+        res.status(404).send({ signedUp: false, err: err, info });
         return;
       }
       res.send({ signedUp: true });
@@ -19,19 +23,19 @@ UsersAPI.post('/auth/signup',
 
 UsersAPI.post('/auth/login',
   function(req, res, next) {
-      passport.authenticate('local-login', function(err, user, info) {
+    passport.authenticate('local-login', function(err, user, info) {
         if (err) {
           // Some error
-          res.send({ loggedIn: false, error:true });
+          res.send({ loggedIn: false, error: true, info });
           return;
         }
         if (!user) {
           // Some no user error
-          res.send({ loggedIn: false, noUser:true });
+          res.send({ loggedIn: false, noUser: true, info });
           return;
         }
         req.logIn(user, function(err) {
-          if (err) { return res.send({ loggedIn: false, error:true }); }
+          if (err) { return res.send({ loggedIn: false, err: true, info }); }
         });
         res.cookie('isLoggedIn', true);
         return res.send({ loggedIn: true });
@@ -78,12 +82,12 @@ UsersAPI.get('/auth/google/callback',
     passport.authenticate('google', function(err, user, info) {
       if (err) {
         // Some error
-        res.send({ loggedIn: false, error:true });
+        res.send({ loggedIn: false, error:true, info });
         return;
       }
       if (!user) {
         // Some no user error
-        res.send({ loggedIn: false, noUser:true });
+        res.send({ loggedIn: false, noUser:true, info });
         return;
       }
       req.logIn(user, function(err) {
@@ -108,12 +112,12 @@ UsersAPI.get('/auth/facebook/callback',
     passport.authenticate('facebook', function(err, user, info) {
       if (err) {
         // Some error
-        res.send({ loggedIn: false, error:true });
+        res.send({ loggedIn: false, error:true, info });
         return;
       }
       if (!user) {
         // Some no user error
-        res.send({ loggedIn: false, noUser:true });
+        res.send({ loggedIn: false, noUser:true, info });
         return;
       }
       req.logIn(user, function(err) {

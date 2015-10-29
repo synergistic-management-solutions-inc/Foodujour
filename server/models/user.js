@@ -62,12 +62,10 @@ User.generateHash = function(password) {
     .then(function(salt) {
       return bcrypt.hashAsync(password, salt, null);
     });
-  // return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 User.validPassword = function(password) {
   return bcrypt.compareAsync(password, this.passHash);
-  // return bcrypt.compareSync(password, this.passHash);
 };
 
 module.exports = User;
