@@ -1,5 +1,5 @@
 // to be replaced with another controller
-app.controller('mealView', ['$scope', '$http', function($scope,$http) {
+app.controller('mealView', ['$scope', '$http', '$location', function($scope,$http,$location) {
   
 
   $http.get("/meals")
@@ -21,4 +21,11 @@ app.controller('mealView', ['$scope', '$http', function($scope,$http) {
     //  })
  	// }
    })
+
+   
+
+	$scope.modalShown = false;
+ 	$scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
 }]);
