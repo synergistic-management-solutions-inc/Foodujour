@@ -6,23 +6,19 @@
       <li>
         <div class="collapsible-header">{{meal.name}}</div>
         <div class="collapsible-body">
-          {{meal.name}}<br>
-          {{meal.date}}<br>
-          {{meal.location}}<br>
-          {{meal.rating}}<br>
-          {{meal.image}}<br>
-          <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat="entry in (entries | filter : {'meal_id': meal.id})">
-            <!-- ENTRIES GO HERE (ng-repeat)-->
-            <li>
-              <div class="collapsible-header">{{entry.name}}</div>
-              <div class="collapsible-body">
-                {{entry.name}}<br>
-                {{entry.rating}}<br>
-                {{entry.notes}}<br>
-                {{entry.image}}<br>
-              </div>
-            </li>
-          </ul>
+      <div class= "row">
+        <div class= "mealName col s4"> Name : {{meal.name}}</div>
+        <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
+        <div class= "mealImg col s4">{{meal.image}}<br></div>
+      </div>
+      <div class= "row">
+        <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
+        <div class= "mealDate col s6">Date : {{meal.date}}<br></div>
+      </div>
+      <div class = "row">
+        <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
+        <button class = "btn col s3 offset-s1">Edit Meal</button>
+      </div>
         </div>
       </li>
     </ul>
