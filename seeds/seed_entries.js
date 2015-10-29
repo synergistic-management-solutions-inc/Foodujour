@@ -1,30 +1,33 @@
 exports.seed = function(knex, Promise) {
-  return knex('entries').insert([
-    {
-      meal_id: 1, name: 'RoflBurger',
-      rating: 1, notes: 'This is a note here', image: 'http://www.image.com'
-    },
-    {
-      meal_id: 3, name: 'BlingCheese',
-      rating: 2, notes: 'This is a note here but no image'
-    },
-    {
-      meal_id: 4, name: 'Fet UP',
-      rating: 0, image: 'http://not.anote.here'
-    },
-    {
-      meal_id: 3, name: 'Bagel',
-      rating: 0, notes: 'This is a note here but no image'
-    },
-    {
-      meal_id: 3, name: 'Popcorn',
-      rating: 1, notes: 'This is a note here but no image'
-    },
-    {
-      meal_id: 2, name: 'RoflCat',
-      rating: 2, notes: 'This is a note here', image: 'http://www.image.com'
-    }
-  ]);
+  return knex('entries').del()
+  .then(function() {
+    return knex('entries').insert([
+      {
+        meal_id: 1, name: 'RoflBurger', user_id: 2,
+        rating: 1, notes: 'This is a note here', image: 'http://www.image.com'
+      },
+      {
+        meal_id: 3, name: 'BlingCheese', user_id: 1,
+        rating: 2, notes: 'This is a note here but no image'
+      },
+      {
+        meal_id: 4, name: 'Fet UP', user_id: 1,
+        rating: 0, image: 'http://not.anote.here'
+      },
+      {
+        meal_id: 3, name: 'Bagel', user_id: 1,
+        rating: 0, notes: 'This is a note here but no image'
+      },
+      {
+        meal_id: 3, name: 'Popcorn', user_id: 1,
+        rating: 1, notes: 'This is a note here but no image'
+      },
+      {
+        meal_id: 2, name: 'RoflCat', user_id: 4,
+        rating: 2, notes: 'This is a note here', image: 'http://www.image.com'
+      }
+    ]);
+  });
 };
 
 // ent.increments('id').primary();
