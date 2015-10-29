@@ -9,6 +9,8 @@ app.controller('mealView', ['$scope', '$http', '$location', function($scope, $ht
     // console.log('Number: ', data.data[i].id)
     $scope.meals = data.data;
 
+
+
     // }
     // $http.get("/meals" + "/" + $scope.meals[i].id)
     //  .then(function(data){
@@ -22,10 +24,4 @@ app.controller('mealView', ['$scope', '$http', '$location', function($scope, $ht
     // }
    });
 
-   
-
-  $scope.modalShown = false;
-  $scope.toggleModal = function() {
-    $scope.modalShown = !$scope.modalShown;
-  };
 }]);
