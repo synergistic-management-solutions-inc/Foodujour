@@ -33,8 +33,6 @@ app.factory('Auth', ['$cookies', '$http', '$state', function($cookies, $http, $s
       password: userObj.password
     };
 
-    console.log('this is the data rob, ', userData);
-
     $http.post('/users/auth/signup', userData)
     .then(function(response){
       if(response.data.signedUp === true) {
