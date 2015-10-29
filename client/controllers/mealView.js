@@ -21,4 +21,13 @@ app.controller('mealView', ['$scope', '$http', function($scope,$http) {
     //  })
  	// }
    })
+
+   $scope.open = function(){
+   	$scope.showModal = true
+   }
+
+   $scope.close = function(){
+   	$scope.showModal = false
+   }
+
 }]);

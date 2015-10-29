@@ -46,6 +46,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     url: '/mealForm',
     authenticate: true,
     templateUrl: 'views/mealForm.html',
+  })
+
+  .state('mealInfo', {
+    url: '/mealInfo',
+    templateUrl: 'views/mealInfo.html',
   });
 })
 .run(function ($rootScope, $state, $location, Auth) {
