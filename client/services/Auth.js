@@ -13,7 +13,7 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
       password:userObj.password
     };
 
-    $http.post('/users/auth/login', userData)
+    $http.post('/api/users/auth/login', userData)
     .then(function(response){
       console.log('logged in?', response);
       if (response.status === 200 && isLoggedIn()) {
@@ -32,7 +32,7 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
       password: userObj.password
     };
 
-    $http.post('/users/auth/signup', userData)
+    $http.post('/api/users/auth/signup', userData)
     .then(function(response){
       if(response.data.signedUp === true) {
         logIn(userData);
@@ -47,7 +47,7 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
   var signOut = function() {
     $http({
       method: 'POST',
-      url: '/users/auth/logout'
+      url: '/api/users/auth/logout'
     }).then(function(res) {
       $state.go('auth');
     });

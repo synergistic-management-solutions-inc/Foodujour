@@ -38,10 +38,10 @@ module.exports = function(app, passport) {
     res.send(['node', 'express', 'angular']);
   });
 
-  app.use('/meals', isLoggedIn, mealRouter);
-  app.use('/entries', isLoggedIn, entryRouter);
+  app.use('/api/meals', isLoggedIn, mealRouter);
+  app.use('/api/entries', isLoggedIn, entryRouter);
   // do not put isLoggedIn check here
-  app.use('/users', userRouter);
+  app.use('/api/users', userRouter);
   app.use('/', routes);
 
   // Serve static files last, so only will do this if it gets to last route
