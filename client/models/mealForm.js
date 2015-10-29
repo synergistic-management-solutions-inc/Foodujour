@@ -6,7 +6,7 @@ app.factory('MealForm', ['$http', function($http) {
     console.log('Adding meal:', meal);
     $http({
       method: 'POST',
-      url: '/meals',
+      url: '/api/meals',
       data: meal
     })
     .then(function(res) {

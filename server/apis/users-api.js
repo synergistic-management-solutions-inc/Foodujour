@@ -87,7 +87,7 @@ UsersAPI.get('/auth/google/callback',
         return;
       }
       req.logIn(user, function(err) {
-        if (err) { res.redirect(302, '/auth'); }
+        if (err) { res.redirect(302, '/'); }
       });
       res.cookie('isLoggedIn', true);
       res.redirect(302, '/');
@@ -117,7 +117,7 @@ UsersAPI.get('/auth/facebook/callback',
         return;
       }
       req.logIn(user, function(err) {
-        if (err) { res.redirect(302, '/auth'); }
+        if (err) { res.redirect(302, '/'); }
       });
       res.cookie('isLoggedIn', true);
       res.redirect(302, '/');
