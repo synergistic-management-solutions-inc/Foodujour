@@ -2,6 +2,7 @@
 app.controller('mealView', ['$scope', '$http', '$location', function($scope, $http, $location) {
   
 
+
   $http.get('/api/meals')
   .then(function(data){
     // console.log('Data: ', data.data)
@@ -28,6 +29,11 @@ app.controller('mealView', ['$scope', '$http', '$location', function($scope, $ht
 
 
  	
+
+ 	 $scope.setMeal = function (data) {
+            $scope.meal = data;
+      };
+
 
 
    })
