@@ -27,18 +27,24 @@ module.exports = function(passport) {
           }
 
           if (user) {
-            return done(null, false);
+            return done(null, false, { message: 'User Already exists' });
           }
-          User.signUp({
-            name: username,
-            passHash: User.generateHash(password)
-          })
+          User.generateHash(password)
+          .then(function(passHash) {
+            User.signUp({
+              name: username,
+              passHash: passHash
+            })
             .then(function(newUser) {
-              return done(null, newUser);
+              return done(null, newUser, { message: 'Successfully Signed Up' });
             })
             .catch(function(err) {
               throw err;
             });
+          })
+          .catch(function(err) {
+            throw err;
+          });
         });
       });
     })
@@ -52,14 +58,16 @@ module.exports = function(passport) {
           return done(err);
         }
         if (!user) {
-          return done(null, false);
+          return done(null, false, { message: 'Incorrect username' });
         }
 
-        if (!User.validPassword.call(user, password)) {
-          return done(null, false);
-        }
-
-        return done(null, user);
+        User.validPassword.call(user, password)
+          .then(function(valid) {
+            if (!valid) {
+              return done(null, false, { message: 'Incorrect password' });
+            }
+            return done(null, user, { message: 'Successfully Logged In' });
+          });
       });
     })
   );
