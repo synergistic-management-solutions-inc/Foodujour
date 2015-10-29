@@ -31,6 +31,18 @@ User.findByGoogleID = function(googleID, cb) {
     });
 };
 
+User.findByFacebookID = function(facebookID, cb) {
+  return db('users').select('*').where({fb_id: facebookID}).limit(1)
+    .then(function(rows) {
+      if (!rows.length) { /* reject */ }
+      if (!cb) { return rows[0]; }
+      return cb(null, rows[0]);
+    })
+    .catch(function(err) {
+      throw err;
+    });
+};
+
 User.signUp = function (attrs) {
   return db('users').insert(attrs).returning('id')
     .then(function(rows) {
@@ -50,14 +62,6 @@ User.generateHash = function(password) {
 
 User.validPassword = function(password) {
   return bcrypt.compareSync(password, this.passHash);
-};
-
-User.logIn = function (attrs) {
-
-};
-
-User.logOut = function(){
-
 };
 
 module.exports = User;
