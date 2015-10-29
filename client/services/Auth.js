@@ -1,5 +1,5 @@
 
-app.factory('Auth', ['$cookies', '$http', '$state', function($cookies, $http, $state) {
+app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookies, $http, $state, $location) {
 
   var isLoggedIn = function() {
     var cookie = $cookies.get('isLoggedIn');
@@ -32,8 +32,6 @@ app.factory('Auth', ['$cookies', '$http', '$state', function($cookies, $http, $s
       username: userObj.mail,
       password: userObj.password
     };
-
-    console.log('this is the data rob, ', userData);
 
     $http.post('/users/auth/signup', userData)
     .then(function(response){
