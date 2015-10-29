@@ -69,6 +69,7 @@ MealsAPI.post('/', function(req, res) {
       Promise.all(entries.map(function(entry) {
         // map the entries array, to return an array of Entry.create promises
         entry.meal_id = meal.id;
+        entry.user_id = meal.user_id;
         return Entry.create(entry);
       }))
       .then(function(results) {
@@ -121,9 +122,9 @@ MealsAPI.put('/:id', function(req, res) {
         .then(function(meal) {
           if (Array.isArray(entries) && entries.length > 0) {
             Promise.all(entries.map(function(entry) {
-                    // map the entries array, to return an array of Entry.create promises
-                    return Entry.updateOne(entry);
-                  }));
+              // map the entries array, to return an array of Entry.create promises
+              return Entry.updateOne(entry);
+            }));
           }
           if (meal && user.id === meal.user_id) {
             Entry.findMealEntries(meal.id)

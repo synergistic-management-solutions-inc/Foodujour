@@ -6,6 +6,10 @@ Entry.all = function () {
   return db('entries').select('*');
 };
 
+Entry.findByUser = function(userId) {
+  return db('entries').select('*').where({user_id: userId});
+};
+
 Entry.findMealEntries = function(mealId) {
   return db('entries').select('*').where({ meal_id: mealId })
     .then(function(rows) {
