@@ -84,13 +84,14 @@ module.exports = function(passport) {
 
       process.nextTick(function () {
         console.log('google profile: ', profile);
-        User.findByGoogleID({google_id: profile.id}, function(err, user) {
+        User.findByGoogleID(profile.id, function(err, user) {
           if (err) {
             return done(err);
           }
 
           if (user) {
             // if user is found log them in
+            console.log('user found', user);
             return done(null, user);
           } else {
             var newUser = {
@@ -124,7 +125,7 @@ module.exports = function(passport) {
 
       process.nextTick(function () {
         console.log('facebook profile: ', profile);
-        User.findByFacebookID({fb_id: profile.id}, function(err, user) {
+        User.findByFacebookID(profile.id, function(err, user) {
           if (err) {
             return done(err);
           }
