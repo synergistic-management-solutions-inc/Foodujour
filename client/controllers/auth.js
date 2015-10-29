@@ -60,13 +60,13 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
 
   $scope.google = function(){
 
-    console.log('submitting');
+    $http.get('/users/auth/google')
 
   };
 
     $scope.facebook = function(){
 
-    console.log('submitting');
+    $http.get('/users/auth/facebook')
 
   };
 
