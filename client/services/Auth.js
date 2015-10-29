@@ -16,11 +16,10 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
     $http.post('/users/auth/login', userData)
     .then(function(response){
       console.log('logged in?', response);
-      if (response.status === 200) {
-        console.log('status code 200');
+      if (response.status === 200 && isLoggedIn()) {
         $state.go('home');
       } else {
-        // Error signing in
+        $state.go('auth');
       }
     });
     
@@ -50,14 +49,14 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
       method: 'POST',
       url: '/users/auth/logout'
     }).then(function(res) {
-      $location.path('/auth');
-      // $state.go('auth');
+      $state.go('auth');
     });
   };
 
   return {
     isLoggedIn: isLoggedIn,
     logIn: logIn,
-    signOut: signOut
+    signOut: signOut,
+    signUp: signUp
   };
 }]);
