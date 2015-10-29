@@ -24,4 +24,11 @@ app.controller('mealView', ['$scope', '$http', '$location', function($scope, $ht
     // }
    });
 
+ 	// }
+
+
+ 	
+
+
+   })
 }]);
