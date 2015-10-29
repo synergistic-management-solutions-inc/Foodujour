@@ -18,7 +18,10 @@
           <div class = "row">
             <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
             <!-- <a class="btn col s3 offset-s1 waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-            <button class = "btn col s3 offset-s1" ng-click= "toggleModal()">See Meal</button>
+            <a class='btn col s4' href='#mealModal' modal ng-click="setMeal()">Show Meal</a>
+          </div>
+          <div id="mealModal" class="modal">
+             <mealinfo></mealinfo>
           </div>
         </div>
       </li>
