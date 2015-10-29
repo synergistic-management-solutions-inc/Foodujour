@@ -66,7 +66,7 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
 
     $scope.facebook = function(){
 
-    console.log('submitting');
+    $http.get('/users/auth/facebook')
 
   };
 
