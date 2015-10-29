@@ -58,10 +58,8 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   // allowing them access to the page
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
     if (next.authenticate && Auth.isLoggedIn() === false) {
-      // User is not logged in, 
-      $location.path('/auth');
-      // Cant do it this way, doesnt seem to switch state to the auth page
-      // $state.go('auth');
+      // User is not logged in,
+      $location.path($state.href('auth'));
     }
   });
 });
