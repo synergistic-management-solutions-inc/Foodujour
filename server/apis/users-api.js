@@ -21,13 +21,17 @@ UsersAPI.post('/auth/login',
   function(req, res, next) {
       passport.authenticate('local-login', function(err, user, info) {
         if (err) {
-          return next(err);
+          // Some error
+          res.send({loggedIn: false, error:true});
+          return;
         }
         if (!user) {
-          res.status(401).send({loggedIn: false});
+          // Some no user error
+          res.send({loggedIn: false, noUser:true});
+          return;
         }
         req.logIn(user, function(err) {
-          if (err) { return next(err); }
+          if (err) { return res.send({loggedIn: false, error:true}); }
         });
         res.cookie('isLoggedIn', true);
         return res.send({loggedIn: true});
