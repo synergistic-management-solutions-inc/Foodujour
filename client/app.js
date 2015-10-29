@@ -29,6 +29,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'views/auth.html',
     controller: 'AuthCtrl',
   })
+  
+  .state('meals', {
+    url: '/meals/{id:int}',
+    // authenticate: true,
+    templateUrl: 'views/mealInfo.html',
+    // params: {
+    //   id: 'latest'
+    // },
+    controller: 'MealInfoController'
+  })
 
   .state('about', {
     url: '/about',
