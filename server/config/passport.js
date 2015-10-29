@@ -17,9 +17,7 @@ module.exports = function(passport) {
     });
   });
 
-  // **************************
   // Local Strategy -- SIGN UP
-  // **************************
   passport.use('local-signup', new LocalStrategy(
     function(username, password, done) {
       process.nextTick(function() {
@@ -46,9 +44,7 @@ module.exports = function(passport) {
     })
   );
 
-  // **************************
   // Local Strategy -- LOG IN
-  // **************************
   passport.use('local-login', new LocalStrategy(
     function(username, password, done) {
       User.findByUsername(username, function(err, user) {
@@ -98,7 +94,7 @@ module.exports = function(passport) {
             return done(null, user);
           } else {
             var newUser = {
-              name: profile.displayName + '_' + profile.emails[0].value,
+              name: profile.displayName + '_G_' + profile.emails[0].value,
               google_id: profile.id,
               google_name: profile.displayName,
               google_email: profile.emails[0].value
@@ -138,7 +134,7 @@ module.exports = function(passport) {
             return done(null, user);
           } else {
             var newUser = {
-              name: profile.displayName + '_' + profile.emails[0].value,
+              name: profile.displayName + '_FB_' + profile.emails[0].value,
               fb_id: profile.id,
               fb_name: profile.displayName,
               fb_email: profile.emails[0].value

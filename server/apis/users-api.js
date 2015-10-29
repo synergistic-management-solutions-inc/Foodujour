@@ -74,31 +74,70 @@ UsersAPI.get('/auth/google',
 );
 
 UsersAPI.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/sergio.html' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.cookie('isLoggedIn', true);
-    res.send({loggedIn: true});
-    // res.redirect('/');
-  });
+  // passport.authenticate('google', { failureRedirect: '/sergio.html' }),
+  //
+  // function(req, res) {
+  //   // Successful authentication, redirect home.
+  //   res.cookie('isLoggedIn', true);
+  //   res.send({loggedIn: true});
+  //   // res.redirect('/');
+  function(req, res, next) {
+    passport.authenticate('google', function(err, user, info) {
+      if (err) {
+        // Some error
+        res.send({loggedIn: false, error:true});
+        return;
+      }
+      if (!user) {
+        // Some no user error
+        res.send({loggedIn: false, noUser:true});
+        return;
+      }
+      req.logIn(user, function(err) {
+        if (err) { return res.send({loggedIn: false, error:true}); }
+      });
+      res.cookie('isLoggedIn', true);
+      return res.send({loggedIn: true});
+    })(req, res, next);
+  }
+);
 
 
 // FACEBOOK PASSPORT REQUESTS
 UsersAPI.get('/auth/facebook',
   passport.authenticate('facebook', {
-    scope: [
-      'email'
-    ]
+    scope: [ 'email' ]
   })
 );
 
 UsersAPI.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/auth' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.cookie('isLoggedIn', true);
-    res.send({loggedIn: true});
-    // res.redirect('/');
-  });
+  // passport.authenticate('facebook', { failureRedirect: '/auth' }),
+  // function(req, res) {
+  //   // Successful authentication, redirect home.
+  //   res.cookie('isLoggedIn', true);
+  //   res.send({loggedIn: true});
+  //   // res.redirect('/');
+  // });
+  function(req, res, next) {
+    passport.authenticate('facebook', function(err, user, info) {
+      if (err) {
+        // Some error
+        res.send({loggedIn: false, error:true});
+        return;
+      }
+      if (!user) {
+        // Some no user error
+        res.send({loggedIn: false, noUser:true});
+        return;
+      }
+      req.logIn(user, function(err) {
+        if (err) { return res.send({loggedIn: false, error:true}); }
+      });
+      res.cookie('isLoggedIn', true);
+      return res.send({loggedIn: true});
+    })(req, res, next);
+  }
+);
+
 
 module.exports = UsersAPI;
