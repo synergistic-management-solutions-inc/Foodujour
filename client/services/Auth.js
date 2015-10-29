@@ -1,5 +1,5 @@
 
-app.factory('Auth', ['$cookies', '$http', '$state', function($cookies, $http, $state) {
+app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookies, $http, $state, $location) {
 
   var isLoggedIn = function() {
     var cookie = $cookies.get('isLoggedIn');

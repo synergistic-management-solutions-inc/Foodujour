@@ -94,10 +94,10 @@ UsersAPI.get('/auth/google/callback',
         return;
       }
       req.logIn(user, function(err) {
-        if (err) { return res.send({loggedIn: false, error:true}); }
+        if (err) { res.redirect(302, '/auth') }
       });
       res.cookie('isLoggedIn', true);
-      return res.send({loggedIn: true});
+      res.redirect(302, '/')
     })(req, res, next);
   }
 );
@@ -131,10 +131,10 @@ UsersAPI.get('/auth/facebook/callback',
         return;
       }
       req.logIn(user, function(err) {
-        if (err) { return res.send({loggedIn: false, error:true}); }
+        if (err) { res.redirect(302, '/auth'); }
       });
       res.cookie('isLoggedIn', true);
-      return res.send({loggedIn: true});
+      res.redirect(302, '/');
     })(req, res, next);
   }
 );

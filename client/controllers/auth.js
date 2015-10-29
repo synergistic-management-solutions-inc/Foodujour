@@ -16,11 +16,11 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
   };
 
   $scope.google = function(){
-    window.location.replace('user/auth/google');
+    window.location.replace('users/auth/google');
   };
 
     $scope.facebook = function(){
-    window.location.replace('user/auth/facebook');
+    window.location.replace('users/auth/facebook');
   };
 
 }]);
