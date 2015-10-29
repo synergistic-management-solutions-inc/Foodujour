@@ -1,12 +1,12 @@
 var config = require('./config');
 var User   = require('../models/user');
 var LocalStrategy      = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy   = require('passport-facebook').Strategy;
 
 
 module.exports = function(passport) {
-  
+
   passport.serializeUser(function(user, done) {
     done(null, user.name);
   });
@@ -68,8 +68,7 @@ module.exports = function(passport) {
     })
   );
 
-  // ************* PASSPORT STRATEGY STARTS *****************
-  // // Google Strategy
+  // Google Strategy
   passport.use(new GoogleStrategy({
       clientID:     config.GoogleAuth.clientId,
       clientSecret: config.GoogleAuth.clientSecret,
@@ -86,34 +85,74 @@ module.exports = function(passport) {
       //if you use it.
     },
     function(request, accessToken, refreshToken, profile, done) {
-  
+
       process.nextTick(function () {
-        // To keep the example simple, the user's Google profile is returned to
-        // represent the logged-in user.  In a typical application, you would want
-        // to associate the Google account with a user record in your database,
-        // and return that user instead.
         console.log('google profile: ', profile);
-  
-        return done(null, profile);
+        User.findByGoogleID({google_id: profile.id}, function(err, user) {
+          if (err) {
+            return done(err);
+          }
+
+          if (user) {
+            // if user is found log them in
+            return done(null, user);
+          } else {
+            var newUser = {
+              name: profile.displayName + '_' + profile.emails[0].value,
+              google_id: profile.id,
+              google_name: profile.displayName,
+              google_email: profile.emails[0].value
+            };
+            User.signUp(newUser)
+              .then(function(newUser) {
+                return done(null, newUser);
+              })
+              .catch(function(err) {
+                throw err;
+              });
+          }
+        });
       });
     }
   ));
-  //
+
  //Facebook Strategy
   passport.use(new FacebookStrategy({
       clientID:     config.FacebookAuth.clientId,
       clientSecret: config.FacebookAuth.clientSecret,
       callbackURL:  config.FacebookAuth.callbackURL,
+      profileFields: ['id', 'displayName', 'emails'],
       enableProof: false
     },
   function(accessToken, refreshToken, profile, done) {
-  
+
       process.nextTick(function () {
         console.log('facebook profile: ', profile);
-        return done(null, profile);
+        User.findByFacebookID({fb_id: profile.id}, function(err, user) {
+          if (err) {
+            return done(err);
+          }
+
+          if (user) {
+            // if user is found log them in
+            return done(null, user);
+          } else {
+            var newUser = {
+              name: profile.displayName + '_' + profile.emails[0].value,
+              fb_id: profile.id,
+              fb_name: profile.displayName,
+              fb_email: profile.emails[0].value
+            };
+            User.signUp(newUser)
+              .then(function(newUser) {
+                return done(null, newUser);
+              })
+              .catch(function(err) {
+                throw err;
+              });
+          }
+        });
       });
     }
   ));
-
-  // ************* PASSPORT STRATEGY ENDS *****************
 };

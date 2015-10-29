@@ -70,24 +70,31 @@ UsersAPI.get('/auth/google',
 );
 
 UsersAPI.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/auth' }),
+  passport.authenticate('google', { failureRedirect: '/sergio.html' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.cookie('isLoggedIn', true);
+    res.send({loggedIn: true});
+    // res.redirect('/');
   });
 
 
 // FACEBOOK PASSPORT REQUESTS
 UsersAPI.get('/auth/facebook',
-  passport.authenticate('facebook'));
+  passport.authenticate('facebook', {
+    scope: [
+      'email'
+    ]
+  })
+);
 
 UsersAPI.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/auth' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.cookie('isLoggedIn', true);
+    res.send({loggedIn: true});
+    // res.redirect('/');
   });
-
-
 
 module.exports = UsersAPI;
