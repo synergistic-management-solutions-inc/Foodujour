@@ -1,5 +1,5 @@
 exports.seed = function(knex, Promise) {
-  return knex('meals').del()
+  return knex('meals').truncate()
     .then(function() {
       return knex('meals').insert([
         {

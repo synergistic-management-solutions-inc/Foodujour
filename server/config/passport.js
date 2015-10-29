@@ -29,16 +29,19 @@ module.exports = function(passport) {
           if (user) {
             return done(null, false);
           }
-          User.signUp({
-            name: username,
-            passHash: User.generateHash(password)
-          })
+          User.generateHash(password)
+          .then(function(passHash) {
+            User.signUp({
+              name: username,
+              passHash: passHash
+            })
             .then(function(newUser) {
               return done(null, newUser);
-            })
-            .catch(function(err) {
-              throw err;
             });
+          })
+          .catch(function(err) {
+            throw err;
+          });
         });
       });
     })
@@ -55,11 +58,14 @@ module.exports = function(passport) {
           return done(null, false);
         }
 
-        if (!User.validPassword.call(user, password)) {
-          return done(null, false);
-        }
-
-        return done(null, user);
+        User.validPassword.call(user, password)
+          .then(function(valid) {
+            console.log('valid', valid);
+            if (!valid) {
+              return done(null, false);
+            }
+            return done(null, user);
+          });
       });
     })
   );

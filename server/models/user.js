@@ -1,5 +1,6 @@
 var db     = require('../lib/db');
-var bcrypt = require('bcrypt-nodejs');
+var bPromise = require('bluebird');
+var bcrypt = bPromise.promisifyAll(require('bcrypt-nodejs'));
 
 var User = {};
 
@@ -57,11 +58,16 @@ User.signUp = function (attrs) {
 
 User.generateHash = function(password) {
   // replace this with aSync
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+  return bcrypt.genSaltAsync(8)
+    .then(function(salt) {
+      return bcrypt.hashAsync(password, salt, null);
+    });
+  // return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
 User.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.passHash);
+  return bcrypt.compareAsync(password, this.passHash);
+  // return bcrypt.compareSync(password, this.passHash);
 };
 
 module.exports = User;
