@@ -13,7 +13,7 @@ UsersAPI.post('/auth/signup',
         return;
       }
       if (err) {
-        res.status(404).send({ signedUp: false, err: err, info });
+        res.status(404).send({ signedUp: false, err: err, info: info });
         return;
       }
       res.send({ signedUp: true });
@@ -26,16 +26,16 @@ UsersAPI.post('/auth/login',
     passport.authenticate('local-login', function(err, user, info) {
         if (err) {
           // Some error
-          res.send({ loggedIn: false, error: true, info });
+          res.send({ loggedIn: false, error: true, info: info });
           return;
         }
         if (!user) {
           // Some no user error
-          res.send({ loggedIn: false, noUser: true, info });
+          res.send({ loggedIn: false, noUser: true, info: info });
           return;
         }
         req.logIn(user, function(err) {
-          if (err) { return res.send({ loggedIn: false, err: true, info }); }
+          if (err) { return res.send({ loggedIn: false, err: true, info: info }); }
         });
         res.cookie('isLoggedIn', true);
         return res.send({ loggedIn: true });
@@ -82,12 +82,12 @@ UsersAPI.get('/auth/google/callback',
     passport.authenticate('google', function(err, user, info) {
       if (err) {
         // Some error
-        res.send({ loggedIn: false, error:true, info });
+        res.send({ loggedIn: false, error:true, info: info });
         return;
       }
       if (!user) {
         // Some no user error
-        res.send({ loggedIn: false, noUser:true, info });
+        res.send({ loggedIn: false, noUser:true, info: info });
         return;
       }
       req.logIn(user, function(err) {
@@ -98,7 +98,6 @@ UsersAPI.get('/auth/google/callback',
     })(req, res, next);
   }
 );
-
 
 // FACEBOOK PASSPORT REQUESTS
 UsersAPI.get('/auth/facebook',
@@ -112,12 +111,12 @@ UsersAPI.get('/auth/facebook/callback',
     passport.authenticate('facebook', function(err, user, info) {
       if (err) {
         // Some error
-        res.send({ loggedIn: false, error:true, info });
+        res.send({ loggedIn: false, error:true, info: info });
         return;
       }
       if (!user) {
         // Some no user error
-        res.send({ loggedIn: false, noUser:true, info });
+        res.send({ loggedIn: false, noUser:true, info: info });
         return;
       }
       req.logIn(user, function(err) {
@@ -128,6 +127,5 @@ UsersAPI.get('/auth/facebook/callback',
     })(req, res, next);
   }
 );
-
 
 module.exports = UsersAPI;
