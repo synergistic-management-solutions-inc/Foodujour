@@ -1,1 +1,21 @@
-<mealview></mealview>
+<modal-dialog show='modalShown' width='750px' height='60%'>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>{{meal.name}}</h4>
+      	<div class= "row">
+           <div class= "mealName col s4"> Name : {{meal.name}}</div>
+           <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
+           <div class= "mealImg col s4">{{meal.image}}<br></div>
+        </div>
+        <div class= "row">
+           <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
+           <div class= "mealDate col s6">Date : {{meal.date}}<br></div>
+        </div>
+        <div class = "row">
+           <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
+        </div>
+    </div>
+</div>
+</modal-dialog>
+
+ 
