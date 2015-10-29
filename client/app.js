@@ -9,28 +9,6 @@ window.app = angular.module('myApp', [
   'ui.materialize'
 ]);
 
-app.factory('Auth', ['$cookies', '$http', '$state', function($cookies, $http, $state) {
-
-  var isLoggedIn = function() {
-    var cookie = $cookies.get('isLoggedIn');
-    return cookie === 'true';
-  };
-
-  var signOut = function() {
-    $http({
-      method: 'POST',
-      url: '/users/auth/logout'
-    }).then(function(res) {
-      $state.go('auth');
-    });
-  };
-
-  return {
-    isLoggedIn: isLoggedIn,
-    signOut: signOut
-  };
-}]);
-
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
@@ -83,6 +61,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   });
 });
 
+require('./services');
 require('./models');
 require('./controllers');
 require('./directives');

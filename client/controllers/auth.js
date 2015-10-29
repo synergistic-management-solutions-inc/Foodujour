@@ -14,48 +14,12 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
   };
 
   $scope.logIn = function(userObj){
-
-    var userData = {
-      username:$scope.user.mail,
-      password:$scope.user.password
-    };
-
-    $http.post('/users/auth/login', userData)
-    .then(function(response){
-      console.log('logged in?', response);
-      if (response.status === 200) {
-        // TODO
-        // isLoggedIn = true;
-        console.log('status code 200');
-        $state.go('home');
-      } else {
-        // TODO
-        // isLoggedIn = false;
-      }
-    });
-    
+    Auth.logIn($scope.user);
   };
 
 
   $scope.signUp = function(){
-
-    var userData = {
-      username:$scope.user.mail,
-      password:$scope.user.password
-    };
-
-    console.log('this is the data rob, ', userData);
-
-    $http.post('/users/auth/signup', userData)
-    .then(function(response){
-      if(response.data.signedUp === true) {
-        $scope.logIn();
-      }
-      else{
-        console.log('wow we got an error!', response);
-      }
-    });
-
+    Auth.signUp($scope.user);
   };
 
   $scope.google = function(){
