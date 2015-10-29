@@ -9,10 +9,10 @@ UsersAPI.post('/auth/signup',
   function(req, res, next) {
     passport.authenticate('local-signup', function(err, user, info) {
       if (err) {
-        res.status(404).send({signedUp: false, err: err});
+        res.status(404).send({ signedUp: false, err: err });
         return;
       }
-      res.send({signedUp: true});
+      res.send({ signedUp: true });
     })(req, res, next);
   }
 );
@@ -22,19 +22,19 @@ UsersAPI.post('/auth/login',
       passport.authenticate('local-login', function(err, user, info) {
         if (err) {
           // Some error
-          res.send({loggedIn: false, error:true});
+          res.send({ loggedIn: false, error:true });
           return;
         }
         if (!user) {
           // Some no user error
-          res.send({loggedIn: false, noUser:true});
+          res.send({ loggedIn: false, noUser:true });
           return;
         }
         req.logIn(user, function(err) {
-          if (err) { return res.send({loggedIn: false, error:true}); }
+          if (err) { return res.send({ loggedIn: false, error:true }); }
         });
         res.cookie('isLoggedIn', true);
-        return res.send({loggedIn: true});
+        return res.send({ loggedIn: true });
       })(req, res, next);
     }
 );
@@ -45,7 +45,7 @@ UsersAPI.post('/auth/logout', function(req, res, next) {
     if (err) { return next(err); }
     res.header('isAuthenticated', 'false');
     res.clearCookie('isLoggedIn');
-    res.send({loggedIn: false});
+    res.send({ loggedIn: false });
   });
 });
 
@@ -74,30 +74,23 @@ UsersAPI.get('/auth/google',
 );
 
 UsersAPI.get('/auth/google/callback',
-  // passport.authenticate('google', { failureRedirect: '/sergio.html' }),
-  //
-  // function(req, res) {
-  //   // Successful authentication, redirect home.
-  //   res.cookie('isLoggedIn', true);
-  //   res.send({loggedIn: true});
-  //   // res.redirect('/');
   function(req, res, next) {
     passport.authenticate('google', function(err, user, info) {
       if (err) {
         // Some error
-        res.send({loggedIn: false, error:true});
+        res.send({ loggedIn: false, error:true });
         return;
       }
       if (!user) {
         // Some no user error
-        res.send({loggedIn: false, noUser:true});
+        res.send({ loggedIn: false, noUser:true });
         return;
       }
       req.logIn(user, function(err) {
-        if (err) { res.redirect(302, '/auth') }
+        if (err) { res.redirect(302, '/auth'); }
       });
       res.cookie('isLoggedIn', true);
-      res.redirect(302, '/')
+      res.redirect(302, '/');
     })(req, res, next);
   }
 );
@@ -111,23 +104,16 @@ UsersAPI.get('/auth/facebook',
 );
 
 UsersAPI.get('/auth/facebook/callback',
-  // passport.authenticate('facebook', { failureRedirect: '/auth' }),
-  // function(req, res) {
-  //   // Successful authentication, redirect home.
-  //   res.cookie('isLoggedIn', true);
-  //   res.send({loggedIn: true});
-  //   // res.redirect('/');
-  // });
   function(req, res, next) {
     passport.authenticate('facebook', function(err, user, info) {
       if (err) {
         // Some error
-        res.send({loggedIn: false, error:true});
+        res.send({ loggedIn: false, error:true });
         return;
       }
       if (!user) {
         // Some no user error
-        res.send({loggedIn: false, noUser:true});
+        res.send({ loggedIn: false, noUser:true });
         return;
       }
       req.logIn(user, function(err) {
