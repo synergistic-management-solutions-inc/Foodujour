@@ -2,7 +2,7 @@
 app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $http, MealForm) {
   console.log('mealFormController');
 
-  $scope.unsavedEntries = [];
+  $scope.entriesOnPage = [];
 
   $scope.meal = {};
   $scope.meal.entries = [];
@@ -18,7 +18,7 @@ app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $htt
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
     console.log('Adding entry');
-    $scope.unsavedEntries.push(1);
+    $scope.entriesOnPage.push(1);
   };
 
   // Attaches an entry to this meal
