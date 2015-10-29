@@ -52,7 +52,8 @@ app.factory('Auth', ['$cookies', '$http', '$state', function($cookies, $http, $s
       method: 'POST',
       url: '/users/auth/logout'
     }).then(function(res) {
-      $state.go('auth');
+      $location.path('/auth');
+      // $state.go('auth');
     });
   };
 

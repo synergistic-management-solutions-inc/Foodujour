@@ -1,6 +1,6 @@
 // currently un-used. To be used for sign-in/sign-up
-app.controller('MealForm', ['$scope', '$http', 'MealForm', function($scope, $http, MealForm) {
-  console.log('mealFormController');
+app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
+  console.log('mealFormController, state:', $state);
 
   $scope.entriesOnPage = [];
 

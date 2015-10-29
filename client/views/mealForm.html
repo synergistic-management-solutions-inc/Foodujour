@@ -31,7 +31,7 @@
         </div>
       </form>
     </div>
-    <div ng-repeat="entrys in unsavedEntries track by $index">
+    <div ng-repeat="entrys in entriesOnPage track by $index">
       <entryform></entryform>
     </div>
     <button ng-click="addEntry()">Add Entry</button> <button ng-click="addMeal()">Submit Meal</button>
