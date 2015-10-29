@@ -28,3 +28,16 @@ h1{
 .mealRating{
   text-align: center;
 }
+
+.liContainer {
+  
+  background-color: white;
+}
+
+body {
+
+  background-image: url("/assets/log_background.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+}
