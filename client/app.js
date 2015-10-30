@@ -29,7 +29,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'views/auth.html',
     controller: 'AuthCtrl',
   })
-  
+
   .state('meals', {
     url: '/meals/{id:int}',
     // authenticate: true,
@@ -61,7 +61,20 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   .state('mealInfo', {
     url: '/mealInfo',
     templateUrl: 'views/mealInfo.html',
-  });
+  })
+
+  .state('landing', {
+    url: '/landing',
+    authenticate: false,
+    templateUrl: 'views/landing.html'
+  })
+
+  .state('mealstream', {
+    url: '/mealstream',
+    authenticate: true,
+    templateUrl: 'views/mealStream.html',
+    controller: 'mealView'
+  })
 })
 .run(function ($rootScope, $state, $location, Auth) {
   // When state changes, we check if the user needs to be authenticated before
@@ -69,7 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
     if (next.authenticate && Auth.isLoggedIn() === false) {
       // User is not logged in,
-      $location.path($state.href('auth'));
+      $location.path($state.href('landing'));
     }
   });
 });

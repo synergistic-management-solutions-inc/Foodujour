@@ -9,4 +9,4 @@ require('./mealnotes');
 require('./mealView');
 require('./entryview');
 require('./mealinfo');
-
+require('./landingsidebar')
