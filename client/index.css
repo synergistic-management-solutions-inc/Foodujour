@@ -1,3 +1,13 @@
+header, body, footer {
+  padding-left: 240px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, body, footer {
+    padding-left: 0;
+  }
+}
+
 h1{
   color: #2380E2;
   font-family: sans-serif;
@@ -36,8 +46,11 @@ h1{
 
 body {
 
-  background-image: url("/assets/log_background.jpg");
+  /*background-image: url("/assets/log_background.jpg");
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;*/
 
 }
+
+
+    
