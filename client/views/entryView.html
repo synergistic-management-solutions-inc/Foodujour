@@ -7,11 +7,14 @@
     <div class= "row">
       <div class= "entryName col s4">Name : {{entry.name}}</div>
       <div class= "entryRating col s4">Rating : {{entry.rating}}</div>
-      <div class= "entryImage col s4">{{entry.image}}<div>
+      <div class= "entryImage col s4">{{entry.image}}</div>
     </div>
       <div class = "row">
         <div class= "entryNotes col s7">Notes : {{entry.notes}}</div>
         <button class = "btn col s3 offset-s1">Edit Meal</button>
+      </div>
+      <div class="row">
+        <button ng-click="deleteEntry(entry)">Delete Entry</button>
       </div>
     </div>
   </li>
