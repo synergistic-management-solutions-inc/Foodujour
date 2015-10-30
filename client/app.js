@@ -75,7 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
     if (next.authenticate && Auth.isLoggedIn() === false) {
       // User is not logged in,
-      $location.path($state.href('auth'));
+      $location.path($state.href('landing'));
     }
   });
 });
