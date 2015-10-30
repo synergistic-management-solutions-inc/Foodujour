@@ -14,7 +14,7 @@ app.controller('mealView', ['$scope', '$http', function($scope, $http) {
         $scope.entries = data.data;
      })
    });
-
+// filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
     return function(items) {
       return items.slice().reverse();
