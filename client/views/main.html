@@ -1,16 +1,18 @@
-<!-- use sidebar template on page -->
-<sidebar></sidebar>
-<div class="container">
-  <!-- addtional container due to sidebar overlapping too much into page -->
-  <div class="container">
-    <!-- collapisble for user to add new meal -->
-    <ul class="collapsible popout" data-collapsible="accordion" watch>
-      <li>
-        <div class="collapsible-header"><i class="material-icons">note_add</i>Add New Meal</div>
-        <div class="collapsible-body"><mealform></mealform></div>
-      </li>
-    </ul>
-    <mealview></mealview>
+<div class="row">
+  <!-- use sidebar template on page -->
+  <sidebar></sidebar>
+  <div class="col s12">
+    <div class="row">
+      <div class="container">
+          <!-- collapisble for user to add new meal -->
+          <ul class="collapsible popout" data-collapsible="accordion" watch>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">note_add</i>Add New Meal</div>
+              <div class="collapsible-body"><mealform></mealform></div>
+            </li>
+          </ul>
+          <mealview></mealview>
+      </div>
+    </div>  
   </div>
 </div>
-
