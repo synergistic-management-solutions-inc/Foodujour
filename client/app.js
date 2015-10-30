@@ -29,7 +29,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'views/auth.html',
     controller: 'AuthCtrl',
   })
-  
+
   .state('meals', {
     url: '/meals/{id:int}',
     // authenticate: true,
@@ -61,7 +61,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   .state('mealInfo', {
     url: '/mealInfo',
     templateUrl: 'views/mealInfo.html',
-  });
+  })
+
+  .state('landing', {
+    url: '/landing',
+    authenticate: false,
+    templateUrl: 'views/landing.html'
+  })
 })
 .run(function ($rootScope, $state, $location, Auth) {
   // When state changes, we check if the user needs to be authenticated before
