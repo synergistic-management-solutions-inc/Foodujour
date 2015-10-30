@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', '$stateParams', function($scope, $http) {
+app.controller('mealView', ['$scope', '$http', function($scope, $http) {
 
 
 
@@ -31,6 +31,6 @@ app.controller('mealView', ['$scope', '$http', '$stateParams', function($scope, 
     console.log('mea',$scope.meal.id)
     $http.get('api/meals/delete/' + $scope.meal.id)
   };
-  
+
 }]);
 
