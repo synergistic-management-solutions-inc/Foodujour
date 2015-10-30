@@ -1,6 +1,6 @@
 // to be replaced with another controller
 app.controller('mealView', ['$scope', '$http', function($scope, $http) {
-  
+
 
 
   $http.get('/api/meals')
@@ -15,11 +15,15 @@ app.controller('mealView', ['$scope', '$http', function($scope, $http) {
      })
    });
 
-  
+  $scope.reverse = function() {
+    return function(items) {
+      return items.slice().reverse();
+    }
+  }
 
   $scope.showModal = function(m) {
     $scope.meal = m;
-    
+
     console.log("this is m: ", m)
   };
 }]);
