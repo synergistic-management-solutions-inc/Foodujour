@@ -1,6 +1,7 @@
 // Meals API
 var express = require('express');
 var MealsAPI = express.Router();
+
 // Models
 var Meal = require('../models/meal');
 var Entry = require('../models/entry');
@@ -113,38 +114,86 @@ MealsAPI.get('/:id', function(req, res) {
 });
 
 MealsAPI.put('/:id', function(req, res) {
+  // stores entries in separate array to Promise.all later
   var entries = req.body.entries;
+  // deletes req.body entries for no conflicts on updating meal
   delete req.body.entries;
 
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
+      // finds user by current logged in user, and checks to make sure it
+      // matches user_id on the request
+      req.body.user_id = req.body.user_id || user.id;
+      if (req.body.user_id !== user.id) {
+        // user_id doesn't match logged in user, send back 403
+        res.status(403).send({ error: 'User definitely is doing some fishy things' });
+        return;
+      }
       Meal.updateOne(req.body)
         .then(function(meal) {
-          if (Array.isArray(entries) && entries.length > 0) {
-            Promise.all(entries.map(function(entry) {
-              // map the entries array, to return an array of Entry.create promises
-              return Entry.updateOne(entry);
-            }));
-          }
+          // call updateOne that updates at id and where user id matches logged in
+          // user
           if (meal && user.id === meal.user_id) {
-            Entry.findMealEntries(meal.id)
-            .then(function(entries) {
-              meal.entries = entries;
-              res.send(meal);
-            });
+            // if there are entries in the entries array iterate over and make
+            // sure to update each entry
+            if (Array.isArray(entries) && entries.length > 0) {
+              Promise.all(entries.map(function(entry) {
+                // map the entries array, to return an array of Entry.create promises
+                return Entry.updateOne(entry);
+              }))
+              .then(function(updatedEntries) {
+                // get entries from database and append to meal so response back
+                // has up to date entries list with updated meal
+                Entry.findMealEntries(meal.id)
+                  .then(function(entries) {
+                    meal.entries = entries;
+                    res.send(meal);
+                  });
+              });
+            } else {
+              // there are no entries to worry about to update so just get
+              // meals entries to append on response
+              Entry.findMealEntries(meal.id)
+                .then(function(entries) {
+                  meal.entries = entries;
+                  res.send(meal);
+                });
+            }
           } else if (user.id !== meal.user_id) {
-            res.status(403).send({error: 'User doesn\'t own this meal.'});
+            // send error user doesn't match owner of meal
+            res.status(403).send({ error: 'User doesn\'t own this meal.' });
           } else {
+            // some other error
             res.status(400).send();
           }
         });
     });
 });
 
-// MealsAPI.delete('/:id', function(req, res) {
-//   Meal.destroyOne(req.body)
-//     .then()
-//   Entry.deleteByMeal();
-// });
+MealsAPI.get('/delete/:id', function(req, res) {
+  var mealid = req.params.id;
+  // gets currently logged in user
+  User.findByUsername(req.session.passport.user)
+    .then(function(user) {
+      Meal.findOne(mealid)
+      .then(function(meal) {
+        // if user.id doesn't match user id on attached meal send error
+        if (meal.user_id !== user.id) {
+          res.status(403).send({ error: 'User definitely is doing some fishy things' });
+          return;
+        }
+        // call destroy on the mealId
+        Meal.destroyOne(meal.id)
+        .then(function() {
+          // deletes entries associated with mealId deleted
+          return Entry.deleteByMeal(meal.id);
+        })
+        .then(function() {
+          // sends success message if it reaches here
+          res.send({ message: 'successfully deleted meals and entries' });
+        });
+      });
+    });
+});
 
 module.exports = MealsAPI;

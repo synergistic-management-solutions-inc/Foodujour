@@ -54,15 +54,11 @@ Entry.updateOne = function(attrs) {
 };
 
 Entry.destroyOne = function(id) {
-  return db('entries').where({ id: id }).delete();
+  return db('entries').where({ id: id }).del();
 };
 
 Entry.deleteByMeal = function(mealId) {
-  return db('entries').where({ meal_id: mealId }).delete();
+  return db('entries').where({ meal_id: mealId }).del();
 };
 
 module.exports = Entry;
-
-
-
-
