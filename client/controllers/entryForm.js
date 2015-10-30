@@ -1,4 +1,3 @@
-// currently un-used. To be used for sign-in/sign-up
 app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
 
   console.log('entryForm Controller');

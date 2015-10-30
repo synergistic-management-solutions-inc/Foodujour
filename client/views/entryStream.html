@@ -1,0 +1,23 @@
+<sidebar></sidebar>
+<div class="container">
+  <ul class="collapsible popout" data-collapsible="accordion">
+    <li>
+      <!-- Entries -->
+      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "entry in entries | orderBy: reverse" >
+        <li>
+          <div class="collapsible-header">{{entry.name}}</div>
+          <div class="collapsible-body">
+            <div class= "row">
+              <div class= "entryName col s4"> Name : {{entry.name}}</div>
+              <div class= "entryRating col s4">Rating : {{entry.rating}}</div>
+              <div class= "entryImg col s4">{{entry.image}}<br></div>
+            </div>
+            <div class = "row">
+              <div class= "entryNotes col s7">Notes : {{entry.notes}}</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

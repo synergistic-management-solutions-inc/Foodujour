@@ -8,3 +8,4 @@ require('./mealForm');
 require('./entryForm');
 require('./mealView');
 require('./entryView');
+require('./entryStream');
