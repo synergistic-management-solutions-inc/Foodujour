@@ -82,6 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'views/entryStream.html',
     controller: 'entryStream'
   })
+  
 })
 .run(function ($rootScope, $state, $location, Auth) {
   // When state changes, we check if the user needs to be authenticated before

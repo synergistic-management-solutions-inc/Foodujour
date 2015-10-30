@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', function($scope, $http) {
+app.controller('mealView', ['$scope', '$http', '$stateParams', function($scope, $http) {
 
 
 
@@ -6,6 +6,7 @@ app.controller('mealView', ['$scope', '$http', function($scope, $http) {
   .then(function(data){
     console.log('Data: ', data.data)
     $scope.meals = data.data;
+
 
     $http.get("/api/entries")
      .then(function(data){
@@ -22,8 +23,14 @@ app.controller('mealView', ['$scope', '$http', function($scope, $http) {
 
   $scope.showModal = function(m) {
     $scope.meal = m;
-
     console.log("this is m: ", m)
   };
+
+ $scope.deleteMeal = function (m) {
+    $scope.meal = m;
+    console.log('mea',$scope.meal.id)
+    $http.get('api/meals/delete/' + $scope.meal.id)
+  };
+  
 }]);
 
