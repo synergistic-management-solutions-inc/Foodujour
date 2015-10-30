@@ -1,4 +1,3 @@
-// to be replaced with another controller
 app.controller('mealView', ['$scope', '$http', function($scope, $http) {
 
 

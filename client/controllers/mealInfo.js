@@ -1,4 +1,3 @@
-// to be replaced with another controller
 app.controller('MealInfoController', ['$scope', '$http', '$location', '$stateParams', function($scope, $http, $location, $stateParams) {
 
   $scope.meal = {};
