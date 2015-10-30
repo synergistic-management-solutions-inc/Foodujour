@@ -1,5 +1,5 @@
 <!-- ENTRY VIEW -->
- <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat="entry in (entries | filter : {'meal_id': meal.id})">
+ <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat="entry in (entries | filter : {'meal_id': meal.id})" ng-click="showEntries(entry)">
   <!-- ENTRIES GO HERE (ng-repeat)-->
   <li>
     <div class="collapsible-header">{{entry.name}}</div>
