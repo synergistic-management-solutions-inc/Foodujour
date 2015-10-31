@@ -22,7 +22,6 @@ global.expect = chai.expect;
 // Option 2: Make everything should-able
 // chai.should()
 
-
 //
 // Helper Functions
 //
