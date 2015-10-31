@@ -18,9 +18,10 @@ module.exports = {
     client: 'pg',
     connection: process.env.PG_TEST,
     pool: {
-      max: 1
+      min: 2,
+      max: 10
     },
-    /*debug: true,*/
+    debug: true,
     migrations: {
       tableName: 'knex_migrations',
       directory: __dirname + '/migrations'
