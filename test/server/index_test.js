@@ -19,9 +19,9 @@ describe('The Server', function() {
   });
 
   it('accesses database', function() {
-    return db('users').where({name: 'nanner12'}).limit(1)
-      .then(function(rows) {
-        expect(rows.length).to.equal(1);
+    return db.schema.hasTable('users')
+      .then(function(exists) {
+        expect(exists).to.equal(true);
       });
   });
 });
