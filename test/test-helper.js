@@ -1,6 +1,9 @@
 var travis = (process.env.TRAVIS ? process.env.TRAVIS.trim().toLowerCase() === 'true' : false);
 require('dotenv').load({ silent: travis });
 process.env.NODE_ENV = 'test';
+if (travis) {
+  process.env.PG_TEST = 'postgres://postgres@localhost:5432/foodujour_test';
+}
 
 // The following allows you to require files independent of
 // the location of your test file.
