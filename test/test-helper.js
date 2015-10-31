@@ -12,7 +12,7 @@ if (travis) {
 //
 global.__server = __dirname + '/../server';
 global.__client = __dirname + '/../client';
-
+global.db = require('../server/lib/db');
 //
 // Assertions
 //
