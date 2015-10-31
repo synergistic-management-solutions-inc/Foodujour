@@ -9,7 +9,7 @@ var db = require('knex')(config[env]);
 db.schema.hasTable('users').then(function(exists) {
   if (!exists && process.env.TRAVIS === 'true') {
     console.log('hi travis is true');
-    knex.migrate.currentVersion()
+    db.migrate.currentVersion()
       .then(function(version) {
         if (version === 'none') {
           console.log('no migrations lets do the latest');
