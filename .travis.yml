@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - '4.2.0'
 env:
-  - NODE_ENV=test PG_TEST='postgres://postgres@localhost:5432/foodujour_test'
+  - NODE_ENV=test PG_TEST=postgres://postgres@localhost:5432/foodujour_test
 cache:
   directories:
     - node_modules
