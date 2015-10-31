@@ -3,10 +3,11 @@ node_js:
   - '4.2.0'
 env:
   - NODE_ENV=test
+  - PG_TEST='postgres://postgres@localhost:5432/foodujour_test'
 cache:
   directories:
     - node_modules
 before_script:
   - npm install knex -g
   - psql -c 'create database foodujour_test;' -U postgres
-  - NODE_ENV=test knex migrate:latest
+  - knex migrate:latest
