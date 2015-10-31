@@ -10,3 +10,4 @@ before_script:
   - npm install knex -g
   - psql -c 'create database foodujour_test;' -U postgres
   - knex migrate:latest
+  - knex seed:run

@@ -1,10 +1,22 @@
-var db = require(__server + '/lib/db');
 var request = require('supertest-as-promised');
 var MealsAPI = require(__server + '/apis/meals-api');
 
-xdescribe('Meals API', function() {
+describe('Meals API', function() {
 
   var app = TestHelper.createApp();
+  // mocks a logged in user
+  app.use(function(req, res, next) {
+    req.session = {};
+    // 'asdf' is user id:1 after running knex migration and knex seed:run
+    req.session.passport = {
+      user: 'asdf'
+    };
+    req.isAuthenticated = function() {
+      return true;
+    };
+    next();
+  });
+  // end
   app.use('/meals', MealsAPI);
   app.testReady();
 
@@ -19,9 +31,9 @@ xdescribe('Meals API', function() {
     image: 'https://img.google.com/horsehead.png'
   };
 
-  // valid meal without notes or image
+  // valid meal without notes or image should use logged in user's id
+  // if not given one
   var meal2 = {
-    user_id: 2,
     date: Math.floor(Date.now() / 1000),
     name: 'Dead Lobster',
     location: 'Rooflecoast, US',
@@ -48,16 +60,17 @@ xdescribe('Meals API', function() {
 
   beforeEach(function() {
     // erase db before each test runs
-    return db.deleteEverything();
+    return db('meals').truncate();
   });
 
-  it('POST /meals returns 400 on bad data request', function() {
+  it('POST /api/meals returns 400 on bad data request', function() {
     return singlePost(invalidMeal, '/meals', 400)
         .then(function() {
         return request(app)
           .get('/meals')
           .expect(200)
           .expect(function(response) {
+            console.log('response', response.body);
             var meals = response.body;
             expect(meals).to.be.an.instanceOf(Array);
             expect(meals).to.have.length(0);
@@ -65,13 +78,13 @@ xdescribe('Meals API', function() {
       });
   });
 
-  it('POST /meals creates a meal and returns meal with id', function() {
+  it('POST /api/meals creates a meal and returns meal with id', function() {
     return singlePost(meal1, '/meals', 201)
       .expect(function(response) {
         var newPet = response.body;
 
         expect(newPet.id).to.not.be.undefined;
-        expect(newPet.user_id).to.equal('a1234asdfavar1');
+        expect(newPet.user_id).to.equal(1);
         expect(newPet.name).to.equal('Hollaburger');
         expect(newPet.location).to.equal('Hollaville, USA');
         expect(newPet.rating).to.equal(2);
@@ -83,6 +96,7 @@ xdescribe('Meals API', function() {
           .expect(200)
           .expect(function(response) {
             var meals = response.body;
+
             expect(meals).to.be.an.instanceOf(Array);
             expect(meals).to.have.length(1);
             expect(meals[0].name).to.equal('Hollaburger');
@@ -90,7 +104,7 @@ xdescribe('Meals API', function() {
       });
   });
 
-  it('GET /meals returns an array with all the meals', function() {
+  it('GET /api/meals returns an array with all the meals', function() {
     return singlePost(meal1, '/meals', 201)
       .then(function() {
         return singlePost(meal2, '/meals', 201);
@@ -109,7 +123,7 @@ xdescribe('Meals API', function() {
       });
   });
 
-  it('GET /meals/:id returns 404 if meal does not exist', function() {
+  it('GET /api/meals/:id returns 404 if meal does not exist', function() {
     return singlePost(meal1, '/meals', 201)
       .then(function() {
         return singlePost(meal2, '/meals', 201);
@@ -122,7 +136,7 @@ xdescribe('Meals API', function() {
       });
   });
 
-  it('GET /meals/:id returns meal object if it exists', function() {
+  it('GET /api/meals/:id returns meal object if it exists', function() {
     return singlePost(meal1, '/meals', 201)
       .then(function() {
         return singlePost(meal2, '/meals', 201);
@@ -136,7 +150,7 @@ xdescribe('Meals API', function() {
             var meal = response.body;
             expect(meal).to.be.an.instanceOf(Object);
             expect(meal).to.not.be.an.instanceOf(Array);
-            expect(meal.user_id).to.equal('b12asdfavar1');
+            expect(meal.user_id).to.equal(1);
             expect(meal.name).to.equal('Dead Lobster');
             expect(meal.location).to.equal('Rooflecoast, US');
             expect(meal.rating).to.equal(2);

@@ -1,4 +1,3 @@
-var db = require(__server + '/lib/db');
 var request = require('supertest-as-promised');
 var EntriesAPI = require(__server + '/apis/entries-api');
 
@@ -9,7 +8,7 @@ xdescribe('Entries API', function() {
   app.testReady();
 
   beforeEach(function() {
-    return db.deleteEverything();
+    return db('entries').truncate();
   });
 
  it('POST /entries creates an entry and returns entry', function() {
