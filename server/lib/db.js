@@ -6,19 +6,6 @@ var config = require('../../knexfile.js');
 var env = process.env.NODE_ENV || 'development';
 var db = require('knex')(config[env]);
 
-db.schema.hasTable('users').then(function(exists) {
-  if (!exists && process.env.TRAVIS === 'true') {
-    console.log('hi travis is true');
-    db.migrate.currentVersion()
-      .then(function(version) {
-        if (version === 'none') {
-          console.log('no migrations lets do the latest');
-          db.migrate.latest();
-        }
-      });
-  }
-});
-
 // Function for your testing suite
 db.deleteEverything = function () {
   if (env !== 'test') { return bPromise.reject(); }
