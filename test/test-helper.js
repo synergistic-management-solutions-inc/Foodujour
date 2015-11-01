@@ -11,25 +11,34 @@ global.__server = __dirname + '/../server';
 global.__client = __dirname + '/../client';
 global.db = require('../server/lib/db');
 
+// (function() {
+//   return db.deleteEverything();
+// })();
+
 // Assertions
-//
 var chai = require('chai');
 // Option 1: Make the `expect` function available in every test file
 global.expect = chai.expect;
 // Option 2: Make everything should-able
 // chai.should()
 
-//
 // Helper Functions
-//
 // This is the object you can attach any helper functions used across
 // several test files.
 global.TestHelper = {};
 
-//
+// copy of isLoggedIn middleware used in app, to mock passport logins
+TestHelper.isLoggedIn = function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.header('isAuthenticated', 'true');
+    return next();
+  }
+  res.status(401).json({isAuthenticated: false, error: true});
+};
+
 // Mock apps for API testing
-//
 var express = require('express');
+
 
 TestHelper.createApp = function (loader) {
   var app = express();

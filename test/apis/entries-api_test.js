@@ -1,17 +1,20 @@
 var request = require('supertest-as-promised');
 var EntriesAPI = require(__server + '/apis/entries-api');
 
-xdescribe('Entries API', function() {
+describe('Entries API', function() {
 
   var app = TestHelper.createApp();
   app.use('/entries', EntriesAPI);
   app.testReady();
 
   beforeEach(function() {
-    return db('entries').truncate();
+    return db('meals').truncate()
+      .then(function() {
+        return db('entries').truncate();
+      });
   });
 
- it('POST /entries creates an entry and returns entry', function() {
+ xit('POST /entries creates an entry and returns entry', function() {
     return request(app)
       .post('/entries')
       .send({

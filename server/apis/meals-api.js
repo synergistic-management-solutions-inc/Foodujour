@@ -7,14 +7,14 @@ var Meal = require('../models/meal');
 var Entry = require('../models/entry');
 var User = require('../models/user');
 
-// GET /meals/all Returns all meals for every user
+// GET /meals/all Returns all meals for every user for testing
 MealsAPI.get('/all', function(req, res) {
   Meal.all()
     .then(function(meals) {
       res.send(meals);
     })
     .catch(function(err) {
-      console.log('Meals GET /meals/all Error-', err);
+      console.log('Meals GET /meals/all Error-' + err);
       res.status(400).send();
     });
 });
@@ -84,7 +84,7 @@ MealsAPI.post('/', function(req, res) {
       }
     })
     .catch(function(err) {
-      console.log('Meals POST /meals Error-', err);
+      console.log('Meals POST /meals Error-' + err);
       res.status(400).send();
     });
 });
@@ -111,8 +111,8 @@ MealsAPI.get('/:id', function(req, res) {
         });
     })
     .catch(function(err) {
-      console.log('Meals GET /meals/:id Error-', err);
-      res.status(400).send();
+      console.log('Meals GET /meals/:id Error-' + err);
+      return res.status(400).send();
     });
 });
 
@@ -173,6 +173,7 @@ MealsAPI.put('/:id', function(req, res) {
     });
 });
 
+// TODO needs to be changed to a delete method, temporary for testing
 MealsAPI.get('/delete/:id', function(req, res) {
   var mealid = req.params.id;
   // gets currently logged in user
