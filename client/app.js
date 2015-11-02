@@ -82,7 +82,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'views/entryStream.html',
     controller: 'entryStream'
   })
-  
+
 })
 .run(function ($rootScope, $state, $location, Auth) {
   // When state changes, we check if the user needs to be authenticated before
@@ -92,7 +92,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
       // User is not logged in,
       $location.path($state.href('landing'));
     }
-  });
+  })
+  $rootScope.convertDate = function(d) {
+    var dateObj = new Date(d * 1000)
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    newDate = month + "/" + day + "/" + year;
+    return newDate;
+  }
 });
 
 require('./services');
