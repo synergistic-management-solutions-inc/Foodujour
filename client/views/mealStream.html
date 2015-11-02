@@ -11,7 +11,7 @@
         <div class="collapsible-header row">
           <div class="col s4">{{meal.name}}</div>
           <div class="col s4">{{meal.location}}</div>
-          <div class="col s4">{{meal.date}}</div>
+          <div class="col s4">{{convertDate(meal.date)}}</div>
         </div>
 
         <div class="collapsible-body">
@@ -22,7 +22,7 @@
           </div>
           <div class= "row">
             <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
-            <div class= "mealDate col s6">Date : {{meal.date}}<br></div>
+            <div class= "mealDate col s6">Date : {{convertDate(meal.date)}}<br></div>
           </div>
           <div class = "row">
             <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
