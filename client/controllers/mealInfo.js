@@ -3,13 +3,13 @@ app.controller('MealInfoController', ['$scope', '$http', '$location', '$statePar
   $scope.meal = {};
 
   var mealId = $stateParams.id;
-  console.log('State params:', mealId);
+  // console.log('State params:', mealId);
 
   $http.get('/api/meals/' + mealId)
   .then(function(data){
-    console.log('data:', data.data);
+    // console.log('data:', data.data);
     $scope.meal = data.data;
-    console.log('scope.meal:', $scope.meal);
+    // console.log('scope.meal:', $scope.meal);
   });
 
   $scope.modalShown = false;
