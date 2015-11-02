@@ -10,10 +10,10 @@ app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
   // console.log('entryForm Controller');
 
   $scope.entry = {};
-  $scope.entry.name = 'Pickles';
-  $scope.entry.rating = 10;
-  $scope.entry.notes = 'Tasted like cucumbers';
-  $scope.entry.image = '';
+  // $scope.entry.name = 'Pickles';
+  // $scope.entry.rating = 10;
+  // $scope.entry.notes = 'Tasted like cucumbers';
+  // $scope.entry.image = '';
 
 
   $scope.meal = null;
