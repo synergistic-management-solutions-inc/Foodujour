@@ -24,9 +24,9 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   })
 
   .state('auth', {
-    url: '/auth',
+    url: '/landing',
     authenticate: false,
-    templateUrl: 'views/auth.html',
+    templateUrl: 'views/landing.html',
     controller: 'AuthCtrl',
   })
 
