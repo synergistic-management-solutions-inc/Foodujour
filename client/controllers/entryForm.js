@@ -6,7 +6,6 @@ app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
   // -1 = not attached to a meal
   $scope.entryId = -1;
 
-
   // console.log('entryForm Controller');
 
   $scope.entry = {};
