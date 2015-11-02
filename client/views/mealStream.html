@@ -4,9 +4,16 @@
 <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "mealView">
   <li>
     <!-- Meals -->
+
     <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: reverse | filter: mealSearch" >
+
       <li>
-        <div class="collapsible-header">{{meal.name}}</div>
+        <div class="collapsible-header row">
+          <div class="col s4">{{meal.name}}</div>
+          <div class="col s4">{{meal.location}}</div>
+          <div class="col s4">{{meal.date}}</div>
+        </div>
+
         <div class="collapsible-body">
           <div class= "row">
             <div class= "mealName col s4"> Name : {{meal.name}}</div>
@@ -28,7 +35,4 @@
     <mealinfo></mealinfo>
   </li>
 </ul>
-
-
-
 </div>
