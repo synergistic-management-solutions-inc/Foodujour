@@ -109,6 +109,7 @@ UsersAPI.get('/auth/facebook',
 UsersAPI.get('/auth/facebook/callback',
   function(req, res, next) {
     passport.authenticate('facebook', function(err, user, info) {
+      console.log('line 112', err, user);
       if (err) {
         // Some error
         res.send({ loggedIn: false, error:true, info: info });
@@ -120,6 +121,7 @@ UsersAPI.get('/auth/facebook/callback',
         return;
       }
       req.logIn(user, function(err) {
+        console.log('logIn 124', err);
         if (err) { res.redirect(302, '/'); }
       });
       res.cookie('isLoggedIn', true);
