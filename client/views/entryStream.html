@@ -1,9 +1,10 @@
 <sidebar></sidebar>
 <div class="container">
+<input type="text" placeholder="Search Entries..." ng-model="entrySearch">
   <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <!-- Entries -->
-      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "entry in entries | orderBy: reverse" >
+      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "entry in entries | orderBy: reverse | filter: entrySearch" >
         <li>
           <div class="collapsible-header">{{entry.name}}</div>
           <div class="collapsible-body">

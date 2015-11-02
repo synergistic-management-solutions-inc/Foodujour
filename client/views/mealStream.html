@@ -1,9 +1,10 @@
 <sidebar></sidebar>
 <div class="container">
+<input type="text" placeholder="Search Meals..." ng-model="mealSearch">
 <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "mealView">
   <li>
     <!-- Meals -->
-    <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: reverse" >
+    <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: reverse | filter: mealSearch" >
       <li>
         <div class="collapsible-header">{{meal.name}}</div>
         <div class="collapsible-body">
