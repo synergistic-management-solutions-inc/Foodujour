@@ -3,6 +3,9 @@ var Entry = require('../models/entry');
 var User = require('../models/user');
 var EntriesAPI = express.Router();
 
+// Entries API
+
+// GET /api/entries/all return all entries
 EntriesAPI.get('/all', function(req, res) {
   Entry.all()
     .then(function(entries) {
@@ -10,6 +13,7 @@ EntriesAPI.get('/all', function(req, res) {
     });
 });
 
+// GET /api/entries/ gets all entries of currently logged in user
 EntriesAPI.get('/', function(req, res) {
   // finds user by username logged in to session.passport
   User.findByUsername(req.session.passport.user)
@@ -23,6 +27,8 @@ EntriesAPI.get('/', function(req, res) {
     });
 });
 
+// POST /api/entries/ attempts to add an entry to database assigning user_id to
+// current logged in user
 EntriesAPI.post('/', function(req, res) {
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
@@ -37,6 +43,8 @@ EntriesAPI.post('/', function(req, res) {
     });
 });
 
+// PUT /api/entries/:id attempts to update entry of :id with new info, requires
+// all attributes passed in
 EntriesAPI.put('/:id', function(req, res) {
   var entryid = req.params.id;
   User.findByUsername(req.session.passport.user)
@@ -57,6 +65,8 @@ EntriesAPI.put('/:id', function(req, res) {
     });
 });
 
+// GET /api/entries/:id deletes the current entry if logged in user owns it
+// TODO change to .delete eventually
 EntriesAPI.get('/delete/:id', function(req, res) {
   var entryid = req.params.id;
 

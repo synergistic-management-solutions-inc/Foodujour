@@ -9,6 +9,7 @@ var User = require('../models/user');
 
 // GET /meals/all Returns all meals for every user for testing
 MealsAPI.get('/all', function(req, res) {
+  console.log('req user?', req.session.passport);
   Meal.all()
     .then(function(meals) {
       res.send(meals);
@@ -116,6 +117,8 @@ MealsAPI.get('/:id', function(req, res) {
     });
 });
 
+// PUT /meals/:id attempts to update meal of id if belonging to logged in user
+// requires all attributes a meal expects
 MealsAPI.put('/:id', function(req, res) {
   // stores entries in separate array to Promise.all later
   var entries = req.body.entries;
@@ -173,6 +176,7 @@ MealsAPI.put('/:id', function(req, res) {
     });
 });
 
+// GET /delete/:id deletes meal of id if owned by logged in user
 // TODO needs to be changed to a delete method, temporary for testing
 MealsAPI.get('/delete/:id', function(req, res) {
   var mealid = req.params.id;
