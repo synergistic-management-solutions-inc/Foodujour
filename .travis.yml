@@ -7,10 +7,9 @@ cache:
   directories:
   - node_modules
 before_script:
-- npm install knex -g
 - psql -c 'create database foodujour_test;' -U postgres
-- knex migrate:latest
-- knex seed:run
+- ./node_modules/.bin/knex migrate:latest
+- ./node_modules/.bin/knex seed:run
 deploy:
   provider: heroku
   api_key:
