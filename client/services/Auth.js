@@ -7,11 +7,6 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
     return cookie === 'true';
   };
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> finished comments on passport and auth server/client
 //sends request to server for logging values are passed in by the controller
   var logIn = function(userObj) {
 
