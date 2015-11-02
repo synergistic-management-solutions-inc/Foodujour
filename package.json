@@ -53,6 +53,7 @@
     "docco": "./node_modules/.bin/docco -o client/docs/ server/**/*.js test/**/*.js",
     "migrate:latest": "./node_modules/.bin/knex migrate:latest",
     "seed": "./node_modules/.bin/knex seed:run",
+    "preinstall": "shopt -s globstar 2>/dev/null | exit 0",
     "postinstall": "npm run migrate:latest && npm run docco",
     "dev": "./node_modules/.bin/pm2-dev start app.json",
     "test": "./test/run.sh"
