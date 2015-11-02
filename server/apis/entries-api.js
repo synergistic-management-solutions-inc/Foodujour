@@ -15,6 +15,7 @@ EntriesAPI.get('/', function(req, res) {
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
       // finds entries by user, using users id
+      console.log(user);
       Entry.findByUser(user.id)
         .then(function(entries) {
           // sends back array of all entries matching userid
@@ -24,12 +25,16 @@ EntriesAPI.get('/', function(req, res) {
 });
 
 EntriesAPI.post('/', function(req, res) {
-  Entry.create(req.body)
-    .then(function(newEntry) {
-      res.status(201).send(newEntry);
-    })
-    .catch(function(err) {
-      console.log(err);
+  User.findByUsername(req.session.passport.user)
+    .then(function(user) {
+      req.body.user_id = user.id;
+      Entry.create(req.body)
+      .then(function(newEntry) {
+        res.status(201).send(newEntry);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
     });
 });
 

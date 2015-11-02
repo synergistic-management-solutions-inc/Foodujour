@@ -25,6 +25,7 @@ Entry.create = function (attrs) {
     .then(function(rows) {
       var newEntry = {
         id: rows[0],
+        user_id: attrs.user_id,
         meal_id: attrs.meal_id,
         name: attrs.name,
         rating: attrs.rating,
