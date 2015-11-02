@@ -11,11 +11,19 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
   // console.log('AuthController');
   $scope.user = {
     mail: '',
-    password: ''
+    password: '',
+    message: '',
   };
 
   $scope.logIn = function(userObj){
-    Auth.logIn($scope.user);
+    Auth.logIn($scope.user)
+    .then(function(res){
+      if(!res){
+         $scope.user.message = 'Wrong username/password';
+      }else{
+        $scope.user.message = '';
+      }
+    });
   };
 
 
