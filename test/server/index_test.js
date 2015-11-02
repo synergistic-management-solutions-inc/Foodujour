@@ -17,4 +17,11 @@ describe('The Server', function() {
         expect(response.body).to.include('node');
       });
   });
+
+  it('accesses database', function() {
+    return db.schema.hasTable('users')
+      .then(function(exists) {
+        expect(exists).to.equal(true);
+      });
+  });
 });

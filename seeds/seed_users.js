@@ -3,18 +3,26 @@ var User = require('../server/models/user');
 exports.seed = function(knex, Promise) {
   return knex('users').truncate()
     .then(function() {
+      return Promise.all([
+        User.generateHash('asdf'),
+        User.generateHash('nanner12'),
+        User.generateHash('james'),
+        User.generateHash('kevin')
+      ]);
+    })
+    .then(function(passwords) {
       return knex('users').insert([
         {
-          name: 'asdf', passHash: User.generateHash('asdf')
+          name: 'asdf', passHash: passwords[0]
         },
         {
-          name: 'nanner12', passHash: User.generateHash('nanner12')
+          name: 'nanner12', passHash: passwords[1]
         },
         {
-          name: 'james', passHash: User.generateHash('james')
+          name: 'james', passHash: passwords[2]
         },
         {
-          name: 'kevin', passHash: User.generateHash('kevin')
+          name: 'kevin', passHash: passwords[3]
         }
       ]);
     });

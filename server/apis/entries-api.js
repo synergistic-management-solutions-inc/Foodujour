@@ -24,12 +24,16 @@ EntriesAPI.get('/', function(req, res) {
 });
 
 EntriesAPI.post('/', function(req, res) {
-  Entry.create(req.body)
-    .then(function(newEntry) {
-      res.status(201).send(newEntry);
-    })
-    .catch(function(err) {
-      console.log(err);
+  User.findByUsername(req.session.passport.user)
+    .then(function(user) {
+      req.body.user_id = user.id;
+      Entry.create(req.body)
+      .then(function(newEntry) {
+        res.status(201).send(newEntry);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
     });
 });
 

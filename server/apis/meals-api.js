@@ -7,14 +7,14 @@ var Meal = require('../models/meal');
 var Entry = require('../models/entry');
 var User = require('../models/user');
 
-// GET /meals/all Returns all meals for every user
+// GET /meals/all Returns all meals for every user for testing
 MealsAPI.get('/all', function(req, res) {
   Meal.all()
     .then(function(meals) {
       res.send(meals);
     })
     .catch(function(err) {
-      console.log('Meals GET /meals/all Error-', err);
+      console.log('Meals GET /meals/all Error-' + err);
       res.status(400).send();
     });
 });
@@ -37,6 +37,7 @@ MealsAPI.get('/', function(req, res) {
 MealsAPI.post('/', function(req, res) {
   // pulls entries array from request
   var entries = req.body.entries;
+  var hasEntries = Array.isArray(entries) && entries.length > 0;
   delete req.body.entries;
   var meal = req.body;
 
@@ -52,9 +53,9 @@ MealsAPI.post('/', function(req, res) {
       return Meal.create(meal);
     })
     .then(function(newMeal) {
-      if (Array.isArray(entries) && entries.length > 0) {
+      meal = newMeal;
+      if (hasEntries) {
         // if entries isn't empty return meal for further promises
-        meal = newMeal;
         return meal;
       } else {
         // entries is either non existent or an empty array, add it to meal
@@ -67,21 +68,23 @@ MealsAPI.post('/', function(req, res) {
       // create entries with appropriate meal_id
       // Promise.all takes an array of promises, once all are fulfilled it
       // returns an array of values of the resolved promises
-      Promise.all(entries.map(function(entry) {
-        // map the entries array, to return an array of Entry.create promises
-        entry.meal_id = meal.id;
-        entry.user_id = meal.user_id;
-        return Entry.create(entry);
-      }))
-      .then(function(results) {
-        // results are the array of entries, add them as meal.entries
-        meal.entries = results;
-        // respond with the meal with added entries
-        res.status(201).send(meal);
-      });
+      if (hasEntries) {
+        Promise.all(entries.map(function(entry) {
+          // map the entries array, to return an array of Entry.create promises
+          entry.meal_id = meal.id;
+          entry.user_id = meal.user_id;
+          return Entry.create(entry);
+        }))
+        .then(function(results) {
+          // results are the array of entries, add them as meal.entries
+          meal.entries = results;
+          // respond with the meal with added entries
+          res.status(201).send(meal);
+        });
+      }
     })
     .catch(function(err) {
-      console.log('Meals POST /meals Error-', err);
+      console.log('Meals POST /meals Error-' + err);
       res.status(400).send();
     });
 });
@@ -100,7 +103,7 @@ MealsAPI.get('/:id', function(req, res) {
               meal.entries = entries;
               res.send(meal);
             });
-          } else if (user.id !== meal.user_id) {
+          } else if (meal && user.id !== meal.user_id) {
             res.status(403).send({error: 'User doesn\'t own this meal.'});
           } else {
             res.status(404).send({error: 'No Meal With This ID'});
@@ -108,8 +111,8 @@ MealsAPI.get('/:id', function(req, res) {
         });
     })
     .catch(function(err) {
-      console.log('Meals GET /meals/:id Error-', err);
-      res.status(400).send();
+      console.log('Meals GET /meals/:id Error-' + err);
+      return res.status(400).send();
     });
 });
 
@@ -170,6 +173,7 @@ MealsAPI.put('/:id', function(req, res) {
     });
 });
 
+// TODO needs to be changed to a delete method, temporary for testing
 MealsAPI.get('/delete/:id', function(req, res) {
   var mealid = req.params.id;
   // gets currently logged in user
