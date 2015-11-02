@@ -1,9 +1,9 @@
 <!-- top header  -->
-<nav class="green lighten-2">
+<nav class="green lighten-2" ng-controller = 'AuthCtrl'>
   <ul id="slide-out" class="side-nav fixed green darken-1">
     <h3>foodujour</h3>
     <!-- sidebar navigation links -->
-    <li><a href="/auth">Sign-In/Sign-Up</a></li>
+    <li><a href="#" ng-click="showSignForm()">Sign-In / Up</a></li>
   </ul>
   <!-- sidebar hides for shrinking window button added to show sidebar -->
   <a href="#" class="button-collapse" data-activates="slide-out" data-closeonclick="false" data-sidenav="left"><i class="mdi-navigation-menu"></i></a>

@@ -44,13 +44,11 @@ h1{
   background-color: white;
 }
 
-body {
-
-  /*background-image: url("/assets/log_background.jpg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;*/
-
+.sign-form {
+  display: none;
 }
+
+
 
 
     

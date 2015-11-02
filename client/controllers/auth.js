@@ -1,5 +1,13 @@
 app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', function($scope, $http, $location, $state, Auth) {
 
+  
+  $scope.showSignForm = function(){
+
+    $('.slider').fadeOut('fast',function(){
+      $('.sign-form').fadeIn('slow');
+    });
+  }
+
   // console.log('AuthController');
   $scope.user = {
     mail: '',
