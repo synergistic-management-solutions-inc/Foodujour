@@ -6,16 +6,16 @@ app.controller('entryView', ['$scope', '$http', function($scope, $http) {
    .then(function(data){
       // console.log('entry: ', data);
 
-      $scope.entries = data;
+    $scope.entries = data;
    });
 
    $scope.showEntries = function(e){
     $scope.entry = e;
-    console.log("this is e: ", e)
+    // console.log("this is e: ", e)
   }
    $scope.deleteEntry = function (e) {
     $scope.entry = e;
-    console.log('mea',$scope.entry.id)
+    // console.log('Entry_Id: ',$scope.entry.id)
     $http.get('api/entries/delete/' + $scope.entry.id)
   };
 }]);

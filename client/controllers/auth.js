@@ -1,6 +1,5 @@
 app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', function($scope, $http, $location, $state, Auth) {
 
-  
   $scope.showSignForm = function(){
 
     $('.slider').fadeOut('fast',function(){
@@ -25,7 +24,6 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
       }
     });
   };
-
 
   $scope.signUp = function(){
     Auth.signUp($scope.user);
