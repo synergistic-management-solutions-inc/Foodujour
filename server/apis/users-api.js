@@ -108,6 +108,7 @@ UsersAPI.get('/auth/facebook',
 
 UsersAPI.get('/auth/facebook/callback',
   function(req, res, next) {
+    console.log('line 111', req.body);
     passport.authenticate('facebook', function(err, user, info) {
       console.log('line 112', err, user);
       if (err) {
