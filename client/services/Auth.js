@@ -13,13 +13,15 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
       password:userObj.password
     };
 
-    $http.post('/api/users/auth/login', userData)
+    return $http.post('/api/users/auth/login', userData)
     .then(function(response){
       console.log('logged in?', response);
       if (response.status === 200 && isLoggedIn()) {
         $state.go('home');
+        return true;
       } else {
         $state.go('auth');
+        return false;
       }
     });
     
