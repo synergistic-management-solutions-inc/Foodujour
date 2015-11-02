@@ -2,7 +2,7 @@
 app.directive('entrynotes', function() {
   return  {
     restrict: 'E',
-    // use entryForm template view
+    // use entryForm template views
     templateUrl: '../views/entryNotes.html'
   };
 });

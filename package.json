@@ -48,7 +48,8 @@
     "supertest-as-promised": "^2.0.2"
   },
   "scripts": {
-    "start": "./node_modules/.bin/pm2-dev start app.json",
+    "start": "node ./server/app.js",
+    "dev": "./node_modules/.bin/pm2-dev start app.json",
     "test": "./test/run.sh"
   },
   "repository": {
