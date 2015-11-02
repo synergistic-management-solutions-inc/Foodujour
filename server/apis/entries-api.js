@@ -15,7 +15,6 @@ EntriesAPI.get('/', function(req, res) {
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
       // finds entries by user, using users id
-      console.log(user);
       Entry.findByUser(user.id)
         .then(function(entries) {
           // sends back array of all entries matching userid

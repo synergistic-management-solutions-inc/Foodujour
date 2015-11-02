@@ -28,7 +28,7 @@ describe('Entries API', function() {
       });
   });
 
- it('POST /entries creates an entry and returns entry', function() {
+  it('POST /entries creates an entry and returns it', function() {
     return request(app)
       .post('/entries')
       .send({
@@ -48,7 +48,7 @@ describe('Entries API', function() {
         expect(newEntry.user_id).to.equal(1);
         expect(newEntry.notes).to.equal('These are some smaller entry notes');
       })
-      .then(function(){
+      .then(function() {
         return request(app)
           .get('/entries')
           .expect(200)
@@ -58,6 +58,59 @@ describe('Entries API', function() {
             expect(entries).to.be.an.instanceOf(Array);
             expect(entries).to.have.length(1);
             expect(entries[0].name).to.equal('sliderHolla');
+          });
+      });
+  });
+
+  it('GET /delete/:id deletes an entry', function() {
+    return request(app)
+      .post('/entries')
+      .send({
+        meal_id: 3,
+        name: 'sliderHolla',
+        rating: 1,
+        notes: 'These are some smaller entry notes',
+        image: 'https://img.google.com/horsey.png'
+      })
+      .expect(201)
+      .expect(function(response) {
+        var newEntry = response.body;
+
+        expect(newEntry.id).to.not.be.undefined;
+        expect(newEntry.name).to.equal('sliderHolla');
+        expect(newEntry.meal_id).to.equal(3);
+        expect(newEntry.user_id).to.equal(1);
+        expect(newEntry.notes).to.equal('These are some smaller entry notes');
+      })
+      .then(function() {
+        return request(app)
+          .get('/entries')
+          .expect(200)
+          .expect(function(response) {
+            var entries = response.body;
+
+            expect(entries).to.be.an.instanceOf(Array);
+            expect(entries).to.have.length(1);
+            expect(entries[0].name).to.equal('sliderHolla');
+          });
+      })
+      .then(function() {
+        return request(app)
+          .get('/entries/delete/1')
+          .expect(200)
+          .expect(function(response) {
+            expect(response.body.message).to.equal('successfully deleted entry');
+          });
+      })
+      .then(function() {
+        return request(app)
+          .get('/entries')
+          .expect(200)
+          .expect(function(response) {
+            var entries = response.body;
+
+            // should be 0 now that we deleted entry we just put in
+            expect(entries).to.have.length(0);
           });
       });
   });
