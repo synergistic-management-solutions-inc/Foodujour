@@ -3,8 +3,14 @@ require('dotenv').load();
 module.exports = {
   production: {
     client: 'pg',
-    connection: process.env.PG_PROD,
-    ssl: true,
+    connection: {
+      host: process.env.PG_PROD_HOST,
+      port: process.env.PG_PROD_PORT,
+      user: process.env.PG_PROD_USER,
+      password: process.env.PG_PROD_PASS,
+      database: process.env.PG_PROD_DB,
+      ssl: process.env.PG_PROD_SSL
+    },
     pool: {
       min: 2,
       max: 10
