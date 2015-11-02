@@ -1,6 +1,10 @@
 app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', function($scope, $http, $location, $state, Auth) {
 
+<<<<<<< HEAD
  //Slide the signin form in landing page 
+=======
+ // slide the signin form in landing page 
+>>>>>>> Code Clean Up
 
   $scope.showSignForm = function(){
 
@@ -15,7 +19,7 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
     message: '',
   };
 
-//controls the submit login button and changes the message if it is not logged in
+// controls the submit login button and changes the message if it is not logged in
   $scope.logIn = function(userObj){
     Auth.logIn($scope.user)
     .then(function(res){
@@ -33,7 +37,7 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
     Auth.signUp($scope.user);
   };
 
-//hardcoded the redirection to handle passport with google and facebook
+// hardcoded the redirection to handle passport with google and facebook
   $scope.google = function(){
     window.location.replace('/api/users/auth/google');
   };
