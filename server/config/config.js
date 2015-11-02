@@ -1,4 +1,5 @@
 //this files contains the 'keys' for auth with facebook and google that are actually stored in the .env file on server
+
 var Config = {
   GoogleAuth: {
     clientId: process.env.GOOGLE_CLIENT_ID,
