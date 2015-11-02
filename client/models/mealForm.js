@@ -1,4 +1,4 @@
-app.factory('MealForm', ['$http', function($http) {
+app.factory('MealForm', ['$http', '$state', function($http, $state) {
 
   console.log('MealForm factory');
 
@@ -11,6 +11,7 @@ app.factory('MealForm', ['$http', function($http) {
     })
     .then(function(res) {
       console.log('Response:', res);
+      $state.reload();
     });
   };
 

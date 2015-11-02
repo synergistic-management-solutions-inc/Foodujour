@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', function($scope, $http) {
+app.controller('mealView', ['$scope', '$http', '$state', function($scope, $http, $state) {
 
 
 
@@ -30,6 +30,9 @@ app.controller('mealView', ['$scope', '$http', function($scope, $http) {
     $scope.meal = m;
     console.log('mea',$scope.meal.id)
     $http.get('api/meals/delete/' + $scope.meal.id)
+    .then(function() {
+      $state.reload();
+    })
   };
 
 }]);
