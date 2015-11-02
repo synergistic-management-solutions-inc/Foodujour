@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "node ./server/app.js",
-    "docco": "./node_modules/.bin/docco -o client/docs/ server/*.js server/**/*.js test/*.js test/**/*.js",
+    "docco": "./node_modules/.bin/docco -o client/docs/ server/**/*.js test/**/*.js",
     "migrate:latest": "./node_modules/.bin/knex migrate:latest",
     "seed": "./node_modules/.bin/knex seed:run",
     "postinstall": "npm run migrate:latest && npm run docco",
