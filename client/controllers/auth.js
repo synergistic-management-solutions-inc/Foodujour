@@ -1,6 +1,9 @@
 app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', function($scope, $http, $location, $state, Auth) {
 
+<<<<<<< HEAD
  //Slide the signin form in landing page 
+=======
+>>>>>>> Code Clean Up
   $scope.showSignForm = function(){
 
     $('.slider').fadeOut('fast',function(){
@@ -27,6 +30,7 @@ app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', fun
   };
 
 //controls the signUp button  see Auth service passport service
+
   $scope.signUp = function(){
     Auth.signUp($scope.user);
   };
