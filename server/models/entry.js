@@ -2,14 +2,17 @@ var db = require('../lib/db');
 
 var Entry = {};
 
+// Finds all entries
 Entry.all = function () {
   return db('entries').select('*');
 };
 
+// Finds all entries associated with a user by user id
 Entry.findByUser = function(userId) {
   return db('entries').select('*').where({user_id: userId});
 };
 
+// Finds all entries associated with one meal, by mealid
 Entry.findMealEntries = function(mealId) {
   return db('entries').select('*').where({ meal_id: mealId })
     .then(function(rows) {
@@ -17,9 +20,10 @@ Entry.findMealEntries = function(mealId) {
     });
 };
 
-// ******************* //
 // singular entries
-// ******************* //
+
+// Expecting: user_id, meal_id, name, rating, notes, image
+// Creates a single entry
 Entry.create = function (attrs) {
   return db('entries').insert(attrs).returning('id')
     .then(function(rows) {
@@ -36,6 +40,7 @@ Entry.create = function (attrs) {
     });
 };
 
+// Finds one entry based on it's id
 Entry.findOne = function(id) {
   return db('entries').select('*').where({id: id}).limit(1)
   .then(function(rows) {
@@ -44,6 +49,7 @@ Entry.findOne = function(id) {
   });
 };
 
+// Updates an entry with id expects full field entries to update
 Entry.updateOne = function(attrs) {
   if (!attrs.id) { /* reject */ }
 
@@ -54,10 +60,12 @@ Entry.updateOne = function(attrs) {
   });
 };
 
+// Destroys and entry by id
 Entry.destroyOne = function(id) {
   return db('entries').where({ id: id }).del();
 };
 
+// Deletes all entries associated with a meal
 Entry.deleteByMeal = function(mealId) {
   return db('entries').where({ meal_id: mealId }).del();
 };
