@@ -6,9 +6,9 @@ env:
 cache:
   directories:
   - node_modules
-before_script:
+before_install:
 - psql -c 'create database foodujour_test;' -U postgres
-- ./node_modules/.bin/knex migrate:latest
+before_script:
 - ./node_modules/.bin/knex seed:run
 deploy:
   provider: heroku
