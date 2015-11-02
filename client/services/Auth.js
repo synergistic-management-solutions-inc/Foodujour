@@ -7,8 +7,6 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
     return cookie === 'true';
   };
 
-
-
 //sends request to server for logging values are passed in by the controller
   var logIn = function(userObj) {
 
@@ -32,7 +30,6 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
   };
 
 //sends request to server for sign Up values are passed in by the controller
-
   var signUp = function(userObj) {
 
     var userData = {
@@ -53,8 +50,6 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
   };
 
 //sends request to server for sign Out values are passed in by the controller
-
-
   var signOut = function() {
     $http({
       method: 'POST',
