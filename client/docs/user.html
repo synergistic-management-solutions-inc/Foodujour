@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>user.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="entries-api.html">
+                  entries-api.js
+                </a>
+              
+                
+                <a class="source" href="meals-api.html">
+                  meals-api.js
+                </a>
+              
+                
+                <a class="source" href="users-api.html">
+                  users-api.js
+                </a>
+              
+                
+                <a class="source" href="app.html">
+                  app.js
+                </a>
+              
+                
+                <a class="source" href="config.html">
+                  config.js
+                </a>
+              
+                
+                <a class="source" href="passport.html">
+                  passport.js
+                </a>
+              
+                
+                <a class="source" href="db.html">
+                  db.js
+                </a>
+              
+                
+                <a class="source" href="entry.html">
+                  entry.js
+                </a>
+              
+                
+                <a class="source" href="meal.html">
+                  meal.js
+                </a>
+              
+                
+                <a class="source" href="user.html">
+                  user.js
+                </a>
+              
+                
+                <a class="source" href="routes.html">
+                  routes.js
+                </a>
+              
+                
+                <a class="source" href="entries-api_test.html">
+                  entries-api_test.js
+                </a>
+              
+                
+                <a class="source" href="meals-api_test.html">
+                  meals-api_test.js
+                </a>
+              
+                
+                <a class="source" href="nouser-entries-api_test.html">
+                  nouser-entries-api_test.js
+                </a>
+              
+                
+                <a class="source" href="nouser-meals-api_test.html">
+                  nouser-meals-api_test.js
+                </a>
+              
+                
+                <a class="source" href="index_test.html">
+                  index_test.js
+                </a>
+              
+                
+                <a class="source" href="meal_test.html">
+                  meal_test.js
+                </a>
+              
+                
+                <a class="source" href="index_test.html">
+                  index_test.js
+                </a>
+              
+                
+                <a class="source" href="test-helper.html">
+                  test-helper.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>user.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> db     = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/db'</span>);
+<span class="hljs-keyword">var</span> bPromise = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);
+<span class="hljs-keyword">var</span> bcrypt = bPromise.promisifyAll(<span class="hljs-built_in">require</span>(<span class="hljs-string">'bcrypt-nodejs'</span>));
+
+<span class="hljs-keyword">var</span> User = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>returns all users</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.all = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> db(<span class="hljs-string">'users'</span>).select(<span class="hljs-string">'*'</span>);
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>finds a user by username and then calls the callback</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.findByUsername = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">username, cb</span>) </span>{
+  <span class="hljs-keyword">return</span> db(<span class="hljs-string">'users'</span>).select(<span class="hljs-string">'*'</span>).where({name: username}).limit(<span class="hljs-number">1</span>)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rows</span>) </span>{
+      <span class="hljs-keyword">if</span> (!rows.length) { <span class="hljs-comment">/* reject */</span> }
+      <span class="hljs-keyword">if</span> (!cb) { <span class="hljs-keyword">return</span> rows[<span class="hljs-number">0</span>]; }
+      <span class="hljs-keyword">return</span> cb(<span class="hljs-literal">null</span>, rows[<span class="hljs-number">0</span>]);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-keyword">throw</span> err;
+    });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>finds user by google id and executes callback</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.findByGoogleID = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">googleID, cb</span>) </span>{
+  <span class="hljs-keyword">return</span> db(<span class="hljs-string">'users'</span>).select(<span class="hljs-string">'*'</span>).where({google_id: googleID}).limit(<span class="hljs-number">1</span>)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rows</span>) </span>{
+      <span class="hljs-keyword">if</span> (!rows.length) { <span class="hljs-comment">/* reject */</span> }
+      <span class="hljs-keyword">if</span> (!cb) { <span class="hljs-keyword">return</span> rows[<span class="hljs-number">0</span>]; }
+      <span class="hljs-keyword">return</span> cb(<span class="hljs-literal">null</span>, rows[<span class="hljs-number">0</span>]);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-keyword">throw</span> err;
+    });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>finds user by facebook id and executes callback</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.findByFacebookID = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">facebookID, cb</span>) </span>{
+  <span class="hljs-keyword">return</span> db(<span class="hljs-string">'users'</span>).select(<span class="hljs-string">'*'</span>).where({fb_id: facebookID}).limit(<span class="hljs-number">1</span>)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rows</span>) </span>{
+      <span class="hljs-keyword">if</span> (!rows.length) { <span class="hljs-comment">/* reject */</span> }
+      <span class="hljs-keyword">if</span> (!cb) { <span class="hljs-keyword">return</span> rows[<span class="hljs-number">0</span>]; }
+      <span class="hljs-keyword">return</span> cb(<span class="hljs-literal">null</span>, rows[<span class="hljs-number">0</span>]);
+    })
+    .catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+      <span class="hljs-keyword">throw</span> err;
+    });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>creates a new user with name, and hashed password</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.signUp = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">attrs</span>) </span>{
+  <span class="hljs-keyword">return</span> db(<span class="hljs-string">'users'</span>).insert(attrs).returning(<span class="hljs-string">'id'</span>)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">rows</span>) </span>{
+      <span class="hljs-keyword">var</span> newUser = {
+        id: rows[<span class="hljs-number">0</span>],
+        name: attrs.name,
+        passHash: attrs.passHash
+      };
+      <span class="hljs-keyword">return</span> newUser;
+    });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>generates hash async</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.generateHash = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">password</span>) </span>{
+  <span class="hljs-keyword">return</span> bcrypt.genSaltAsync(<span class="hljs-number">8</span>)
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">salt</span>) </span>{
+      <span class="hljs-keyword">return</span> bcrypt.hashAsync(password, salt, <span class="hljs-literal">null</span>);
+    });
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>checks password async with stored password</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>User.validPassword = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">password</span>) </span>{
+  <span class="hljs-keyword">return</span> bcrypt.compareAsync(password, <span class="hljs-keyword">this</span>.passHash);
+};
+
+<span class="hljs-built_in">module</span>.exports = User;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

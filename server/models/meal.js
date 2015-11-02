@@ -2,17 +2,19 @@ var db = require('../lib/db');
 
 var Meal = {};
 
+// Selects all meals
 Meal.all = function() {
   return db('meals').select('*');
 };
 
+// Finds all meals associated with user, by user_id
 Meal.findByUser = function(userId) {
   return db('meals').select('*').where({user_id: userId});
 };
 
-// ******************* //
 // singular meals
-// ******************* //
+// Creates a meal, expecting: user_id, date, name, location, rating, notes,
+// image
 Meal.create = function(attrs) {
   return db('meals').insert(attrs).returning('id')
     .then(function(rows) {
@@ -30,6 +32,7 @@ Meal.create = function(attrs) {
     });
 };
 
+// find a meal by certain id
 Meal.findOne = function(id) {
   return db('meals').select('*').where({id: id}).limit(1)
     .then(function(rows) {
@@ -38,6 +41,7 @@ Meal.findOne = function(id) {
     });
 };
 
+// updates meal, requires: id, user_id, and all additional properties
 Meal.updateOne = function(attrs) {
   if (!attrs.id) { /* reject */return; }
 
@@ -48,6 +52,7 @@ Meal.updateOne = function(attrs) {
     });
 };
 
+// deletes a meal by id
 Meal.destroyOne = function(id) {
   return db('meals').where({ id: id }).delete();
 };

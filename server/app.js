@@ -47,6 +47,8 @@ if (process.env.NODE_ENV !== 'test') {
   // these two lines need to be declared before the router
   app.use(passport.initialize());
   app.use(passport.session());
+  // Middleware if req.isAuthenticated() returns true, set cookie isLoggedIn to
+  // true and proceed on to next
   app.use(function(req, res, next) {
     if (req.isAuthenticated()) {
       res.cookie('isLoggedIn', true);

@@ -9,8 +9,10 @@ process.env.NODE_ENV = 'test';
 
 global.__server = __dirname + '/../server';
 global.__client = __dirname + '/../client';
+// Makes the database available in all tests as db
 global.db = require('../server/lib/db');
 
+// Careful :)
 // (function() {
 //   return db.deleteEverything();
 // })();
