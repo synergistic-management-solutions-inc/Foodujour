@@ -1,10 +1,6 @@
 app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', function($scope, $http, $location, $state, Auth) {
 
-<<<<<<< HEAD
- //Slide the signin form in landing page 
-=======
  // slide the signin form in landing page 
->>>>>>> Code Clean Up
 
   $scope.showSignForm = function(){
 
