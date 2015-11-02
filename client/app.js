@@ -23,6 +23,9 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     // controller: 'MainCtrl'
   })
 
+
+  //changed to addd authorization page to landing page, it should not be needed but serveral parts of the code will need to be changed.
+  //to be able to redirect everyhing that goes to auth to landing.
   .state('auth', {
     url: '/landing',
     authenticate: false,
