@@ -7,6 +7,6 @@ require('./entryNotes');
 require('./datepicker');
 require('./mealnotes');
 require('./mealView');
-require('./entryview');
+require('./entryView');
 require('./mealinfo');
-require('./landingsidebar')
+require('./landingSidebar');
