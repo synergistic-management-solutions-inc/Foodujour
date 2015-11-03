@@ -33,15 +33,16 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     controller: 'AuthCtrl',
   })
 
-  .state('meals', {
-    url: '/meals/{id:int}',
-    // authenticate: true,
-    templateUrl: 'views/mealInfo.html',
-    // params: {
-    //   id: 'latest'
-    // },
-    controller: 'MealInfoController'
-  })
+  //pretty sure this guy isn't doing anything 
+  // .state('meals', {
+  //   url: '/meals/{id:int}',
+  //   // authenticate: true,
+  //   templateUrl: 'views/mealInfo.html',
+  //   // params: {
+  //   //   id: 'latest'
+  //   // },
+  //   controller: 'MealInfoController'
+  // })
 
   .state('about', {
     url: '/about',
@@ -61,10 +62,17 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'views/mealForm.html',
   })
 
-  .state('mealInfo', {
-    url: '/mealInfo',
-    templateUrl: 'views/mealInfo.html',
-  })
+  //this code, also not doing anything 
+  
+  // .state('mealInfox', {
+  //   url: '/mealInfox',
+  //   templateUrl: 'views/mealInfox.html'
+  // })
+
+  // .state('mealInfo', {
+  //   url: '/mealInfo',
+  //   templateUrl: 'views/mealInfo.html',
+  // })
 
   .state('landing', {
     url: '/landing',

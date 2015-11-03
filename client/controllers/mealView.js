@@ -22,7 +22,7 @@ app.controller('mealView', ['$scope', '$http', '$state', function($scope, $http,
 
   $scope.showModal = function(m) {
     $scope.meal = m;
-    // console.log("this is m: ", m)
+    console.log("this is m: ", m)
   };
 
  $scope.deleteMeal = function (m) {

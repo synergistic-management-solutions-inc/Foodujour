@@ -1,7 +1,8 @@
 // requires for browserify
-require('./main');
+// require('./main');
 require('./auth');
 require('./mealInfo');
+require('./mealInfox');
 require('./sidebarController');
 require('./dateController');
 require('./mealForm');

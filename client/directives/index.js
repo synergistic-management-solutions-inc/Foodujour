@@ -9,4 +9,5 @@ require('./mealnotes');
 require('./mealView');
 require('./entryView');
 require('./mealinfo');
+require('./mealinfox');
 require('./landingSidebar');
