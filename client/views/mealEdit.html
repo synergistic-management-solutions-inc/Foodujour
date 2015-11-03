@@ -1,25 +1,46 @@
 <div id="mealEditModal" class="modal">
   <div class="modal-content">
-    <h4>{{meal.name}}</h4>
-    <div class= "row">
-      <div class= "mealName col s4"> Name : {{meal.name}}</div>
-      <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
-      <div class= "mealImg col s4">{{meal.image}}<br></div>
+    <h1>Edit Your Meal</h1>
+  <form name="mealForm" ng-submit="addMeal()">
+    <div class="row">
+      <form class="col s12">
+        <!-- Meal Name -->
+        <div class="row">
+          <div class="input-field col s6 offset-s1">
+            <input ng-model="meal.name" id="mealName" type="text" class="validate" required>
+            <label for="mealName">Meal Name</label>
+          </div>
+        </div>
+        <!-- Date/location -->
+        <datepicker></datepicker>
+        <!-- Notes -->
+        <mealnotes></mealnotes>
+        <!-- Rating/ImgURL -->
+        <div class="row">
+          <!-- ADD ABILITY TO RATE HERE -->
+          <div class="col offset-s1">
+            <form action="#">
+              <div class="file-field input-field">
+                <div class="btn offset">
+                  <span>Upload Image</span>
+                  <input ng-model="meal.image" type="file">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class= "row">
-      <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
-      <div class= "mealDate col s6">Date : {{convertDate(meal.date)}}<br></div>
+    <div ng-repeat="entrys in entriesOnPage track by $index">
+      <entryform></entryform>
     </div>
-    <div class = "row">
-      <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
-    </div>
-    <entryview></entryview>
-    <div class ="row">
-      <button class= "col offset-s1  modal-close" ng-click="deleteMeal(meal)">Delete Meal</button>
-      <!-- <button class= "col offset-s1" ng-click="">Edit Meal</button> -->
-    </div>
+    <!--this will need to be made functional at some point
+    <button ng-click="addEntry()">Edit Entries</button> 
+    -->
+  </form>
   </div>
   <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Update Meal</a>
   </div>
 </div>
