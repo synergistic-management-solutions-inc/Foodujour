@@ -1,4 +1,4 @@
-app.controller('entryView', ['$scope', '$http', function($scope, $http) {
+app.controller('entryView', ['$scope', '$http', '$state', function($scope, $http, $state) {
   
   $scope.entries = [];
 
@@ -17,5 +17,12 @@ app.controller('entryView', ['$scope', '$http', function($scope, $http) {
     $scope.entry = e;
     // console.log('Entry_Id: ',$scope.entry.id)
     $http.get('api/entries/delete/' + $scope.entry.id)
+    .then(function() {
+      $('.lean-overlay').remove();
+      $state.reload();
+    })
   };
 }]);
+
+
+
