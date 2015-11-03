@@ -26,9 +26,6 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($s
   };
 
   $scope.updateMeal = function(m) {
-    console.log('hanging out in the controller')
-    console.log('meal', m);
-
     $scope.meal = m;
 
     var date = +new Date($scope.meal.date);

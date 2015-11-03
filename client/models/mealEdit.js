@@ -3,8 +3,8 @@ app.factory('MealEdit', ['$http', '$state', function($http, $state) {
   var updateMeal = function(meal) {
     console.log('Updating meal:', meal);
     $http({
-      method: 'POST',
-      url: '/api/meals',
+      method: 'PUT',
+      url: '/api/meals/'+meal.id,
       data: meal
     })
     .then(function(res) {
