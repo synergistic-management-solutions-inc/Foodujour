@@ -18,9 +18,11 @@ app.controller('entryView', ['$scope', '$http', '$state', function($scope, $http
     // console.log('Entry_Id: ',$scope.entry.id)
     $http.get('api/entries/delete/' + $scope.entry.id)
     .then(function() {
+      $('.lean-overlay').remove();
       $state.reload();
     })
   };
 }]);
+
 
 
