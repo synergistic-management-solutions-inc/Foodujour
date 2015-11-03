@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', '$state', function($scope, $http, $state) {
+app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($scope, $http, $state, MealEdit) {
 
   $http.get('/api/meals')
   .then(function(data){
@@ -12,7 +12,7 @@ app.controller('mealView', ['$scope', '$http', '$state', function($scope, $http,
         $scope.entries = data.data;
      })
    });
-  
+
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
     return function(items) {
@@ -24,6 +24,20 @@ app.controller('mealView', ['$scope', '$http', '$state', function($scope, $http,
     $scope.meal = m;
     console.log("this is m: ", m)
   };
+
+  $scope.updateMeal = function(m) {
+    console.log('hanging out in the controller')
+    console.log('meal', m);
+
+    $scope.meal = m;
+
+    var date = +new Date($scope.meal.date);
+    var meal = Object.assign({}, $scope.meal);
+    meal.date = Math.floor(date / 1000);
+
+    MealEdit.updateMeal(meal);
+  };
+
 
  $scope.deleteMeal = function (m) {
     $scope.meal = m;

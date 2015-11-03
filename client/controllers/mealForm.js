@@ -1,5 +1,4 @@
 app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
-  console.log('mealFormController, state:', $state);
 
   $scope.entriesOnPage = [];
 
@@ -37,14 +36,6 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
     var date = +new Date($scope.meal.date);
     var meal = Object.assign({}, $scope.meal);
     meal.date = Math.floor(date / 1000);
-
-    // console.log('Meal name:', meal.name);
-    // console.log('Meal date:', meal.date);
-    // console.log('Meal location:', meal.location);
-    // console.log('Meal rating:', meal.rating);
-    // console.log('Meal notes:', meal.notes);
-    // console.log('Meal image:', meal.image);
-    // console.log('Meal entries:', meal.entries);
 
     MealForm.addMeal(meal);
   };
