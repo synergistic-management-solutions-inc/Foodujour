@@ -41,7 +41,12 @@ app.factory('Auth', ['$cookies', '$http', '$state','$location', function($cookie
     $http.post('/api/users/auth/signup', userData)
     .then(function(response){
       if(response.data.signedUp === true) {
-        logIn(userData);
+        return $http.post('/api/users/auth/login', userData)
+        .then(function(response) {
+          if (isLoggedIn()) {
+            $state.go('home');
+          }
+        })
       }
       else{
         console.log('wow we got an error!', response);
