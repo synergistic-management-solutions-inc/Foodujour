@@ -1,4 +1,4 @@
-app.controller('MealInfoControllerx', ['$scope', '$http', '$location', '$stateParams', function($scope, $http, $location, $stateParams) {
+app.controller('MealEditController', ['$scope', '$http', '$location', '$stateParams', function($scope, $http, $location, $stateParams) {
 
   $scope.meal = {};
 

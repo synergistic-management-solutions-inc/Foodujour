@@ -63,11 +63,6 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   })
 
   //this code, also not doing anything 
-  
-  // .state('mealInfox', {
-  //   url: '/mealInfox',
-  //   templateUrl: 'views/mealInfox.html'
-  // })
 
   // .state('mealInfo', {
   //   url: '/mealInfo',
