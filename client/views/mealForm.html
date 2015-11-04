@@ -19,11 +19,12 @@
         <div class="row">
           <!-- ADD ABILITY TO RATE HERE -->
           <div class="col offset-s1">
+          <div>{{meal.image}}</div>
             <form action="#">
               <div class="file-field input-field">
                 <div class="btn offset">
                   <span>Upload Image</span>
-                  <input ng-model="meal.image" type="file">
+                  <input type="file" fileread="meal.image" />
                 </div>
               </div>
             </form>

@@ -1,4 +1,5 @@
-app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
+app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'imgurOptions', function($scope, $http, $state, MealForm, imgur, imgurOptions) {
+
 
   $scope.entriesOnPage = [];
 
@@ -11,7 +12,8 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
   $scope.meal.rating = 0;
   $scope.meal.notes = 'Meal was out of this world';
   // TODO : Add image upload input field functionality
-  $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
+  $scope.meal.image = '';
+
 
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
