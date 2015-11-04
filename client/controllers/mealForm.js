@@ -11,7 +11,6 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
   // TODO : Add rating input field
   $scope.meal.rating = 0;
   $scope.meal.notes = 'Meal was out of this world';
-  // TODO : Add image upload input field functionality
   $scope.meal.image = '';
 
 
