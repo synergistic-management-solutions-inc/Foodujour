@@ -2,16 +2,7 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
 
   $scope.entriesOnPage = [];
 
-  $scope.meal = {};
-  $scope.meal.entries = [];
-  $scope.meal.name = 'Pizza';
-  $scope.meal.date = '10/16/2015';
-  $scope.meal.location = 'Tenochtitlan';
-  // TODO : Add rating input field
-  $scope.meal.rating = 0;
-  $scope.meal.notes = 'Meal was out of this world';
-  // TODO : Add image upload input field functionality
-  $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
+  $scope.meal = MealForm.meal;
 
   $scope.mode = MealForm.mode;
 
