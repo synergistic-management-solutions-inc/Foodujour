@@ -2,7 +2,7 @@ var angular = require('angular');
 var ui = require('angular-ui-router');
 var ngCookies = require('angular-cookies');
 var materialize = require('../node_modules/angular-materialize/src/angular-materialize');
-var ngImgur = require('../node_modules/ng-imgur/dist/ng-imgur.min')
+var ngImgur = require('../node_modules/ng-imgur/dist/ng-imgur')
 
 window.app = angular.module('myApp', [
   'ngCookies',
