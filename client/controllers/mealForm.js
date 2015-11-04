@@ -1,9 +1,9 @@
-app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
+app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'imgurOptions', function($scope, $http, $state, MealForm, imgur, imgurOptions) {
+
 
   $scope.entriesOnPage = [];
 
   $scope.meal = MealForm.meal;
-
   $scope.mode = MealForm.mode;
 
   // Creates a new entry to be displayed on form

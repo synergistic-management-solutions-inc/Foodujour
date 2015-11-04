@@ -11,3 +11,4 @@ require('./entryView');
 require('./mealinfo');
 require('./mealEdit');
 require('./landingSidebar');
+require('./imageUpload');
