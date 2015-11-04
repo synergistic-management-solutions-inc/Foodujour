@@ -1,7 +1,7 @@
 <div id="mealEditModal" class="modal">
   <div class="modal-content">
     <h1>Edit Your Meal</h1>
-  <form name="mealForm" ng-submit="addMeal()">
+  <form name="mealForm">
     <div class="row">
       <form class="col s12">
         <!-- Meal Name -->
@@ -37,11 +37,10 @@
     <!--this will need to be made functional at some point
     <button ng-click="addEntry()">Edit Entries</button> 
     -->
-     <button ng-click="updateMeal(meal)">Click</button>
   </form>
   </div>
   <div class="modal-footer">
     <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Update Meal</a>
+    <span ng-click="updateMeal(meal)" class=" modal-action modal-close waves-effect waves-green btn-flat">Update Meal</span>
   </div>
 </div>

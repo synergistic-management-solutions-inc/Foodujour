@@ -13,6 +13,8 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($s
      })
    });
 
+  $scope.tempMeal = $scope.meal; 
+
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
     return function(items) {
@@ -22,7 +24,6 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($s
 
   $scope.showModal = function(m) {
     $scope.meal = m;
-    console.log("this is m: ", m)
   };
 
   $scope.updateMeal = function(m) {
