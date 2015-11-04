@@ -1,4 +1,5 @@
-app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
+app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDate', 
+  function($scope, $http, $state, MealForm, ConvertDate) {
 
   $http.get('/api/meals')
   .then(function(data){
@@ -28,9 +29,7 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', function($s
     MealForm.meal.entries = m.entries;
     MealForm.meal.name = m.name;
     
-    // Needs to make convert date available here
-    // probably give it its own factory
-    MealForm.meal.date = '10/16/2015';
+    MealForm.meal.date = ConvertDate.convert(m.date);
     MealForm.meal.location = m.location;
     MealForm.meal.rating = m.rating;
     MealForm.meal.notes = m.notes;
