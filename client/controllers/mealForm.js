@@ -12,17 +12,8 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
   $scope.meal.rating = 0;
   $scope.meal.notes = 'Meal was out of this world';
   // TODO : Add image upload input field functionality
-  $scope.meal.image = '';
-  
+  $scope.meal.image = 'boots';
 
-  // $scope.uploadImage = function() {
-  //   imgurOptions.API_KEY = 'da1ac69610a455d';
-  //   console.log('whyyyy?', $scope.meal.image);
-  //   imgur.upload($scope.meal.image).then(function then(model) {
-  //       console.log('Your adorable cat be here: ' + 'blah');
-  //   });
-  //   console.log('crazy check');
-  // };
 
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {

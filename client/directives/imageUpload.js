@@ -3,6 +3,7 @@ app.directive("fileread", ['imgur', 'imgurOptions',function (imgur, imgurOptions
         scope: {
             fileread: "="
         },
+        controller: 'MealForm',
         link: function (scope, element, attributes) {
             element.bind("change", function (changeEvent) {
                 var reader = new FileReader();
@@ -16,6 +17,9 @@ app.directive("fileread", ['imgur', 'imgurOptions',function (imgur, imgurOptions
                 imgurOptions.API_KEY = 'da1ac69610a455d';
                 imgur.upload(file).then(function then(model) {
                     console.log('Your food image can be found here: ' + model.link);
+                    scope.blah = model.link;
+                    console.log(scope.blah);
+                    scope.$parent.meal.image = model.link;
                 });
             });
         }
