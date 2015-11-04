@@ -4,30 +4,27 @@
   <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <!-- Entries -->
-      <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat= "entry in entries | orderBy: reverse | filter: entrySearch" >
+      <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse | filter: entrySearch" >
         <li>
           <div class="collapsible-header">{{entry.name}}</div>
-          <div class="collapsible-body">
+          <div class="collapsible-body entry-body">
             <div class= "row">
 
-              <div class="entryName col s4" ng-hide="editorEnabled" ng-click="clickToEdit()">Name : {{entry.name}}</div>
+              <div class="entryName col m12" ng-hide="editorEnabled" ng-click="clickToEdit()">
+                Name : {{entry.name}}
+              </div>
 
-              <div class="entryName col s4" ng-show="editorEnabled">
-                <input ng-model="editableTitle" ng-show="editorEnabled">
+              <div class="entryName col m12" ng-show="editorEnabled">
+                <input ng-model="editableName" ng-show="editorEnabled">
                 <a href="#" ng-click="save()">Save</a>
                 or
                 <a href="#" ng-click="disableEditor()">cancel</a>
               </div>
 
-              <div class="entryRating col s4">Rating : {{entry.rating}}</div>
-              <div class="entryImg col s4">{{entry.image}}<br></div>
-            </div>
-            <div class="row">
-              <div class="entryNotes col s7">Notes : {{entry.notes}}</div>
-            </div>
-            <div class="row">
-              <button class="col offset-s1  modal-close" ng-click="deleteEntry(entry)">Delete Entry</button>
-              <button class="col offset-s1" ng-click="editEntry(entry)">Edit Entry</button>
+              <div class="entryRating col m12">Rating : {{entry.rating}}</div>
+              <div class="entryImg col m12">{{entry.image}}</div>
+              <div class="entryNotes col m12">Notes : {{entry.notes}}</div>
+              <button class="btn col m1 red darken-1 delete-entry" ng-click="deleteEntry(entry)">Delete</button>
             </div>
           </div>
         </li>

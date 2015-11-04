@@ -57,6 +57,17 @@ h1{
   display:inline-block;
 }
 
+.collapsible.popout>li {
+  box-shadow: none;
+}
 
+.entry-body {
+  padding: 15px 15px 0px 15px;
+}
 
-    
+.delete-entry {
+  font-size: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-left: 12px !important;
+}

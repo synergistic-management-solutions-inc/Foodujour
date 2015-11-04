@@ -24,12 +24,14 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
   };
 
   $scope.clickToEdit = function() {
+    $scope.name = '';
     $scope.editorEnabled = false;
     $scope.editorEnabled = !$scope.editorEnabled;
 
     $scope.enableEditor = function() {
+      console.log('enableEditor', $scope)
       $scope.editorEnabled = true;
-      $scope.editableTitle = $scope.name;
+      $scope.editableName = $scope.entry.name;
     };
 
     $scope.disableEditor = function() {
@@ -38,6 +40,8 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
 
     $scope.save = function(entry) {
       entry = $scope.entry
+      entry.name = $scope.editableName;
+      console.log('entry to send to DB', entry)
       EntryEdit.updateEntry(entry)
       $scope.disableEditor();
       $state.reload()
