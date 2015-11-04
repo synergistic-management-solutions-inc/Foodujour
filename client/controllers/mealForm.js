@@ -13,6 +13,10 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
   // TODO : Add image upload input field functionality
   $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
 
+  $scope.newMeal = function(){
+    return MealForm.newMeal
+  }
+  
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
     // console.log('Adding entry');
@@ -30,6 +34,7 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
     // console.log('Updating entry:', position);
     $scope.meal.entries[position] = entry;
   };
+
 
   // Has MealForm model send the meal to the server
   $scope.addMeal = function() {

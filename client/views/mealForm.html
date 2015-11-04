@@ -1,7 +1,8 @@
 <!-- MEAL FORM VIEW -->
 <div id="mealFormModal" class="modal">
   <div class="modal-content">
-  <h1>Record Your Meal</h1>
+  <h1 ng-show="newMeal">Record Your Meal</h1>
+  <h1 ng-hide="newMeal">Update Your Meal</h1>
   <form name="mealForm" ng-submit="addMeal()">
     <div class="row">
       <form class="col s12">
@@ -19,8 +20,6 @@
         <!-- Rating/ImgURL -->
         <div class="row">
           <!-- ADD ABILITY TO RATE HERE -->
-                  <span>we're in the entry form yo {{entryForm}}</span>
-                        <button></button>
           <div class="col offset-s1">
             <form action="#">
               <div class="file-field input-field">
@@ -37,8 +36,13 @@
     <div ng-repeat="entrys in entriesOnPage track by $index">
       <entryform></entryform>
     </div>
-    <button ng-click="addEntry()">Add Entry</button> <button ng-click="addMeal()">Submit Meal</button>
+    <button ng-click="addEntry()">Add Entry</button> 
 <!--   {{ meal.entries | json }} -->
   </form>
+  </div>
+    <div class="modal-footer">
+    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <span ng-show="newMeal" ng-click="addMeal()" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit Meal</span>
+    <!--<span ng-click="updateMeal(meal)" class=" modal-action modal-close waves-effect waves-green btn-flat">Update Meal</span>-->
   </div>
 </div>
