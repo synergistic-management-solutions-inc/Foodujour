@@ -33,4 +33,15 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
 
     MealForm.addMeal(meal);
   };
+
+  // Has MealForm model send updated meal to the server
+  $scope.updateMeal = function(m) {
+    $scope.meal = m;
+
+    var date = +new Date($scope.meal.date);
+    var meal = Object.assign({}, $scope.meal);
+    meal.date = Math.floor(date / 1000);
+
+    MealForm.updateMeal(meal);
+  };
 }]);

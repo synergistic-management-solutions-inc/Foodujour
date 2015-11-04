@@ -24,19 +24,21 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', 'MealEdit',
     $scope.meal = m;
   };
 
-  $scope.editMeal = function(){
+  $scope.editMeal = function(m){
+    MealForm.meal.entries = m.entries;
+    MealForm.meal.name = m.name;
+    
+    // Needs to make convert date available here
+    // probably give it its own factory
+    MealForm.meal.date = '10/16/2015';
+    MealForm.meal.location = m.location;
+    MealForm.meal.rating = m.rating;
+    MealForm.meal.notes = m.notes;
+    MealForm.meal.image = m.image;
+    MealForm.meal.id = m.id;
+
     MealForm.mode.newMeal = false;
   }
-
-  $scope.updateMeal = function(m) {
-    $scope.meal = m;
-
-    var date = +new Date($scope.meal.date);
-    var meal = Object.assign({}, $scope.meal);
-    meal.date = Math.floor(date / 1000);
-
-    MealEdit.updateMeal(meal);
-  };
 
 
  $scope.deleteMeal = function (m) {
