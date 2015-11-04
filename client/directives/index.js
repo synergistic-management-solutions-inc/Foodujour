@@ -12,3 +12,4 @@ require('./mealinfo');
 require('./mealEdit');
 require('./landingSidebar');
 require('./landing.js');
+require('./imageUpload');
