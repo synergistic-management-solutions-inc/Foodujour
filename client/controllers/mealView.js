@@ -24,33 +24,21 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', function($s
     $scope.meal = m;
   };
 
-   $scope.createMeal = function(){
-    //adds default meal values; 
-    MealForm.meal.entries = [];
-    MealForm.meal.name ='Pizza';
-    MealForm.meal.date = '10/16/2015';
-    MealForm.meal.location = 'Tenochtitlan';
-    MealForm.meal.rating = 0;
-    MealForm.meal.notes = 'Meal was out of this world';
-    MealForm.meal.image = 'http://i.imgur.com/n104JLy.jpg';
-    
-    MealForm.mode.newMeal = true;
-  }
+  $scope.openForm = function(m){
+    m = m || {};
 
-  $scope.editMeal = function(m){
-    MealForm.meal.entries = m.entries;
-    MealForm.meal.name = m.name;
-    
-    // Needs to make convert date available here
-    // probably give it its own factory
+    MealForm.meal.entries = m.entries || [];
+    MealForm.meal.name = m.name || "Pizza"
+    //fix this, also auto set current date
     MealForm.meal.date = '10/16/2015';
-    MealForm.meal.location = m.location;
-    MealForm.meal.rating = m.rating;
-    MealForm.meal.notes = m.notes;
-    MealForm.meal.image = m.image;
+    MealForm.meal.location = m.location || 'Tenochtitlan';
+    MealForm.meal.rating = m.rating || 5;
+    MealForm.meal.notes = m.notes || 'Meal was out of this world';
+    MealForm.meal.image = m.image || 'http://i.imgur.com/n104JLy.jpg';
     MealForm.meal.id = m.id;
 
-    MealForm.mode.newMeal = false;
+    //if no meal was provided, newMeal should be set to true
+    MealForm.mode.newMeal = !m;
   }
 
 
