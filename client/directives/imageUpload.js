@@ -1,4 +1,4 @@
-app.directive("fileread", [function () {
+app.directive("fileread", ['imgur', 'imgurOptions',function (imgur, imgurOptions) {
     return {
         scope: {
             fileread: "="
@@ -11,9 +11,13 @@ app.directive("fileread", [function () {
                         scope.fileread = loadEvent.target.result;
                     });
                 }
-                reader.readAsDataURL(changeEvent.target.files[0]);
+                console.log('what even are you?:', changeEvent.target.files[0]);
+                var file = changeEvent.target.files[0];
+                imgurOptions.API_KEY = 'da1ac69610a455d';
+                imgur.upload(file).then(function then(model) {
+                    console.log('Your adorable cat be here: ' + model.link);
+                });
             });
         }
     }
 }]);
-
