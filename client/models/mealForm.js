@@ -9,7 +9,6 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   }
 
   var addMeal = function(meal) {
-    console.log('factory adding meal:', meal);
     $http({
       method: 'POST',
       url: '/api/meals',
@@ -22,7 +21,6 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   };
 
   var updateMeal = function(meal) {
-    console.log('Updating meal:', meal);
     $http({
       method: 'PUT',
       url: '/api/meals/'+meal.id,
