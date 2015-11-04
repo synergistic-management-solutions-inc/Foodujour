@@ -3,7 +3,7 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   // console.log('MealForm factory');
 
   var addMeal = function(meal) {
-    // console.log('Adding meal:', meal);
+    console.log('factory adding meal:', meal);
     $http({
       method: 'POST',
       url: '/api/meals',

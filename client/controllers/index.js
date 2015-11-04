@@ -2,6 +2,7 @@
 // require('./main');
 require('./auth');
 require('./mealInfo');
+require('./mealEdit');
 require('./sidebarController');
 require('./dateController');
 require('./mealForm');
