@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($scope, $http, $state, MealEdit) {
+app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
 
   $http.get('/api/meals')
   .then(function(data){
@@ -11,30 +11,34 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($s
       // console.log("what is:", data.data)
         $scope.entries = data.data;
      })
-   });
-
-  $scope.tempMeal = $scope.meal; 
+   }); 
 
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
     return function(items) {
       return items.slice().reverse();
     }
-  }
+  };
 
   $scope.showModal = function(m) {
     $scope.meal = m;
   };
 
-  $scope.updateMeal = function(m) {
-    $scope.meal = m;
+  $scope.editMeal = function(m){
+    MealForm.meal.entries = m.entries;
+    MealForm.meal.name = m.name;
+    
+    // Needs to make convert date available here
+    // probably give it its own factory
+    MealForm.meal.date = '10/16/2015';
+    MealForm.meal.location = m.location;
+    MealForm.meal.rating = m.rating;
+    MealForm.meal.notes = m.notes;
+    MealForm.meal.image = m.image;
+    MealForm.meal.id = m.id;
 
-    var date = +new Date($scope.meal.date);
-    var meal = Object.assign({}, $scope.meal);
-    meal.date = Math.floor(date / 1000);
-
-    MealEdit.updateMeal(meal);
-  };
+    MealForm.mode.newMeal = false;
+  }
 
 
  $scope.deleteMeal = function (m) {
