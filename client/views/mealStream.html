@@ -1,7 +1,14 @@
   <sidebar></sidebar>
 <div class="container">
+ <div class="row">
+      <div class="container">
+        <div>
+          <a type="button" class="btn col s4 green darken-1" href="#mealFormModal" modal ng-click="createMeal()">New Meal</a>
+         </div>
+      </div>
+    </div> 
   <input type="text" placeholder="Search Meals..." ng-model="mealSearch">
-  <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "mealView">
+  <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
     <li>
       <!-- Meals -->
       <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: '-date' | filter: mealSearch">

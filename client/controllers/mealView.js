@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
+app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
 
   $http.get('/api/meals')
   .then(function(data){
@@ -23,6 +23,19 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', function($s
   $scope.showModal = function(m) {
     $scope.meal = m;
   };
+
+   $scope.createMeal = function(){
+    //adds default meal values; 
+    MealForm.meal.entries = [];
+    MealForm.meal.name ='Pizza';
+    MealForm.meal.date = '10/16/2015';
+    MealForm.meal.location = 'Tenochtitlan';
+    MealForm.meal.rating = 0;
+    MealForm.meal.notes = 'Meal was out of this world';
+    MealForm.meal.image = 'http://i.imgur.com/n104JLy.jpg';
+    
+    MealForm.mode.newMeal = true;
+  }
 
   $scope.editMeal = function(m){
     MealForm.meal.entries = m.entries;
