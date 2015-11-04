@@ -1,10 +1,10 @@
 app.controller('AuthCtrl', ['$scope','$http', '$location', '$state', 'Auth', function($scope, $http, $location, $state, Auth) {
 
- // slide the signin form in landing page 
+ // slide the signin form in landing page
 
   $scope.showSignForm = function(){
 
-    $('.slider').fadeOut('fast',function(){
+    $('#backImage').fadeOut('fast',function(){
       $('.sign-form').fadeIn('slow');
     });
   }

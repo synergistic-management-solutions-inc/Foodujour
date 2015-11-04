@@ -10,6 +10,13 @@ div[back-img]{
   left:0;
 }
 
+.mainPageNav{
+  background-color: #BFBEC4;
+}
+
+#landingCard{
+  margin-top: 10%;
+}
 
 .main{
   padding-left: 240px;
@@ -72,6 +79,9 @@ h1{
   color: red;
 }
 
-.logo {
+#logoFrontPage {
   display:inline-block;
+  padding-top: 0.2cm;
+  height: auto;
+  width: 220px
 }
