@@ -15,7 +15,7 @@ app.directive("fileread", ['imgur', 'imgurOptions',function (imgur, imgurOptions
                 var file = changeEvent.target.files[0];
                 imgurOptions.API_KEY = 'da1ac69610a455d';
                 imgur.upload(file).then(function then(model) {
-                    console.log('Your adorable cat be here: ' + model.link);
+                    console.log('Your food image can be found here: ' + model.link);
                 });
             });
         }
