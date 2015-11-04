@@ -81,7 +81,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     url: '/mealstream',
     authenticate: true,
     templateUrl: 'views/mealStream.html',
-    controller: 'mealView'
+    controller: 'MealView'
   })
 
   .state('entrystream', {
