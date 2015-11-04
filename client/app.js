@@ -2,11 +2,13 @@ var angular = require('angular');
 var ui = require('angular-ui-router');
 var ngCookies = require('angular-cookies');
 var materialize = require('../node_modules/angular-materialize/src/angular-materialize');
+var ngImgur = require('../node_modules/ng-imgur/dist/ng-imgur.min')
 
 window.app = angular.module('myApp', [
   'ngCookies',
   'ui.router',
-  'ui.materialize'
+  'ui.materialize',
+  'ngImgur'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
