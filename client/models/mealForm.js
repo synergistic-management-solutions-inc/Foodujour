@@ -1,6 +1,12 @@
 app.factory('MealForm', ['$http', '$state', function($http, $state) {
 
-  // console.log('MealForm factory');
+  //keeps track of if the MealForm is in
+  //new meal mode (as opposed to edit meal mode)
+  var meal = {};
+
+  var mode = {
+    newMeal: true
+  }
 
   var addMeal = function(meal) {
     console.log('factory adding meal:', meal);
@@ -15,7 +21,23 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
     });
   };
 
+  var updateMeal = function(meal) {
+    console.log('Updating meal:', meal);
+    $http({
+      method: 'PUT',
+      url: '/api/meals/'+meal.id,
+      data: meal
+    })
+    .then(function(res) {
+      console.log('Response:', res);
+      $state.reload();
+    });
+  };
+
   return {
-    addMeal: addMeal
+    meal: meal,
+    mode: mode,
+    addMeal: addMeal,
+    updateMeal: updateMeal
   };
 }]);

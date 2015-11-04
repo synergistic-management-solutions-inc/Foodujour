@@ -3,16 +3,8 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
 
   $scope.entriesOnPage = [];
 
-  $scope.meal = {};
-  $scope.meal.entries = [];
-  $scope.meal.name = 'Pizza';
-  $scope.meal.date = '10/16/2015';
-  $scope.meal.location = 'Tenochtitlan';
-  // TODO : Add rating input field
-  $scope.meal.rating = 0;
-  $scope.meal.notes = 'Meal was out of this world';
-  $scope.meal.image = '';
-
+  $scope.meal = MealForm.meal;
+  $scope.mode = MealForm.mode;
 
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
@@ -32,6 +24,7 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
     $scope.meal.entries[position] = entry;
   };
 
+
   // Has MealForm model send the meal to the server
   $scope.addMeal = function() {
     var date = +new Date($scope.meal.date);
@@ -39,5 +32,16 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
     meal.date = Math.floor(date / 1000);
 
     MealForm.addMeal(meal);
+  };
+
+  // Has MealForm model send updated meal to the server
+  $scope.updateMeal = function(m) {
+    $scope.meal = m;
+
+    var date = +new Date($scope.meal.date);
+    var meal = Object.assign({}, $scope.meal);
+    meal.date = Math.floor(date / 1000);
+
+    MealForm.updateMeal(meal);
   };
 }]);

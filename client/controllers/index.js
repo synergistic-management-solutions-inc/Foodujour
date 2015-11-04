@@ -9,3 +9,4 @@ require('./entryForm');
 require('./mealView');
 require('./entryView');
 require('./entryStream');
+require('./mainController');
