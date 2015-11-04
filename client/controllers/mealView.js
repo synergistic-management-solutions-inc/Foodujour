@@ -11,16 +11,14 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($s
       // console.log("what is:", data.data)
         $scope.entries = data.data;
      })
-   });
-
-  $scope.tempMeal = $scope.meal; 
+   }); 
 
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
     return function(items) {
       return items.slice().reverse();
     }
-  }
+  };
 
   $scope.showModal = function(m) {
     $scope.meal = m;
