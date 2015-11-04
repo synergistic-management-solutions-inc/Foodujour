@@ -24,6 +24,10 @@ app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', 'MealEdit',
     $scope.meal = m;
   };
 
+  $scope.editMeal = function(){
+    MealForm.mode.newMeal = false;
+  }
+
   $scope.updateMeal = function(m) {
     $scope.meal = m;
 

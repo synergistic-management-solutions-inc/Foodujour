@@ -2,9 +2,8 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
 
   //keeps track of if the MealForm is in
   //new meal mode (as opposed to edit meal mode)
-  var newMeal = true;
-  var setNewMeal = function(bool){
-    newMeal = bool;
+  var mode = {
+    newMeal: true
   }
 
   var addMeal = function(meal) {
@@ -34,8 +33,8 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   };
 
   return {
-    newMeal: newMeal,
-    setNewMeal: setNewMeal,
-    addMeal: addMeal
+    mode: mode,
+    addMeal: addMeal,
+    updateMeal: updateMeal
   };
 }]);
