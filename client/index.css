@@ -1,7 +1,26 @@
-header, body, footer {
+/*header, body, footer {
+  padding-left: 240px;
+}*/
+
+div[back-img]{
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+
+
+.main{
+  padding-left: 240px;
+}
+.entry{
   padding-left: 240px;
 }
 
+.meal {
+  padding-left: 240px;
+}
 @media only screen and (max-width : 992px) {
   header, body, footer {
     padding-left: 0;
@@ -40,7 +59,7 @@ h1{
 }
 
 .liContainer {
-  
+
   background-color: white;
 }
 
@@ -56,7 +75,3 @@ h1{
 .logo {
   display:inline-block;
 }
-
-
-
-    

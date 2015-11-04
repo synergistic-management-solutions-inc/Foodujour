@@ -10,3 +10,4 @@ require('./mealView');
 require('./entryView');
 require('./mealinfo');
 require('./landingSidebar');
+require('./landing.js');
