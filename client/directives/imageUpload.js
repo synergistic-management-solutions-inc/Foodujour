@@ -12,13 +12,11 @@ app.directive("fileread", ['imgur', 'imgurOptions',function (imgur, imgurOptions
                         scope.fileread = loadEvent.target.result;
                     });
                 }
-                console.log('what even are you?:', changeEvent.target.files[0]);
                 var file = changeEvent.target.files[0];
-                imgurOptions.API_KEY = 'da1ac69610a455d';
+                imgurOptions.API_KEY = 'da1ac69610a455d'; //note: this api key is public right now
                 imgur.upload(file).then(function then(model) {
                     console.log('Your food image can be found here: ' + model.link);
-                    scope.blah = model.link;
-                    console.log(scope.blah);
+                    scope.link = model.link;
                     scope.$parent.meal.image = model.link;
                 });
             });
