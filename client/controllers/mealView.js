@@ -1,4 +1,5 @@
-app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', function($scope, $http, $state, MealForm) {
+app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDate', 
+  function($scope, $http, $state, MealForm, ConvertDate) {
 
   $http.get('/api/meals')
   .then(function(data){
@@ -29,13 +30,16 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', function($s
 
     MealForm.meal.entries = m.entries || [];
     MealForm.meal.name = m.name || "Pizza"
-    //fix this, also auto set current date
-    MealForm.meal.date = '10/16/2015';
+    //TODO: auto set current date
+    MealForm.meal.date =  ConvertDate.convert(m.date) || '10/16/2015';
     MealForm.meal.location = m.location || 'Tenochtitlan';
     MealForm.meal.rating = m.rating || 5;
     MealForm.meal.notes = m.notes || 'Meal was out of this world';
     MealForm.meal.image = m.image || 'http://i.imgur.com/n104JLy.jpg';
-    MealForm.meal.id = m.id;
+    
+    if (m){
+      MealForm.meal.id = m.id;
+    }
 
     //if no meal was provided, newMeal should be set to true
     MealForm.mode.newMeal = !m;
