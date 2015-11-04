@@ -1,3 +1,2 @@
-require('./mealEdit');
-require('./entryEdit');
 require('./mealForm');
+require('./entryEdit');
