@@ -1,4 +1,4 @@
-app.controller('mealView', ['$scope', '$http', '$state', 'MealEdit', function($scope, $http, $state, MealEdit) {
+app.controller('mealView', ['$scope', '$http', '$state', 'MealForm', 'MealEdit', function($scope, $http, $state, MealForm, MealEdit) {
 
   $http.get('/api/meals')
   .then(function(data){

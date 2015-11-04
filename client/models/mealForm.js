@@ -1,6 +1,10 @@
 app.factory('MealForm', ['$http', '$state', function($http, $state) {
 
-  // console.log('MealForm factory');
+  var newMeal = true;
+
+  var setNewMeal = function(bool){
+    newMeal = bool;
+  }
 
   var addMeal = function(meal) {
     console.log('factory adding meal:', meal);
@@ -16,6 +20,8 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   };
 
   return {
+    newMeal: newMeal,
+    setNewMeal: setNewMeal,
     addMeal: addMeal
   };
 }]);

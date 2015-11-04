@@ -13,13 +13,6 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', function($s
   // TODO : Add image upload input field functionality
   $scope.meal.image = 'http://i.imgur.com/n104JLy.jpg';
 
-  $scope.entryForm = true;
-
-  $scope.setEntryForm = function(bool){
-    $scope.entryForm = bool;
-    console.log('entry form', $scope.entryForm);
-  };
-
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
     // console.log('Adding entry');
