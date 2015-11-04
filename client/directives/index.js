@@ -9,7 +9,6 @@ require('./mealnotes');
 require('./mealView');
 require('./entryView');
 require('./mealinfo');
-require('./mealEdit');
 require('./landingSidebar');
 require('./landing.js');
 require('./imageUpload');
