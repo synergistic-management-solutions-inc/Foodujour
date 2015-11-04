@@ -1,5 +1,6 @@
 <!-- MEAL FORM VIEW -->
-<div id="mealForm">
+<div id="mealFormModal" class="modal">
+  <div class="modal-content">
   <h1>Record Your Meal</h1>
   <form name="mealForm" ng-submit="addMeal()">
     <div class="row">
@@ -39,4 +40,5 @@
     <button ng-click="addEntry()">Add Entry</button> <button ng-click="addMeal()">Submit Meal</button>
 <!--   {{ meal.entries | json }} -->
   </form>
+  </div>
 </div>
