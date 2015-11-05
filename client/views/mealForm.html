@@ -20,6 +20,14 @@
         <!-- Rating/ImgURL -->
         <div class="row">
           <!-- ADD ABILITY TO RATE HERE -->
+          <div class="col s6 offset-s1">
+            <div ng-controller="StarRating">
+              <span ng-repeat="rating in ratings">{{rating.current}} out of {{rating.max}}
+              <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+              </span>
+            </div>
+          </div>
+        
           <div class="col offset-s1">
           <div>{{meal.image}}</div>
             <form action="#">
