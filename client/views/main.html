@@ -1,3 +1,49 @@
-<div class="row">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foodujour</title>
+</head>
+<body>
   <sidebar></sidebar>
-</div>
+  <div class="container">
+    <section>
+    <h4>Latest Meals</h4>
+    <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+      <li>
+        <!-- Meals -->
+        <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: '-date' | filter: mealSearch | limitTo:3">
+          <mealAccordion></mealAccordion>
+        </ul> 
+        <mealinfo></mealinfo>
+      </li>
+    </ul>
+    </section>
+
+    <section>
+      <h4>Tastiest Meals of All Time</h4>
+      <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+        <li>
+          <!-- Meals -->
+          <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'rating' | filter: mealSearch | limitTo: 3">
+            <mealAccordion></mealAccordion>
+          </ul> 
+          <mealinfo></mealinfo>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h4>Upcoming Meals</h4>
+      <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+        <li>
+          <!-- Meals -->
+          <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'rating' | filter: mealSearch | limitTo: 3">
+            <mealAccordion></mealAccordion>
+          </ul> 
+          <mealinfo></mealinfo>
+        </li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>
