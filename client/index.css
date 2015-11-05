@@ -2,12 +2,49 @@
   padding-left: 240px;
 }*/
 
+body {
+  color: #333;
+}
+
+nav {
+  background-color: #607d8b
+}
+
+.container {
+  padding: 2%;
+  text-align: center;
+}
+
+img {
+  margin: 2% auto;
+}
+
+.collapsible-header {
+  background-color: #bfbec4;
+  font-size: 20px;
+}
+
+.collapsible-body {
+  background-color: #bfbec4;
+  padding: 2%;
+  font-size: 18px;
+}
+
+.btn-large {
+  background-color: #639fde;
+  width: 200px;
+}
+
 div[back-img]{
   position:absolute;
   top:0;
   right:0;
   bottom:0;
   left:0;
+}
+
+section {
+  margin: 5%;
 }
 
 .mainPageNav{
