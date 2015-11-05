@@ -3,17 +3,17 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
 
   $http.get('/api/meals')
   .then(function(data){
-    // console.log('Data: ', data.data)
+    console.log('meals: ', data.data)
     $scope.meals = data.data;
 
 
     $http.get("/api/entries")
      .then(function(data){
-      // console.log("what is:", data.data)
         $scope.entries = data.data;
      })
    }); 
 
+  $scope.entries = $scope.entries || [];  
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
     return function(items) {
@@ -24,6 +24,15 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
   $scope.showModal = function(m) {
     $scope.meal = m;
   };
+
+  // $scope.hasEntries = function(m){
+
+  //   $scope.entries.forEach(function(entry){
+  //     if (entry.meal_id === m.id){
+  //       return true;
+  //     }
+  //   })
+  // }
 
   $scope.openForm = function(m){    
     if (m){
@@ -41,7 +50,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
 
     MealForm.meal.entries = m.entries || [];
     MealForm.meal.name = m.name || "Pizza"
-    
+
     //auto sets the date to current day (in Texas)
     MealForm.meal.date = date || ConvertDate.convert(Date.now()/1000-21600);
     MealForm.meal.location = m.location || 'Tenochtitlan';
