@@ -17,8 +17,8 @@ app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
 
   $scope.meal = null;
 
-  $scope.saveEntry = function(meal) {
-    $scope.meal = meal;
+  $scope.saveEntry = function(parent) {
+    $scope.parentScope = parent;
 
   // $scope.saveEntry = function() {
     // console.log('Save Entry');
@@ -30,13 +30,12 @@ app.controller('EntryForm', ['$scope', '$http', function($scope, $http) {
     // console.log('Meal image:', $scope.meal.image);
     // console.log('Meal entries:', $scope.meal.entries);
 
-
     // Entry has not been attached to meal yet
     if ($scope.entryId < 0) {
-      $scope.entryId = meal.saveEntry($scope.entry);
+      $scope.entryId = parent.saveEntry($scope.entry);
     // Entry is associated with a meal
     } else {
-      meal.updateEntry($scope.entryId, $scope.entry);
+      parent.updateEntry($scope.entryId, $scope.entry);
     }
   };
 

@@ -11,7 +11,7 @@
     <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
       <li>
         <!-- Meals -->
-        <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: '-date' | filter: mealSearch | limitTo:3">
+        <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'created_at':true | filter: mealSearch | limitTo:3">
           <li>
             <div class="collapsible-header">
               <div style= "float: left">{{meal.name}}</div>
@@ -34,7 +34,7 @@
               </div>
             </div>
           </li>
-        </ul> 
+        </ul>
         <mealinfo></mealinfo>
       </li>
     </ul>
@@ -65,7 +65,7 @@
                 </div>
               </div>
             </li>
-          </ul> 
+          </ul>
           <mealinfo></mealinfo>
         </li>
       </ul>
@@ -97,11 +97,14 @@
               </div>
             </li>
 
-          </ul> 
+          </ul>
           <mealinfo></mealinfo>
         </li>
       </ul>
     </section>
   </div>
+
+  <div class = "check" d3-bars bar-height="20" bar-padding="5"></div>
+
 </body>
 </html>
