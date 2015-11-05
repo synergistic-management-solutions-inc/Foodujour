@@ -24,10 +24,32 @@ img {
   font-size: 20px;
 }
 
+.auth-header {
+  background-color: #fff;
+  font-size: 20px;
+}
+
 .collapsible-body {
   background-color: #bfbec4;
   padding: 2%;
   font-size: 18px;
+}
+
+.auth-body {
+  background-color: #fff;
+  padding: 2%;
+  font-size: 18px;
+}
+
+form {
+  background-color: #fff;
+  padding: 2%;
+  font-size: 18px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100% !important;
 }
 
 .btn-large {
@@ -114,11 +136,16 @@ h1{
 
 .liContainer {
 
-  background-color: white;
+  background-color: #fff;
 }
 
 .sign-form {
   display: none;
+}
+
+.sign-in-container {
+  margin: 200px auto;
+  width: 400px;
 }
 
 .error-msn{
@@ -139,6 +166,7 @@ h1{
 
 .entry-body {
   padding: 15px 15px 0px 15px;
+  text-align: center;
 }
 
 .delete-entry {
@@ -190,5 +218,5 @@ ul.rating {
 }
 
 .rating .filled {
-  color: #4CAF50;
+  color: #de6563;
 }
