@@ -40,7 +40,6 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
     MealForm.meal.name = m.name || "Pizza"
     //TODO: auto set current date
     MealForm.meal.date = m.date || '10/16/2015';
-    console.log('did we get the date alright?', ConvertDate.convert(m.date));
     MealForm.meal.location = m.location || 'Tenochtitlan';
     MealForm.meal.rating = m.rating || 5;
     MealForm.meal.notes = m.notes || 'Meal was out of this world';
