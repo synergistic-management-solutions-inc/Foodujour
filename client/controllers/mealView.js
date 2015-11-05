@@ -1,9 +1,9 @@
-app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDate', 
+app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDate',
   function($scope, $http, $state, MealForm, ConvertDate) {
 
   $http.get('/api/meals')
   .then(function(data){
-    // console.log('Data: ', data.data)
+    console.log('Data: ', data.data)
     $scope.meals = data.data;
 
 
@@ -12,7 +12,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
       // console.log("what is:", data.data)
         $scope.entries = data.data;
      })
-   }); 
+   });
 
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
@@ -25,24 +25,22 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
     $scope.meal = m;
   };
 
-  $scope.openForm = function(m){    
+  $scope.openForm = function(m){
     if (m){
       MealForm.meal.id = m.id;
-      var date = ConvertDate.convert(m.date);
-    }
-    else {
-      delete MealForm.meal.id;
+      m.date = ConvertDate.convert(m.date);
     }
 
     //if no meal was provided, newMeal should be set to true
     MealForm.mode.newMeal = !m;
-    
+
     m = m || {};
 
     MealForm.meal.entries = m.entries || [];
     MealForm.meal.name = m.name || "Pizza"
-    //auto sets the date to current day (in Texas)
-    MealForm.meal.date = date || ConvertDate.convert(Date.now()/1000-21600);
+    //TODO: auto set current date
+    MealForm.meal.date = m.date || '10/16/2015';
+    console.log('did we get the date alright?', ConvertDate.convert(m.date));
     MealForm.meal.location = m.location || 'Tenochtitlan';
     MealForm.meal.rating = m.rating || 5;
     MealForm.meal.notes = m.notes || 'Meal was out of this world';
@@ -61,4 +59,3 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
   };
 
 }]);
-

@@ -11,3 +11,4 @@ require('./landingSidebar');
 require('./landing.js');
 require('./imageUpload');
 require('./rating')
+require('./d3Visual');
