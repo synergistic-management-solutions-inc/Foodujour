@@ -21,6 +21,11 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   };
 
   var updateMeal = function(meal) {
+    console.log('updating this guy!', meal);
+    meal.entries = [{
+      name: 'mustard',
+      notes: 'it was damn yellow!'
+    }]
     $http({
       method: 'PUT',
       url: '/api/meals/'+meal.id,
