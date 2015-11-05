@@ -23,15 +23,6 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
             scope.$apply();
           };
 
-          // hard-code data
-      //  scope.data = [
-      //    {name: "Greg", score: 98},
-      //    {name: "Ari", score: 96},
-      //    {name: 'Q', score: 75},
-      //    {name: "Loser", score: 48}
-      //  ];
-
-
        $http.get('/api/meals')
            .then(function(data){
              console.log('Data: ', data.data);
@@ -57,7 +48,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
             renderTimeout = $timeout(function() {
               var width = d3.select(ele[0])[0][0].offsetWidth - margin,
                   height = scope.data.length * (barHeight + barPadding),
-                  color = d3.scale.category20(),
+                  color = d3.scale.category10(),
                   xScale = d3.scale.linear()
                     .domain([0, d3.max(data, function(d) {
                       return d.rating;
@@ -70,8 +61,8 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                 .data(data)
                 .enter()
                   .append('rect')
-                  .on('click', function(d,i) {
-                    return scope.onClick({item: d});
+                  .on('click', function() {
+                    console.log("Stop clicking me")
                   })
                   .attr('height', barHeight)
                   .attr('width', 140)
