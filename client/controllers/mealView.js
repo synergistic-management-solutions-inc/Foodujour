@@ -42,7 +42,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
     MealForm.meal.entries = m.entries || [];
     MealForm.meal.name = m.name || "Pizza"
     //TODO: auto set current date
-    MealForm.meal.date = date || '10/16/2015';
+    MealForm.meal.date = date || ConvertDate.convert(Date.now()/1000);
     MealForm.meal.location = m.location || 'Tenochtitlan';
     MealForm.meal.rating = m.rating || 5;
     MealForm.meal.notes = m.notes || 'Meal was out of this world';
