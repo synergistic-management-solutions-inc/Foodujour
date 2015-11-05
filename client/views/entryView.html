@@ -1,19 +1,36 @@
-<!-- ENTRY VIEW -->
- <ul class="collapsible" data-collapsible="expandable" ng-controller = "entryView" ng-repeat="entry in (entries | filter : {'meal_id': meal.id})" ng-click="showEntries(entry)">
-  <!-- ENTRIES GO HERE (ng-repeat)-->
+<ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse" >
   <li>
     <div class="collapsible-header">{{entry.name}}</div>
-    <div class="collapsible-body">
+    <div class="collapsible-body entry-body">
       <div class= "row">
-        <div class= "entryName col s4">Name : {{entry.name}}</div>
-        <div class= "entryRating col s4">Rating : {{entry.rating}}</div>
-      </div>
-      <div class = "row">
-        <div class= "entryNotes col s7">Notes : {{entry.notes}}</div>
-      </div>
-      <div class="row">
-        <button class= "col offset-s1" ng-click="deleteEntry(entry)">Delete Entry</button>
-        <!-- <button class= "col offset-s1" ng-click= "">Edit Entry</button> -->
+        <div class="col s4">
+          <div class="entry-item entryName col m12" ng-hide="editorEnabled" ng-click="clickToEdit()">
+            Name : {{entry.name}}
+            <span><img src="../assets/edit.png" class="edit-icon"</span>
+          </div>
+
+          <div class="entry-item entryName col m12" ng-show="editorEnabled">
+            <input ng-model="editableName" ng-show="editorEnabled" placeholder="{{entry.name}}">
+            <a href="#" ng-click="save()"><span><img src="../assets/save.png" class="edit-icon"</span></a>
+            <a href="#" ng-click="disableEditor()"><span><img src="../assets/cancel.png" class="edit-icon"</span></a>
+          </div>
+
+          <div class="entry-item entryRating col m12">Rating : {{entry.rating}}</div>
+          <div class="entry-item entryImg col m12">{{entry.image}}</div>
+
+          <div class="entry-item entryNote col m12" ng-hide="noteEditorEnabled" ng-click="clickToEdit(this)">
+            Notes : {{entry.notes}}
+            <span><img src="../assets/edit.png" class="edit-icon"</span>
+          </div>
+
+          <div class="entry-item entryNote col m12" ng-show="noteEditorEnabled">
+            <textarea ng-model="editableNotes" ng-show="noteEditorEnabled" placeholder="{{entry.notes}}"></textarea>
+            <a href="#" ng-click="save()"><span><img src="../assets/save.png" class="edit-icon"</span></a>
+            <a href="#" ng-click="disableNoteEditor()"><span><img src="../assets/cancel.png" class="edit-icon"</span></a>
+          </div>
+
+          <button class="btn col m4 red darken-1 delete-entry" ng-click="deleteEntry(entry)">Delete</button>
+        </div>
       </div>
     </div>
   </li>
