@@ -20,7 +20,9 @@ app.factory('EntryEdit', ['$http', '$state', function($http, $state) {
     });
   };
 
-  var mode = {editable: true};
+  var mode = {
+    editable: true
+  };
 
   return {
     addEntry: addEntry, 

@@ -44,11 +44,13 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit'
     var meal = Object.assign({}, $scope.meal);
     meal.date = Math.floor(date / 1000);
 
+    
+    //adds new entries
+    meal.entries.forEach(function(entry){
+      entry.meal_id = meal.id;
+      EntryEdit.addEntry(entry)
+    });
+    
     MealForm.updateMeal(meal);
-    EntryEdit.addEntry({
-      name: 'pie',
-      notes: 'there was a crust',
-      meal_id: meal.id
-    })
   };
 }]);
