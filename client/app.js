@@ -91,6 +91,13 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     controller: 'entryStream'
   })
 
+  .state('mealplanner', {
+    url: '/mealplanner',
+    authenticate: true,
+    templateUrl: 'views/mealPlanner.html',
+    controller: 'MealPlanner'
+  })
+
 })
 .run(function ($rootScope, $state, $location, Auth) {
   // When state changes, we check if the user needs to be authenticated before

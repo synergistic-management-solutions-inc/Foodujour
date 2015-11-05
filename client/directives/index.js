@@ -11,4 +11,3 @@ require('./landing.js');
 require('./imageUpload');
 require('./rating');
 require('./mealAccordion');
-
