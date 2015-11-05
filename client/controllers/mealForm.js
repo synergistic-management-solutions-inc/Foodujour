@@ -1,4 +1,5 @@
-app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'imgurOptions', function($scope, $http, $state, MealForm, imgur, imgurOptions) {
+app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'imgurOptions', 
+  function($scope, $http, $state, MealForm, imgur, imgurOptions) {
 
 
   $scope.entriesOnPage = [];
@@ -8,20 +9,20 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
 
   // Creates a new entry to be displayed on form
   $scope.addEntry = function() {
-    // console.log('Adding entry');
+    console.log('Adding entry');
     $scope.entriesOnPage.push(1);
   };
 
   // Attaches an entry to this meal
   $scope.saveEntry = function(entry) {
     // console.log('Saving entry:', entry);
-    return $scope.meal.entries.push(entry) - 1;
+    return MealForm.meal.entries.push(entry) - 1;
   };
 
   // Updates an existing entry in this meal
   $scope.updateEntry = function(position, entry) {
-    // console.log('Updating entry:', position);
-    $scope.meal.entries[position] = entry;
+    // console.log('Updating entry',entry,'at', position);
+    MealForm.meal.entries[position] = entry;
   };
 
 
