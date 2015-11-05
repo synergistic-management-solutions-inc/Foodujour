@@ -9,6 +9,13 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
     $scope.entries = data;
    });
 
+   $scope.editable = false;
+
+   $scope.test = function(parent){
+    console.log('parent', parent);
+    return true; 
+   }
+
    $scope.belongsTo = function(e, m){
     // console.log('belongs', e, m)
     if (!m){
@@ -36,7 +43,7 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
 
   // Handle editable fields
   $scope.clickToEdit = function(noteField) {
-
+    if (!$scope.editable) return; 
     // Determine which field. Probably will need to update this logic when we have ratings.
     // editorEnabled fields are flags to determine whether the hidden inputs are active
     if (noteField === undefined) {
