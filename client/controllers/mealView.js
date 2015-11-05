@@ -1,5 +1,5 @@
-app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDate', 
-  function($scope, $http, $state, MealForm, ConvertDate) {
+app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit', 'ConvertDate', 
+  function($scope, $http, $state, MealForm, EntryEdit, ConvertDate) {
 
   $http.get('/api/meals')
   .then(function(data){
@@ -12,7 +12,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
         $scope.entries = data.data;
      })
    }); 
-
+ 
   $scope.entries = $scope.entries || [];  
 // Filter to reverse order of ng-repeat on main view
   $scope.reverse = function() {
@@ -22,6 +22,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
   };
 
   $scope.showModal = function(m) {
+    EntryEdit.mode.editable = false;
     $scope.meal = m;
   };
 
@@ -34,7 +35,9 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
   //   })
   // }
 
-  $scope.openForm = function(m){    
+  $scope.openForm = function(m){
+    EntryEdit.mode.editable = true; 
+
     if (m){
       MealForm.meal.id = m.id;
       var date = ConvertDate.convert(m.date);

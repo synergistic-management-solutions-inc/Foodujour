@@ -10,7 +10,10 @@ app.factory('EntryEdit', ['$http', '$state', function($http, $state) {
     });
   };
 
+  var mode = {editable: true};
+
   return {
-    updateEntry: updateEntry
+    updateEntry: updateEntry,
+    mode: mode 
   };
 }]);

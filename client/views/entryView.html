@@ -6,7 +6,7 @@
         <div class="col s4">
           <div class="entry-item entryName col m12" ng-hide="editorEnabled" ng-click="clickToEdit()">
             Name : {{entry.name}}
-            <span ng-show="editable"><img src="../assets/edit.png" class="edit-icon"></span>
+            <span ng-show="mode.editable"><img src="../assets/edit.png" class="edit-icon"></span>
           </div>
 
           <div class="entry-item entryName col m12" ng-show="editorEnabled">
@@ -20,7 +20,7 @@
 
           <div class="entry-item entryNote col m12" ng-hide="noteEditorEnabled" ng-click="clickToEdit(this)">
             Notes : {{entry.notes}}
-            <span ng-show="editable"><img src="../assets/edit.png" class="edit-icon"></span>
+            <span ng-show="mode.editable"><img src="../assets/edit.png" class="edit-icon"></span>
           </div>
 
           <div class="entry-item entryNote col m12" ng-show="noteEditorEnabled">
@@ -29,7 +29,7 @@
             <a href="#" ng-click="disableNoteEditor()"><span><img src="../assets/cancel.png" class="edit-icon"</span></a>
           </div>
 
-          <button class="btn col m4 red darken-1 delete-entry" ng-click="deleteEntry(entry)">Delete</button>
+          <button class="btn col m4 red darken-1 delete-entry" ng-show="mode.editable" ng-click="deleteEntry(entry)">Delete</button>
         </div>
       </div>
     </div>
