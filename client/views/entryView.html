@@ -1,4 +1,4 @@
-<ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse" >
+<ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse | filter: entrySearch" >
   <li>
     <div class="collapsible-header">{{entry.name}}</div>
     <div class="collapsible-body entry-body">
