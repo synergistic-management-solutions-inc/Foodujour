@@ -116,3 +116,8 @@ h1{
 .entry-item:hover {
   cursor: pointer;
 }
+
+.meal-image {
+  max-height: 200px;
+  max-width: 100%;
+}
