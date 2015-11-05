@@ -28,7 +28,10 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
   $scope.openForm = function(m){    
     if (m){
       MealForm.meal.id = m.id;
-      m.date = ConvertDate.convert(m.date);
+      var date = ConvertDate.convert(m.date);
+    }
+    else {
+      delete MealForm.meal.id;
     }
 
     //if no meal was provided, newMeal should be set to true
@@ -38,8 +41,9 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
 
     MealForm.meal.entries = m.entries || [];
     MealForm.meal.name = m.name || "Pizza"
-    //TODO: auto set current date
-    MealForm.meal.date = m.date || '10/16/2015';
+    
+    //auto sets the date to current day (in Texas)
+    MealForm.meal.date = date || ConvertDate.convert(Date.now()/1000-21600);
     MealForm.meal.location = m.location || 'Tenochtitlan';
     MealForm.meal.rating = m.rating || 5;
     MealForm.meal.notes = m.notes || 'Meal was out of this world';
