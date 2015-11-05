@@ -1,64 +1,37 @@
 app.controller('MealPlanner', ['$scope', function($scope){
 
+
+  $scope.weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  $scope.mealDay = 'Sunday';
+
   $scope.days = {
-    "Sunday" : [
-      {
-        name : 'meal1',
-        type : 'breakfast',
-        notes : 'this was a crappy meal',
-        ingredients : [
-          'apples',
-          'butter',
-          'aardvark meat'
-        ]
-      }
-    ],
+    "Sunday" : [],
+    "Monday" : [],
+    "Tuesday" : [],
+    "Wednesday" : [],
+    "Thursday" : [],
+    "Friday" : [],
+    "Saturday" : []
+  }
 
-    "Monday" : [
-      {
-        name : 'meal2',
-        type : 'dinner',
-        notes : 'this was a great meal',
-        ingredients : [
-          'apples',
-          'bread',
-          'rat meat'
-        ]
-      }
-    ],
+  $scope.mealName = '';
 
-    "Tuesday" : [
+  $scope.types = ['Breakfast', 'Lunch', 'Dinner', 'Snack'];
 
-    ],
+  $scope.notes = '';
 
-    "Wednesday" : [
+  var mealMaker = function(name, type, notes) {
+    var meal = Object.create(Object.prototype);
+    meal.name = name || '';
+    meal.type = type;
+    meal.notes = notes || '';
+    return meal;
+  }
 
-    ],
-
-    "Thursday" : [
-
-    ],
-
-    "Friday" : [
-      {
-        name : 'meal6',
-        type : 'snack',
-        notes : 'this was a stupid meal',
-        ingredients : [
-          'oranges',
-          'butter',
-          'aardvark meat'
-        ]
-      }
-    ],
-
-    "Saturday" : [
-
-    ],
-
-    // "Sunday" : [
-
-    // ]
+  $scope.addToPlannerModal = function() {
+    var meal = mealMaker($scope.mealName, $scope.mealType, $scope.mealNotes);
+    $scope.days[$scope.mealDay].push(meal);
   }
 
 }]);
