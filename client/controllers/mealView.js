@@ -26,14 +26,16 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit'
     $scope.meal = m;
   };
 
-  // $scope.hasEntries = function(m){
+  $scope.hasEntries = function(m){
+    var found = false;
 
-  //   $scope.entries.forEach(function(entry){
-  //     if (entry.meal_id === m.id){
-  //       return true;
-  //     }
-  //   })
-  // }
+    $scope.entries.forEach(function(entry){
+      if (entry.meal_id === m.id){
+        found = true;
+      }
+    })
+    return found;
+  }
 
   $scope.openForm = function(m){
     EntryEdit.mode.editable = true; 
