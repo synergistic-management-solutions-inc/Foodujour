@@ -1,5 +1,5 @@
-app.directive('d3Bars', ['$window', '$timeout', 'd3Service',
-  function($window, $timeout, d3Service) {
+app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
+  function($window, $timeout,$http, d3Service) {
     return {
       restrict: 'A',
       scope: {
@@ -24,12 +24,19 @@ app.directive('d3Bars', ['$window', '$timeout', 'd3Service',
           };
 
           // hard-code data
-       scope.data = [
-         {name: "Greg", score: 98},
-         {name: "Ari", score: 96},
-         {name: 'Q', score: 75},
-         {name: "Loser", score: 48}
-       ];
+      //  scope.data = [
+      //    {name: "Greg", score: 98},
+      //    {name: "Ari", score: 96},
+      //    {name: 'Q', score: 75},
+      //    {name: "Loser", score: 48}
+      //  ];
+
+
+       $http.get('/api/meals')
+           .then(function(data){
+             console.log('Data: ', data.data);
+             scope.data = data.data
+           });
 
           scope.$watch(function() {
             return angular.element($window)[0].innerWidth;
@@ -53,7 +60,7 @@ app.directive('d3Bars', ['$window', '$timeout', 'd3Service',
                   color = d3.scale.category20(),
                   xScale = d3.scale.linear()
                     .domain([0, d3.max(data, function(d) {
-                      return d.score;
+                      return d.id;
                     })])
                     .range([0, width]);
 
@@ -73,12 +80,12 @@ app.directive('d3Bars', ['$window', '$timeout', 'd3Service',
                     return i * (barHeight + barPadding);
                   })
                   .attr('fill', function(d) {
-                    return color(d.score);
+                    return color(d.id);
                   })
                   .transition()
                     .duration(1000)
                     .attr('width', function(d) {
-                      return xScale(d.score);
+                      return xScale(d.id);
                     });
               svg.selectAll('text')
                 .data(data)
@@ -90,7 +97,7 @@ app.directive('d3Bars', ['$window', '$timeout', 'd3Service',
                   })
                   .attr('x', 15)
                   .text(function(d) {
-                    return d.name + " (scored: " + d.score + ")";
+                    return d.name + " (scored: " + d.id + ")";
                   });
             }, 200);
           };
