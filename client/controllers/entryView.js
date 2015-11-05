@@ -9,6 +9,14 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
     $scope.entries = data;
    });
 
+   $scope.belongsTo = function(e, m){
+    if (!m){
+      return true;
+    }
+    
+    return e.meal_id === m.id
+   }
+
    $scope.showEntries = function(e){
     $scope.entry = e;
     // console.log("this is e: ", e)
