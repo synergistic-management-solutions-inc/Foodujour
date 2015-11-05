@@ -4,10 +4,6 @@
 <input type="text" placeholder="Search Entries..." ng-model="entrySearch">
   <ul class="collapsible popout" data-collapsible="accordion">
     <li>
-      <!-- Entries -->
-<<<<<<< HEAD
-      <entryview></entryview>
-=======
       <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse | filter: entrySearch" >
         <li>
           <div class="collapsible-header">{{entry.name}}</div>
@@ -45,7 +41,6 @@
           </div>
         </li>
       </ul>
->>>>>>> More styling
     </li>
   </ul>
 </div>
