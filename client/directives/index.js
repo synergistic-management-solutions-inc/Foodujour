@@ -10,3 +10,4 @@ require('./mealinfo');
 require('./landingSidebar');
 require('./landing.js');
 require('./imageUpload');
+require('./d3Visual');
