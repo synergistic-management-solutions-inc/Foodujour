@@ -30,6 +30,9 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
       MealForm.meal.id = m.id;
       var date = ConvertDate.convert(m.date);
     }
+    else {
+      delete MealForm.meal.id;
+    }
 
     //if no meal was provided, newMeal should be set to true
     MealForm.mode.newMeal = !m;
