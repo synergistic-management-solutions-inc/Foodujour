@@ -7,6 +7,5 @@ app.controller('StarRating', ['$scope', function ($scope) {
 
   $scope.getSelectedRating = function (rating) {
     $scope.$parent.meal.rating = rating;
-    console.log($scope.$parent.meal.rating)
   }
 }]);

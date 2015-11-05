@@ -1,0 +1,19 @@
+<li>
+  <div class="collapsible-header">
+    <div style= "float: left">{{meal.name}}</div>
+    <div style = "text-align: right">{{convertDate(meal.date)}}</div>
+  </div>
+  <div class="collapsible-body">
+    <div class= "row">
+      <div class= "mealName col s4"> Name : {{meal.name}}</div>
+      <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
+      <div class= "mealImg col s4"><img src="{{meal.image}}" /><br>{{meal.image}}</div>
+    </div>
+    <div class= "row">
+      <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
+      <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
+    </div>
+    <div class = "row">
+    </div>
+  </div>
+</li>

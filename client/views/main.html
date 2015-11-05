@@ -1,12 +1,51 @@
-<div class="row">
-  <!-- use sidebar template on page -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foodujour</title>
+</head>
+<body>
   <sidebar></sidebar>
+  <div class="container">
+    <section>
+    <h4>Latest Meals</h4>
+    <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+      <li>
+        <!-- Meals -->
+        <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: '-date' | filter: mealSearch | limitTo:3">
+          <mealAccordion></mealAccordion>
+        </ul>
+        <mealinfo></mealinfo>
+      </li>
+    </ul>
+    </section>
 
-  Helllo???
+    <section>
+      <h4>Tastiest Meals of All Time</h4>
+      <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+        <li>
+          <!-- Meals -->
+          <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'rating' | filter: mealSearch | limitTo: 3">
+            <mealAccordion></mealAccordion>
+          </ul>
+          <mealinfo></mealinfo>
+        </li>
+      </ul>
+    </section>
 
-  <div class = "check" d3-bars bar-height="20" bar-padding="5"></div>
-
-  <div class="col s12">
-    <div class="row">
+    <section>
+      <h4>Upcoming Meals</h4>
+      <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+        <li>
+          <!-- Meals -->
+          <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'rating' | filter: mealSearch | limitTo: 3">
+            <mealAccordion></mealAccordion>
+          </ul>
+          <mealinfo></mealinfo>
+        </li>
+      </ul>
+    </section>
   </div>
-</div>
+
+    <div class = "check" d3-bars bar-height="20" bar-padding="5"></div>
+</body>
+</html>
