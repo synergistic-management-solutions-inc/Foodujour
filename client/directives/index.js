@@ -7,6 +7,6 @@ require('./datepicker');
 require('./mealnotes');
 require('./entryView');
 require('./mealinfo');
-require('./landingSidebar');
 require('./landing.js');
 require('./imageUpload');
+require('./mealAccordion');
