@@ -1,5 +1,5 @@
-app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'imgurOptions', 
-  function($scope, $http, $state, MealForm, imgur, imgurOptions) {
+app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit', 'imgur', 'imgurOptions', 
+  function($scope, $http, $state, MealForm, EntryEdit, imgur, imgurOptions) {
 
 
   $scope.entriesOnPage = [];
@@ -37,12 +37,20 @@ app.controller('MealForm', ['$scope', '$http', '$state', 'MealForm', 'imgur', 'i
 
   // Has MealForm model send updated meal to the server
   $scope.updateMeal = function(m) {
-    $scope.meal = m;
+    // //look into this
+    // $scope.meal = m;
 
     var date = +new Date($scope.meal.date);
     var meal = Object.assign({}, $scope.meal);
     meal.date = Math.floor(date / 1000);
 
+    
+    //adds new entries
+    meal.entries.forEach(function(entry){
+      entry.meal_id = meal.id;
+      EntryEdit.addEntry(entry)
+    });
+    
     MealForm.updateMeal(meal);
   };
 }]);

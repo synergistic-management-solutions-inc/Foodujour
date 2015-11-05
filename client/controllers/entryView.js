@@ -9,10 +9,28 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
     $scope.entries = data;
    });
 
+   $scope.mode = EntryEdit.mode;
+
+   $scope.test = function(parent){
+    console.log('parent', $scope.$parent);
+    return true; 
+   }
+
+   $scope.belongsTo = function(e, m){
+    // console.log('belongs', e, m)
+    if (!m){
+      return true;
+    }
+
+    return e.meal_id === m.id
+   }
+
    $scope.showEntries = function(e){
+    // console.log('showing entry', e);
     $scope.entry = e;
     // console.log("this is e: ", e)
   }
+
    $scope.deleteEntry = function (e) {
     $scope.entry = e;
     console.log('Entry_Id: ',$scope.entry.id)
@@ -25,7 +43,7 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
 
   // Handle editable fields
   $scope.clickToEdit = function(noteField) {
-
+    if (!$scope.mode.editable) return; 
     // Determine which field. Probably will need to update this logic when we have ratings.
     // editorEnabled fields are flags to determine whether the hidden inputs are active
     if (noteField === undefined) {

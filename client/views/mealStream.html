@@ -13,7 +13,7 @@
   <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
     <li>
       <!-- Meals -->
-      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: '-date' | filter: mealSearch">
+      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'created_at':true | filter: mealSearch">
         <li>
           <div class="collapsible-header">
             <div style= "float: left">{{meal.name}}</div>
