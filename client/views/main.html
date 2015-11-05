@@ -21,7 +21,10 @@
               <div class= "row">
                 <div class= "mealName col s4"> Name : {{meal.name}}</div>
                 <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
-                <div class= "mealImg col s4"><img src="{{meal.image}}" /><br>{{meal.image}}</div>
+              <div class= "mealImg col s4">
+                <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
+                <br>
+              </div>
               </div>
               <div class= "row">
                 <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
