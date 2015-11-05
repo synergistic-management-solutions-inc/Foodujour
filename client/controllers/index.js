@@ -9,4 +9,4 @@ require('./entryForm');
 require('./mealView');
 require('./entryView');
 require('./entryStream');
-// require('./d3Visual');
+require('./rating')
