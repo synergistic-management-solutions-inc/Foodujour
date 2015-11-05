@@ -1,18 +1,17 @@
 <!-- top header  -->
 <nav class="green lighten-2">
-  <ul id="slide-out" class="side-nav fixed green darken-1">
-    <li>
-      <a href='home'>
-      <img class='logo' src="/assets/Logo.png" width="180" height="75">
-      </a>
-      <br>
-    </li>
-    <!-- sidebar navigation links -->
-    <li><a href="/home">Home</a></li>
-    <li><a href="/mealstream">Meal Stream</a></li>
-    <li><a href="/entrystream">Entry Stream</a></li>
-    <li><a href="/landing" ng-click="signOut()">Sign Out</a></li>
-  </ul>
+    <ul>
+      <li class="logo-wrapper">
+        <a href="home" class="logo-wrapper">
+          <img class='logo-image' src="/assets/Logo.png">
+        </a>
+      </li>
+      <!-- sidebar navigation links -->
+      <li><a href="/home">Home</a></li>
+      <li><a href="/mealstream">Meal Stream</a></li>
+      <li><a href="/entrystream">Entry Stream</a></li>
+      <li><a href="/landing" ng-click="signOut()">Sign Out</a></li>
+    </ul>
   <!-- sidebar hides for shrinking window button added to show sidebar -->
   <a href="#" class="button-collapse" data-activates="slide-out" data-closeonclick="false" data-sidenav="left"><i class="mdi-navigation-menu"></i></a>
   <!-- <a href="/" class="brand-logo center">foodujour</a> -->
