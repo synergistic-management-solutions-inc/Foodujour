@@ -1,19 +1,21 @@
-<!-- top header  -->
-<nav class="">
-    <ul>
-      <li class="logo-wrapper">
-        <a href="home" class="logo-wrapper">
-          <img class='logo-image' src="/assets/Logo.png">
-        </a>
-      </li>
-      <!-- sidebar navigation links -->
-      <li><a href="/home">Home</a></li>
-      <li><a href="/mealstream">Meal Stream</a></li>
-      <li><a href="/entrystream">Entry Stream</a></li>
-      <li><a href="/landing" ng-click="signOut()">Sign Out</a></li>
-    </ul>
-  <!-- sidebar hides for shrinking window button added to show sidebar -->
-  <a href="#" class="button-collapse" data-activates="slide-out" data-closeonclick="false" data-sidenav="left"><i class="mdi-navigation-menu"></i></a>
-  <!-- <a href="/" class="brand-logo center">foodujour</a> -->
-</nav>
 
+<nav>
+   <div class="nav-wrapper">
+     <a href="home">
+       <img class='logo-image' src="/assets/Logo.png">
+     </a>
+     <a href="#" class="button-collapse" data-activates="mobile" data-sidenav="left" data-menuwidth="50%" data-closeonclick="false"><i class="material-icons">menu</i></a>
+     <ul class="right hide-on-med-and-down">
+       <li><a href="/home">Home</a></li>
+       <li><a href="/mealstream">Meal Stream</a></li>
+       <li><a href="/entrystream">Entry Stream</a></li>
+       <li><a href="/landing" ng-click="signOut()">Sign Out</a></li>
+     </ul>
+     <ul class="side-nav" id="mobile">
+       <li><a href="/home">Home</a></li>
+       <li><a href="/mealstream">Meal Stream</a></li>
+       <li><a href="/entrystream">Entry Stream</a></li>
+       <li><a href="/landing" ng-click="signOut()">Sign Out</a></li>
+     </ul>
+   </div>
+ </nav>
