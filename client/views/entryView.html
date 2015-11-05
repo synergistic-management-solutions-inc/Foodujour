@@ -1,5 +1,5 @@
 <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse | filter: entrySearch">
-  <li ng-if="belongsTo(entry, meal)">
+  <li ng-show="belongsTo(entry, meal)">
     <div class="collapsible-header">{{entry.name}}</div>
     <div class="collapsible-body entry-body">
       <div class= "row">

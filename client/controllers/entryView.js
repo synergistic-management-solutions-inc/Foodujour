@@ -10,17 +10,20 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
    });
 
    $scope.belongsTo = function(e, m){
+    // console.log('belongs', e, m)
     if (!m){
       return true;
     }
-    
+
     return e.meal_id === m.id
    }
 
    $scope.showEntries = function(e){
+    // console.log('showing entry', e);
     $scope.entry = e;
     // console.log("this is e: ", e)
   }
+
    $scope.deleteEntry = function (e) {
     $scope.entry = e;
     console.log('Entry_Id: ',$scope.entry.id)

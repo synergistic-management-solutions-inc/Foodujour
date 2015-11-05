@@ -3,7 +3,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'ConvertDat
 
   $http.get('/api/meals')
   .then(function(data){
-    console.log('meals: ', data.data)
+    // console.log('meals: ', data.data)
     $scope.meals = data.data;
 
 
