@@ -5,7 +5,8 @@ app.directive('starRating', function () {
     scope: {
       ratingValue: '=',
       max: '=',
-      onRatingSelected: '&'
+      onRatingSelected: '&',
+      readonly: '@'
     },
     link: function (scope, elem, attrs) {
 
@@ -20,6 +21,9 @@ app.directive('starRating', function () {
       };
 
       scope.toggle = function (index) {
+        if (scope.readonly && scope.readonly === 'true') {
+          return
+        }
         scope.ratingValue = index + 1;
         scope.onRatingSelected({
           rating: index + 1
