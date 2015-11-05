@@ -93,5 +93,5 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
             }, 200);
           };
         });
-      }}
-}])
+      }};
+}]);
