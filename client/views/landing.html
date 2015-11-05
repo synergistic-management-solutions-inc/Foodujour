@@ -17,7 +17,7 @@
         </div>
       </div>
       <div>
-        <a class="waves-effect waves-light btn col s4 offset-s4" href="#" ng-click="showSignForm()">
+        <a class="waves-effect waves-light btn-large col s4 offset-s4" href="#" ng-click="showSignForm()">
           Welcome
       </a>
       </div>
@@ -34,13 +34,13 @@
   <!-- displays error message if the user does not loggin correctly -->
   <p class='error-msn'>{{user.message}}</p>
   <div id="signIn" class="row">
-    <div class="col m4 s10 offset-s1 offset-m3">
+    <div class="sign-in-container">
 
       <ul class="collapsible z-depth-4 liContainer" data-collapsible="accordion">
 
         <li>
-          <div class="collapsible-header active"><i class="material-icons">recent_actors</i>Log in</div>
-          <div class="collapsible-body">
+          <div class="auth-header collapsible-header active"><i class="material-icons">recent_actors</i>Log in</div>
+          <div class="auth-body collapsible-body">
             <form name="signInForm" ng-submit="logIn()" class="col s12">
               <div class="row">
                 <div class="input-field col m8 s10 ">
@@ -52,7 +52,7 @@
                   <input type="password" placeholder="Password" id="password" ng-model="user.password">
                 </div>
               </div>
-              <button type="submit" class="btn waves-effect ">Log in</button>
+              <button type="submit" class="btn-large waves-effect ">Log in</button>
               <br>
               <br>
             </form>
@@ -60,9 +60,9 @@
         </li>
 
         <li>
-          <div class="collapsible-header"><i class="material-icons">chat_bubble_outline</i>Using Your Google+/Facebook</div>
+          <div class="auth-header collapsible-header"><i class="material-icons">chat_bubble_outline</i>Using Your Google+/Facebook</div>
           <br>
-          <div class="collapsible-body row">
+          <div class="auth-body collapsible-body row">
             <div class='col m3 offset-m3'>
               <a style="cursor:pointer" ng-click='google()'>
                 <img src="/assets/96x96-Circle-67-GP.png" width="30" height="30">
@@ -81,8 +81,8 @@
         </li>
 
         <li>
-          <div class="collapsible-header"><i class="material-icons">assignment_ind</i>Not have an account?</div>
-          <div class="collapsible-body row">
+          <div class="auth-header collapsible-header"><i class="material-icons">assignment_ind</i>Don't have an account?</div>
+          <div class="auth-body collapsible-body row">
             <form name="signUpForm" ng-submit="signUp()" class="col s12">
               <div class="row">
                 <div class="input-field col m8 s10 ">
@@ -94,7 +94,7 @@
                   <input type="password" placeholder="Password" id="password" ng-model="user.password">
                 </div>
               </div>
-              <button class="btn waves-effect ">Sign Up</button>
+              <button class="btn-large waves-effect ">Sign Up</button>
               <br>
               <br>
             </form>
