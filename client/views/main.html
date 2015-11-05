@@ -20,18 +20,27 @@
             </div>
             <div class="collapsible-body">
               <div class= "row">
-                <div class= "mealName col s4"> Name : {{meal.name}}</div>
-                <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
-              <div class= "mealImg col s4">
-                <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
-                <br>
-              </div>
+                <div class= "mealName"> Name : {{meal.name}}</div>
+
+                <div class="mealRating" ng-controller="StarRating">
+                  <span ng-repeat="rating in ratings">
+                  <div star-rating rating-value="meal.rating" max="5" readonly="true"></div>
+                  </span>
+                </div>
+
+                <div class= "mealImg">
+                  <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
+                  <br>
+                </div>
               </div>
               <div class= "row">
                 <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
                 <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
               </div>
               <div class = "row">
+                <a type="button" class="btn-large modal-btn" href="#mealModal" modal ng-click="showModal(meal)">More</a>
+                <a type="button" class="btn-large modal-btn" href="#mealFormModal" modal ng-click="openForm(meal)">Edit</a>
+                <a type="button" class="btn-large modal-btn" ng-click="deleteMeal(meal)">Delete</a>
               </div>
             </div>
           </li>
@@ -47,26 +56,43 @@
         <li>
           <!-- Meals -->
           <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: '-rating' | filter: mealSearch | limitTo: 3">
-            <li>
-              <div class="collapsible-header">
-                <div style= "float: left">{{meal.name}}</div>
-                <div style = "text-align: right">{{convertDate(meal.date)}}</div>
+          <li>
+            <div class="collapsible-header">
+              <div style= "float: left">{{meal.name}}</div>
+              <div style = "text-align: right">{{convertDate(meal.date)}}</div>
+            </div>
+            <div class="collapsible-body">
+              <div class= "row">
+                <div class= "mealName"> Name : {{meal.name}}</div>
+
+                <div class="mealRating" ng-controller="StarRating">
+                  <span ng-repeat="rating in ratings">
+                  <div star-rating rating-value="meal.rating" max="5" readonly="true"></div>
+                  </span>
+                </div>
+
+                <div class= "mealImg">
+                  <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
+                  <br>
+                </div>
               </div>
-              <div class="collapsible-body">
-                <div class= "row">
-                  <div class= "mealName col s4"> Name : {{meal.name}}</div>
-                  <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
-                  <div class= "mealImg col s4"><img src="{{meal.image}}" /><br>{{meal.image}}</div>
-                </div>
-                <div class= "row">
-                  <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
-                  <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
-                </div>
-                <div class = "row">
-                </div>
-              </div>
+<<<<<<< HEAD
             </li>
           </ul>
+=======
+              <div class= "row">
+                <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
+                <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
+              </div>
+              <div class = "row">
+                <a type="button" class="btn-large modal-btn" href="#mealModal" modal ng-click="showModal(meal)">More</a>
+                <a type="button" class="btn-large modal-btn" href="#mealFormModal" modal ng-click="openForm(meal)">Edit</a>
+                <a type="button" class="btn-large modal-btn" ng-click="deleteMeal(meal)">Delete</a>
+              </div>
+            </div>
+          </li>
+          </ul> 
+>>>>>>> More styling
           <mealinfo></mealinfo>
         </li>
       </ul>
@@ -78,27 +104,44 @@
         <li>
           <!-- Meals -->
           <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'rating' | filter: mealSearch | limitTo: 3">
-            <li>
-              <div class="collapsible-header">
-                <div style= "float: left">{{meal.name}}</div>
-                <div style = "text-align: right">{{convertDate(meal.date)}}</div>
+          <li>
+            <div class="collapsible-header">
+              <div style= "float: left">{{meal.name}}</div>
+              <div style = "text-align: right">{{convertDate(meal.date)}}</div>
+            </div>
+            <div class="collapsible-body">
+              <div class= "row">
+                <div class= "mealName"> Name : {{meal.name}}</div>
+
+                <div class="mealRating" ng-controller="StarRating">
+                  <span ng-repeat="rating in ratings">
+                  <div star-rating rating-value="meal.rating" max="5" readonly="true"></div>
+                  </span>
+                </div>
+
+                <div class= "mealImg">
+                  <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
+                  <br>
+                </div>
               </div>
-              <div class="collapsible-body">
-                <div class= "row">
-                  <div class= "mealName col s4"> Name : {{meal.name}}</div>
-                  <div class= "mealRating col s4">Rating : {{meal.rating}}</div>
-                  <div class= "mealImg col s4"><img src="{{meal.image}}" /><br>{{meal.image}}</div>
-                </div>
-                <div class= "row">
-                  <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
-                  <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
-                </div>
-                <div class = "row">
-                </div>
-              </div>
+<<<<<<< HEAD
             </li>
 
           </ul>
+=======
+              <div class= "row">
+                <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
+                <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
+              </div>
+              <div class = "row">
+                <a type="button" class="btn-large modal-btn" href="#mealModal" modal ng-click="showModal(meal)">More</a>
+                <a type="button" class="btn-large modal-btn" href="#mealFormModal" modal ng-click="openForm(meal)">Edit</a>
+                <a type="button" class="btn-large modal-btn" ng-click="deleteMeal(meal)">Delete</a>
+              </div>
+            </div>
+          </li>
+          </ul> 
+>>>>>>> More styling
           <mealinfo></mealinfo>
         </li>
       </ul>

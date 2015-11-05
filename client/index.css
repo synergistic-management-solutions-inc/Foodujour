@@ -12,6 +12,11 @@ nav {
 
 .container {
   padding: 2%;
+  text-align: center;
+}
+
+img {
+  margin: 2% auto;
 }
 
 .collapsible-header {
@@ -25,20 +30,9 @@ nav {
   font-size: 18px;
 }
 
-button {
+.btn-large {
   background-color: #639fde;
-}
-
-a[type="button"] {
-  background-color: #639fde;
-}
-
-h1 {
-  text-align: center;
-}
-
-h4 {
-  text-align: center;
+  width: 200px;
 }
 
 div[back-img]{

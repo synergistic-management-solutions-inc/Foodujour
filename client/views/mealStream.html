@@ -4,7 +4,7 @@
  <div class="row">
       <div class="container">
         <div>
-          <a type="button" class="btn col s4 " href="#mealFormModal" modal ng-click="openForm()">New Meal</a>
+          <a type="button" class="btn-large new-btn" href="#mealFormModal" modal ng-click="openForm()">New Meal</a>
          </div>
       </div>
       <mealform></mealform>
@@ -21,15 +21,15 @@
           </div>
           <div class="collapsible-body">
             <div class= "row">
-              <div class= "mealName col s4"> Name : {{meal.name}}</div>
+              <div class= "mealName"> Name : {{meal.name}}</div>
 
-              <div class="mealRating col s4" ng-controller="StarRating">
+              <div class="mealRating" ng-controller="StarRating">
                 <span ng-repeat="rating in ratings">
                 <div star-rating rating-value="meal.rating" max="5" readonly="true"></div>
                 </span>
               </div>
 
-              <div class= "mealImg col s4">
+              <div class= "mealImg">
                 <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
                 <br>
               </div>
@@ -39,10 +39,10 @@
               <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
             </div>
             <div class = "row">
-              <a type="button" class="btn col s2 " href="#mealModal" modal ng-click="showModal(meal)">More</a>
-              <a type="button" class="btn col s2 " href="#mealFormModal" modal ng-click="openForm(meal)">Edit</a>
-              <a type="button" class="btn col s2 " ng-click="deleteMeal(meal)">Delete</a>
->>>>>>> Added color scheme/styling.
+
+              <a type="button" class="btn-large modal-btn" href="#mealModal" modal ng-click="showModal(meal)">More</a>
+              <a type="button" class="btn-large modal-btn" href="#mealFormModal" modal ng-click="openForm(meal)">Edit</a>
+              <a type="button" class="btn-large modal-btn" ng-click="deleteMeal(meal)">Delete</a>
             </div>
           </div>
         </li>

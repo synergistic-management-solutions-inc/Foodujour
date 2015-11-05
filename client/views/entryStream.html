@@ -5,7 +5,47 @@
   <ul class="collapsible popout" data-collapsible="accordion">
     <li>
       <!-- Entries -->
+<<<<<<< HEAD
       <entryview></entryview>
+=======
+      <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: reverse | filter: entrySearch" >
+        <li>
+          <div class="collapsible-header">{{entry.name}}</div>
+          <div class="collapsible-body entry-body">
+            <div class= "row">
+              <div class="col s4">
+                <div class="entry-item entryName col m12" ng-hide="editorEnabled" ng-click="clickToEdit()">
+                  Name : {{entry.name}}
+                  <span><img src="../assets/edit.png" class="edit-icon"</span>
+                </div>
+
+                <div class="entry-item entryName col m12" ng-show="editorEnabled">
+                  <input ng-model="editableName" ng-show="editorEnabled" placeholder="{{entry.name}}">
+                  <a href="#" ng-click="save()"><span><img src="../assets/save.png" class="edit-icon"</span></a>
+                  <a href="#" ng-click="disableEditor()"><span><img src="../assets/cancel.png" class="edit-icon"</span></a>
+                </div>
+
+                <div class="entry-item entryRating col m12">Rating : {{entry.rating}}</div>
+                <div class="entry-item entryImg col m12">{{entry.image}}</div>
+
+                <div class="entry-item entryNote col m12" ng-hide="noteEditorEnabled" ng-click="clickToEdit(this)">
+                  Notes : {{entry.notes}}
+                  <span><img src="../assets/edit.png" class="edit-icon"</span>
+                </div>
+
+                <div class="entry-item entryNote col m12" ng-show="noteEditorEnabled">
+                  <textarea ng-model="editableNotes" ng-show="noteEditorEnabled" placeholder="{{entry.notes}}"></textarea>
+                  <a href="#" ng-click="save()"><span><img src="../assets/save.png" class="edit-icon"</span></a>
+                  <a href="#" ng-click="disableNoteEditor()"><span><img src="../assets/cancel.png" class="edit-icon"</span></a>
+                </div>
+
+                <button class="btn-large red darken-1 delete-entry" ng-click="deleteEntry(entry)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+>>>>>>> More styling
     </li>
   </ul>
 </div>
