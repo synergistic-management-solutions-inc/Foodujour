@@ -60,7 +60,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   color = d3.scale.category20(),
                   xScale = d3.scale.linear()
                     .domain([0, d3.max(data, function(d) {
-                      return d.id;
+                      return d.rating;
                     })])
                     .range([0, width]);
 
@@ -80,12 +80,12 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                     return i * (barHeight + barPadding);
                   })
                   .attr('fill', function(d) {
-                    return color(d.id);
+                    return color(d.rating);
                   })
                   .transition()
                     .duration(1000)
                     .attr('width', function(d) {
-                      return xScale(d.id);
+                      return xScale(d.rating);
                     });
               svg.selectAll('text')
                 .data(data)
@@ -97,7 +97,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   })
                   .attr('x', 15)
                   .text(function(d) {
-                    return d.name + " (scored: " + d.id + ")";
+                    return d.name + " (scored: " + d.rating + ")";
                   });
             }, 200);
           };
