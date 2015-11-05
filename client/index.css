@@ -14,6 +14,16 @@ div[back-img]{
   background-color: #BFBEC4;
 }
 
+.logo-wrapper:hover {
+  background-color: transparent;
+}
+
+.logo-image {
+  height: auto;
+  width: 140px;
+  margin-top: 20px;
+}
+
 #landingCard{
   margin-top: 10%;
 }
@@ -115,4 +125,33 @@ h1{
 
 .entry-item:hover {
   cursor: pointer;
+}
+
+
+.meal-image {
+  max-height: 200px;
+  max-width: 100%;
+}
+
+.rating {
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rating .filled {
+  color: #4CAF50;
 }
