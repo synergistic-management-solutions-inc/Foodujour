@@ -59,12 +59,21 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit'
     //auto sets the date to current day (in Texas)
     MealForm.meal.date = date || ConvertDate.convert(Date.now()/1000-21600);
     MealForm.meal.location = m.location || 'Tenochtitlan';
-    MealForm.meal.rating = m.rating || 5;
+    MealForm.meal.rating = m.rating || 1;
     MealForm.meal.notes = m.notes || 'Meal was out of this world';
     MealForm.meal.image = m.image || 'http://i.imgur.com/n104JLy.jpg';
 
   }
 
+  $scope.sortBy = function(field){
+    if ($scope.sortField === field){
+      $scope.sortDirection = !$scope.sortDirection;
+    }
+    else {
+      $scope.sortField = field;
+      $scope.sortDirection = true;  
+    }
+  };
 
  $scope.deleteMeal = function (m) {
     $scope.meal = m;
@@ -75,11 +84,6 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit'
     })
   };
 
-  $scope.sortByDate = function(index){
-    $scope.sortval = 'meals['+ index +'].value';
-    if ($scope.sortval === 'meals['+ index +'].value')
-      $scope.sortDir = !$scope.sortDir;
-  };
 
 }]);
 

@@ -12,31 +12,27 @@
   <input type="text" placeholder="Search Meals..." ng-model="mealSearch">
   <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
     <div class="row">
-      <div class="toggle" ng-click="sortByDate()">Sort By Date</div>
+      <div class="toggle">
+        <span class="col s4" style="text-align: left" ng-click="sortBy('-name')">Sort By Name</span>
+        <span class="col s4" style="text-align: center" ng-click="sortBy('-rating')">Sort By Rating</span>
+        <span class="col s4" style="text-align: right" ng-click="sortBy('-date')">Sort By Date</span>
+      </div>
     </div>
     <li>
       <!-- Meals -->
-      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: sortval:sortDir | filter: mealSearch">
+      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: sortField: sortDirection | filter: mealSearch">
         <li>
           <div class="collapsible-header row">
             <span class="col s4" style="text-align: left">{{meal.name}}</span>
             <span class="col s4" ng-controller="StarRating">
               <span ng-repeat="rating in ratings">
-              <span star-rating rating-value="meal.rating" max="5" readonly="true"></span>
+                <span star-rating rating-value="meal.rating" max="5" readonly="true"></span>
               </span>
             </span>
             <span class="col s4" style="text-align: right">{{convertDate(meal.date)}}</span>
           </div>
           <div class="collapsible-body">
             <div class= "row">
-              <div class= "mealName"> Name : {{meal.name}}</div>
-
-              <!-- <div class="mealRating" ng-controller="StarRating">
-                <span ng-repeat="rating in ratings">
-                <div star-rating rating-value="meal.rating" max="5" readonly="true"></div>
-                </span>
-              </div> -->
-
               <div class= "mealImg">
                 <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
                 <br>
@@ -44,7 +40,7 @@
             </div>
             <div class= "row">
               <div class= "mealLocation col s5">Location : {{meal.location}}<br></div>
-              <div class= "mealNotes col s7">Notes : {{meal.notes}}</div>
+              <div class= "mealNotes col s7">{{meal.notes}}</div>
             </div>
             <div class = "row">
               <a type="button" class="btn-large modal-btn" href="#mealModal" ng-show="hasEntries(meal)" modal ng-click="showModal(meal)">Entries</a>
