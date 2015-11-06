@@ -148,5 +148,23 @@ describe('Planner API', function() {
       });
     });
 
+  it('DELETE /api/planner/:id deletes a meal object', function(){
+      return singlePost(meal1, '/planner', 201)
+      .then(function(response){
+        var mealId = response.body.id
+        return request(app)
+        .delete('/planner/'+mealId)
+        .expect(200)
+        .expect(function(response){
+          expect(response.body.message).to.equal('successfully deleted meal');
+        })
+      })
+      .then(function(){
+        return request(app)
+        .delete('/planner/666')
+        .expect(404)
+      })
+    })
+
   })
 });

@@ -33,8 +33,7 @@ app.controller('entryView', ['$scope', '$http', '$state', 'EntryEdit', function(
 
    $scope.deleteEntry = function (e) {
     $scope.entry = e;
-    console.log('Entry_Id: ',$scope.entry.id)
-    $http.get('api/entries/delete/' + $scope.entry.id)
+    $http.delete('api/entries/' + $scope.entry.id)
     .then(function() {
       $('.lean-overlay').remove();
       $state.reload();

@@ -176,30 +176,33 @@ MealsAPI.put('/:id', function(req, res) {
     });
 });
 
-// GET /delete/:id deletes meal of id if owned by logged in user
-// TODO needs to be changed to a delete method, temporary for testing
-MealsAPI.get('/delete/:id', function(req, res) {
+// DELETE /:id deletes meal of id if owned by logged in user
+MealsAPI.delete('/:id', function(req, res) {
   var mealid = req.params.id;
   // gets currently logged in user
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
       Meal.findOne(mealid)
       .then(function(meal) {
+        if (!meal){
+          res.status(404).send();
+        }
         // if user.id doesn't match user id on attached meal send error
-        if (meal.user_id !== user.id) {
+        else if (meal.user_id !== user.id) {
           res.status(403).send({ error: 'User definitely is doing some fishy things' });
-          return;
         }
         // call destroy on the mealId
-        Meal.destroyOne(meal.id)
-        .then(function() {
-          // deletes entries associated with mealId deleted
-          return Entry.deleteByMeal(meal.id);
-        })
-        .then(function() {
-          // sends success message if it reaches here
-          res.send({ message: 'successfully deleted meals and entries' });
-        });
+        else {
+          Meal.destroyOne(meal.id)
+          .then(function() {
+            // deletes entries associated with mealId deleted
+            return Entry.deleteByMeal(meal.id);
+          })
+          .then(function() {
+            // sends success message if it reaches here
+            res.status(200).send({ message: 'successfully deleted meal and entries' });
+          });
+        }
       });
     });
 });

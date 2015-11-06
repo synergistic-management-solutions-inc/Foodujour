@@ -69,7 +69,7 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit'
  $scope.deleteMeal = function (m) {
     $scope.meal = m;
     // console.log('mea',$scope.meal.id)
-    $http.get('api/meals/delete/' + $scope.meal.id)
+    $http.delete('api/meals/' + $scope.meal.id)
     .then(function() {
       $state.reload();
     })
