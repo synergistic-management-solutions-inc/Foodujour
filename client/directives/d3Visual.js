@@ -50,7 +50,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   color = d3.scale.category10(),
                   xScale = d3.scale.linear()
                     .domain([
-                      0, 6
+                      0, 5
 
                   ])
                     .range([0, width]);
