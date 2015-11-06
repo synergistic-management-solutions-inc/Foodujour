@@ -1,24 +1,32 @@
+var moment = require('moment');
+
 app.factory('Planner', ['$http', function($http) {
 
 var addMealtoPlanner = function(meal) {
-
-var userData = 
-  {
-    name: "beer-eal",
-    type: "breakfast",
-    notes: "An new favorite since my wife left me",
-    date: 1446703200,
-  }
-
-  $http.post('/api/planner/', userData)
+  return $http.post('/api/planner/', meal)
   .then(function(response){
-    console.log('the ajax call ran');
-    console.log('the response was', response)
+    return response.data;
   });
 }
 
+var getAllPlannedMeals = function() {
+  $http.get('/api/planner/all')
+  .then(function(response) {
+    console.log('response', response)
+  })
+}
+
+var getOnePlannedMeal = function(id) {
+  $http.get('/api/planner/' + id)
+  .then(function(response) {
+    console.log('response', response);
+  })
+}
+
 return {
-  addMealtoPlanner : addMealtoPlanner
+  addMealtoPlanner : addMealtoPlanner,
+  getAllPlannedMeals : getAllPlannedMeals,
+  getOnePlannedMeal : getOnePlannedMeal
 };
 
 }]);
