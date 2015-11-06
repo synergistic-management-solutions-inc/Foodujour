@@ -1,6 +1,5 @@
 app.factory('Planner', ['$http', function($http) {
 
-
 var addMealtoPlanner = function(meal) {
 
 var userData = 
@@ -13,7 +12,8 @@ var userData =
 
   $http.post('/api/planner/', userData)
   .then(function(response){
-    console.log(response)
+    console.log('the ajax call ran');
+    console.log('the response was', response)
   });
 }
 

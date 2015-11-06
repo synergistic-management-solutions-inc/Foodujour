@@ -36,6 +36,7 @@ PlannerAPI.get('/', function(req, res) {
 // POST /meals accepts meal with entries to create new meal
 PlannerAPI.post('/', function(req, res) {
   var meal = req.body;
+  console.log('request body:', meal)
 
   // gets currently logged in user from session.passport
   User.findByUsername(req.session.passport.user)
