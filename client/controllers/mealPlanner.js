@@ -1,5 +1,4 @@
 var moment = require('moment');
-var Promise = require("bluebird");
 
 app.controller('MealPlanner', ['$scope', 'Planner', function($scope, Planner){
 
@@ -23,6 +22,19 @@ app.controller('MealPlanner', ['$scope', 'Planner', function($scope, Planner){
 
   $scope.notes = '';
 
+  $scope.init = function() {
+    Planner.getAllPlannedMeals()
+    .then(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        var day = moment.unix(data[i].date).format('dddd');
+        var meal = mealMaker(data[i].name, data[i].type, data[i].notes, day);
+        $scope.days[day].push(meal);
+      }
+    })
+  }
+
+  $scope.init();
+
   var mealMaker = function(name, type, notes, date) {
     var meal = Object.create(Object.prototype);
     meal.name = name || '';
@@ -33,13 +45,13 @@ app.controller('MealPlanner', ['$scope', 'Planner', function($scope, Planner){
   }
 
   $scope.addToPlannerModal = function() {
-    var date = moment().format('X');
+    var date = moment().day($scope.mealDay).format('X')
     var meal = mealMaker($scope.mealName, $scope.mealType, $scope.mealNotes, date);
-    // $scope.days[$scope.mealDay].push(meal);
-    // var addMeal = Promise.promisify(Planner.addMealtoPlanner)
     Planner.addMealtoPlanner(meal)
     .then(function(data) {
-      console.log(data)
+      var day = moment.unix(data.date).format('dddd')
+      var meal = mealMaker(data.name, data.type, data.notes, date);
+      $scope.days[day].push(meal);
     })
   }
 

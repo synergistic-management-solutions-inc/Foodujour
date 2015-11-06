@@ -10,9 +10,9 @@ var addMealtoPlanner = function(meal) {
 }
 
 var getAllPlannedMeals = function() {
-  $http.get('/api/planner/all')
+  return $http.get('/api/planner/all')
   .then(function(response) {
-    console.log('response', response)
+    return response.data;
   })
 }
 
