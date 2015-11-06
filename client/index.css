@@ -233,3 +233,7 @@ ul.rating {
 .rating .filled {
   color: #de6563;
 }
+
+.validationError {
+  color: red;
+}
