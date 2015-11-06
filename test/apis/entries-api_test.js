@@ -62,7 +62,7 @@ describe('Entries API', function() {
       });
   });
 
-    it('DELTE /entries/:id deletes an entry', function() {
+  it('DELTE /entries/:id deletes an entry', function() {
     return request(app)
       .post('/entries')
       .send({
