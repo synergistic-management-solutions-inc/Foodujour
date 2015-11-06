@@ -159,5 +159,23 @@ describe('Meals API', function() {
       });
     });
 
+    it('DELETE /api/meals/:id deletes a meal object', function(){
+      return singlePost(meal1, '/meals', 201)
+      .then(function(res){
+        var mealId = response.body.id
+        return request(app)
+        .delete('/meals/'+mealId)
+        .expect(200)
+        .expect(function(response){
+          expect(response.body.message).to.equal('successfully deleted meal');
+        })
+      })
+      .then(function(){
+        return request(app)
+        .delete('/meals/666')
+        .expect(404)
+      })
+    })
+
   })
 });
