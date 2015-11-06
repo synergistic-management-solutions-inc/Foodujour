@@ -1,4 +1,4 @@
-// Meals API
+// Planner API
 var express = require('express');
 var PlannerAPI = express.Router();
 
@@ -25,7 +25,7 @@ PlannerAPI.get('/', function(req, res) {
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
       // finds meals by user, using users id
-      Meal.findByUser(user.id)
+      Planner.findByUser(user.id)
         .then(function(meals) {
           // sends back array of all meals matching userid
           res.send(meals);
@@ -56,7 +56,7 @@ PlannerAPI.post('/', function(req, res) {
       }
     })
     .catch(function(err) {
-      console.log('Meals POST /meals Error-' + err);
+      console.log('Planner POST /meals Error-' + err);
       res.status(400).send();
     });
 });
@@ -74,12 +74,12 @@ PlannerAPI.get('/:id', function(req, res) {
           } else if (meal && user.id !== meal.user_id) {
             res.status(403).send({error: 'User doesn\'t own this meal.'});
           } else {
-            res.status(404).send({error: 'No Meal With This ID'});
+            res.status(404).send({error: 'No meal With This ID'});
           }
         });
     })
     .catch(function(err) {
-      console.log('Meals GET /meals/:id Error-' + err);
+      console.log('Planners GET /meals/:id Error-' + err);
       return res.status(400).send();
     });
 });
@@ -98,7 +98,7 @@ PlannerAPI.put('/:id', function(req, res) {
         res.status(403).send({ error: 'User definitely is doing some fishy things' });
         return;
       }
-      Meal.updateOne(req.body)
+      Planner.updateOne(req.body)
         .then(function(meal) {
           // call updateOne that updates at id and where user id matches logged in
           // user
@@ -116,7 +116,7 @@ PlannerAPI.get('/delete/:id', function(req, res) {
   // gets currently logged in user
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
-      Meal.findOne(mealid)
+      Plannner.findOne(mealid)
       .then(function(meal) {
         // if user.id doesn't match user id on attached meal send error
         if (meal.user_id !== user.id) {
@@ -124,11 +124,7 @@ PlannerAPI.get('/delete/:id', function(req, res) {
           return;
         }
         // call destroy on the mealId
-        Meal.destroyOne(meal.id)
-        .then(function() {
-          // deletes entries associated with mealId deleted
-          return Entry.deleteByMeal(meal.id);
-        })
+        Planner.destroyOne(meal.id)
         .then(function() {
           // sends success message if it reaches here
           res.send({ message: 'successfully deleted meals and entries' });

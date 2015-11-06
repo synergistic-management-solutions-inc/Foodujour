@@ -1,16 +1,17 @@
-var express     = require('express');
-var Path        = require('path');
+var express       = require('express');
+var Path          = require('path');
 
 // Routers
-var routes      = express.Router();
-var mealRouter  = require('./apis/meals-api');
-var entryRouter = require('./apis/entries-api');
-var userRouter  = require('./apis/users-api');
-var assetFolder = Path.resolve(__dirname, '../client/');
+var routes        = express.Router();
+var mealRouter    = require('./apis/meals-api');
+var entryRouter   = require('./apis/entries-api');
+var plannerRouter = require('./apis/planner-api');
+var userRouter    = require('./apis/users-api');
+var assetFolder   = Path.resolve(__dirname, '../client/');
 
 // Angular
-var browserify  = require('browserify-middleware');
-var ngAnnotate  = require('browserify-ngannotate');
+var browserify    = require('browserify-middleware');
+var ngAnnotate    = require('browserify-ngannotate');
 var sharedAngular = [
   'angular',
   'angular-animate',
@@ -40,6 +41,7 @@ module.exports = function(app, passport) {
 
   app.use('/api/meals', isLoggedIn, mealRouter);
   app.use('/api/entries', isLoggedIn, entryRouter);
+  app.use('/api/planner', isLoggedIn, plannerRouter);
   // do not put isLoggedIn check here
   app.use('/api/users', userRouter);
   app.use('/', routes);
