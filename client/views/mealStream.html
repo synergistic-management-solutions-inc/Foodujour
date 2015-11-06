@@ -5,29 +5,37 @@
       <div class="container">
         <div>
           <a type="button" class="btn-large new-btn" href="#mealFormModal" modal ng-click="openForm()">New Meal</a>
-         </div>
+        </div>
       </div>
       <mealform></mealform>
     </div> 
   <input type="text" placeholder="Search Meals..." ng-model="mealSearch">
   <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+    <div class="row">
+      <div class="toggle" ng-click="sortByDate()">Sort By Date</div>
+    </div>
     <li>
       <!-- Meals -->
-      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'created_at':true | filter: mealSearch">
+      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: sortval:sortDir | filter: mealSearch">
         <li>
-          <div class="collapsible-header">
-            <div style= "float: left">{{meal.name}}</div>
-            <div style = "text-align: right">{{convertDate(meal.date)}}</div>
+          <div class="collapsible-header row">
+            <span class="col s4" style="text-align: left">{{meal.name}}</span>
+            <span class="col s4" ng-controller="StarRating">
+              <span ng-repeat="rating in ratings">
+              <span star-rating rating-value="meal.rating" max="5" readonly="true"></span>
+              </span>
+            </span>
+            <span class="col s4" style="text-align: right">{{convertDate(meal.date)}}</span>
           </div>
           <div class="collapsible-body">
             <div class= "row">
               <div class= "mealName"> Name : {{meal.name}}</div>
 
-              <div class="mealRating" ng-controller="StarRating">
+              <!-- <div class="mealRating" ng-controller="StarRating">
                 <span ng-repeat="rating in ratings">
                 <div star-rating rating-value="meal.rating" max="5" readonly="true"></div>
                 </span>
-              </div>
+              </div> -->
 
               <div class= "mealImg">
                 <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />

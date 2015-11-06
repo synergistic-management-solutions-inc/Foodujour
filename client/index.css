@@ -120,15 +120,19 @@ h1{
   text-align: center;
 }
 
-.btn:hover{
-  background-color: #2380E2;
-}
 
-
-.jumbotron{
+.jumbotron {
   background-color: #dcdcdc;
   text-align: center;
   border-radius: 2px;
+}
+
+.toggle {
+  color: #de6563;
+  font-size: 20px;
+  float: right;
+  margin-right: 36px;
+  padding: 10px;
 }
 
 .mealRating{

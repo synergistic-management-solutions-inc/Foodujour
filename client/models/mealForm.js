@@ -9,13 +9,14 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
   }
 
   var addMeal = function(meal) {
+    console.log('meal', meal); 
     $http({
       method: 'POST',
       url: '/api/meals',
       data: meal
     })
     .then(function(res) {
-      // console.log('Response:', res);
+      console.log('Response in POST:', res);
       $state.reload();
     });
   };
@@ -27,7 +28,7 @@ app.factory('MealForm', ['$http', '$state', function($http, $state) {
       data: meal
     })
     .then(function(res) {
-      console.log('Response:', res);
+      console.log('Response in PUT:', res);
       $state.reload();
     });
   };
