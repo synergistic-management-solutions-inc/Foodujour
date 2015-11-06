@@ -108,8 +108,7 @@ PlannerAPI.put('/:id', function(req, res) {
     });
 });
 
-// GET /delete/:id deletes meal of id if owned by logged in user
-// TODO needs to be changed to a delete method, temporary for testing
+// DELETE /:id deletes meal of id if owned by logged in user
 PlannerAPI.delete('/:id', function(req, res) {
   console.log('in planner delete land'); 
   var mealid = req.params.id;

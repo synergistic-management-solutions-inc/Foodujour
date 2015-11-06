@@ -161,13 +161,13 @@ describe('Meals API', function() {
 
     it('DELETE /api/meals/:id deletes a meal object', function(){
       return singlePost(meal1, '/meals', 201)
-      .then(function(res){
+      .then(function(response){
         var mealId = response.body.id
         return request(app)
         .delete('/meals/'+mealId)
         .expect(200)
         .expect(function(response){
-          npexpect(response.body.message).to.equal('successfully deleted meal');
+          expect(response.body.message).to.equal('successfully deleted meal and entries');
         })
       })
       .then(function(){
