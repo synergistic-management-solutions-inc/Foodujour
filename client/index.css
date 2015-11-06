@@ -273,3 +273,8 @@ ul.rating {
 .validationError {
   color: red;
 }
+
+.entry-show {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}

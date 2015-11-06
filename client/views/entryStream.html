@@ -14,7 +14,7 @@
         <li>
           <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: sortField: sortDirection | filter: entrySearch" >
             <li>
-              <div class="collapsible-header row">
+              <div class="collapsible-header">
                 <span class="col s4" style="text-align: left">{{entry.name}}</span>
                 <span class="col s4" style="text-align: right">{{entry.date}}</span>
               </div>
@@ -44,10 +44,10 @@
                       <a href="#" ng-click="save()"><span><img src="../assets/save.png" class="edit-icon"</span></a>
                       <a href="#" ng-click="disableNoteEditor()"><span><img src="../assets/cancel.png" class="edit-icon"</span></a>
                     </div>
-                  <div class="row">
-                    <a type="button" class="btn-large modal-btn" href="#mealModal" modal ng-click="showModal(getMeal(entry))">Show Meal</a> 
-                    <a type="button" class="btn-large modal-btn" ng-click="deleteEntry(entry)">Delete</a>
-                  </div>
+                    <div>
+                      <a type="button" class="btn-large modal-btn entry-show" href="#mealModal" modal ng-click="showModal(getMeal(entry))">Show Meal</a> 
+                      <a type="button" class="btn-large modal-btn" ng-click="deleteEntry(entry)">Delete</a>
+                    </div>
                   </div>
                 </div>
               </div>
