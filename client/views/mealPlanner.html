@@ -7,24 +7,32 @@
     </div>
 
     <div id="addToPlannerModal" class="modal">
-      <form novalidate class="plannerForm">
+      <form class="plannerForm" name="mealPlannerForm" novalidate>
+
         Add to day :
-        <select material-select ng-model="mealDay">
+        <select material-select ng-model="mealDay" required>
           <option ng-repeat="day in weekDays">{{day}}</option>
         </select>
 
-        Meal Name : 
-        <input type="text" ng-model="mealName" /><br>
+        Meal Name :
+        <input type="text" required ng-model="mealName" name="mealNameField" ng-minlength="1"/><br>
+        <label class="validationError"> 
+          <div ng-messages="mealPlannerForm.mealNameField.$error">
+            <div ng-message="required">This field is required</div>
+          </div>
+        </label>        
 
         Type : 
-        <select material-select ng-model="mealType">
+        <select material-select ng-model="mealType" required>
           <option ng-repeat="type in types">
             {{type}}
           </option>
         </select>
         <br>
         Notes : <textarea ng-model="mealNotes"></textarea>
-        <button ng-click="addToPlannerModal(day)">submit</button>
+        <div class="modal-footer">
+          <button ng-click="addToPlannerModal()" href="#!" class=" modal-action modal-close waves-effect waves btn-flat" ng-disabled='mealName.length===0'>Submit:</button>
+        </div>
       </form>
     </div>
 

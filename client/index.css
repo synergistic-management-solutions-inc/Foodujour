@@ -238,9 +238,6 @@ ul.rating {
   color: #de6563;
 }
 
-
-
-
 #gameContainer, #pastScores {
 	width: 600px;
 	float: left;
@@ -269,4 +266,8 @@ ul.rating {
 #startGame:hover {
 	color: red;
 	cursor: pointer;
+}
+
+.validationError {
+  color: red;
 }
