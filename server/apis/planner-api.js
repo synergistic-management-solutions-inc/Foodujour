@@ -53,7 +53,6 @@ PlannerAPI.post('/', function(req, res) {
 
       // send back a 201 with created meal 
       res.status(201).send(meal);
-      }
     })
     .catch(function(err) {
       console.log('Planner POST /meals Error-' + err);
