@@ -11,3 +11,4 @@ require('./entryView');
 require('./entryStream');
 require('./rating');
 require('./mealPlanner');
+require('./snake');

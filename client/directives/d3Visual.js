@@ -63,6 +63,13 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   .append('rect')
                   .on('click', function() {
                     console.log("Stop clicking me")
+
+                    $('#visualHeader').fadeOut('fast',function(){
+                      $('.egg').fadeIn('slow');
+                    });
+
+
+
                   })
                   .attr('height', barHeight)
                   .attr('width', 140)

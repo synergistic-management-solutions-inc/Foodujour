@@ -156,6 +156,10 @@ h1{
   display: none;
 }
 
+.egg{
+  display: none;
+}
+
 .sign-in-container {
   margin: 200px auto;
   width: 400px;
@@ -232,6 +236,36 @@ ul.rating {
 
 .rating .filled {
   color: #de6563;
+}
+
+#gameContainer, #pastScores {
+	width: 600px;
+	float: left;
+}
+
+.snakeRow {
+	height: 26px;
+}
+
+.snakeColumn {
+	border: 1px solid white;
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+}
+
+#startGame {
+	width: 120px;
+	padding: 10px;
+	margin-top: 5px;
+	text-align: center;
+	background-color: black;
+	color: white;
+}
+
+#startGame:hover {
+	color: red;
+	cursor: pointer;
 }
 
 .validationError {
