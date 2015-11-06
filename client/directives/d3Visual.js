@@ -50,7 +50,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   color = d3.scale.category10(),
                   xScale = d3.scale.linear()
                     .domain([
-                      0, 5
+                      0, 6
 
                   ])
                     .range([0, width]);
@@ -63,6 +63,13 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   .append('rect')
                   .on('click', function() {
                     console.log("Stop clicking me")
+
+                    $('#visualHeader').fadeOut('fast',function(){
+                      $('.egg').fadeIn('slow');
+                    });
+
+
+
                   })
                   .attr('height', barHeight)
                   .attr('width', 140)

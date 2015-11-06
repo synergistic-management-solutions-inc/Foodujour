@@ -139,8 +139,28 @@
   <div id = "visualHeader">
     <h4>Visualize this<h4>
     </div>
-        <div id ="d3visualize">
+
+
+
+<div id ="d3visualize">
   <div class = "check" d3-bars bar-height="20" bar-padding="5"></div>
 </div>
+
+
+<div ng-controller="snakeCtrl" class = "egg" >
+  <div id="gameContainer">
+    <h3>Score: {{score}}</h3>
+    <div>
+        <div class="row snakeRow" ng-repeat="column in board">
+            <div class="column snakeColumn"
+                ng-style="{'background-color': setStyling($parent.$index, $index)}"
+                ng-repeat="row in column track by $index"
+            ></div>
+        </div>
+    </div>
+    <div id="startGame" ng-click="startGame()">Start Game</div>
+  </div>
+</div>
+
 </body>
 </html>
