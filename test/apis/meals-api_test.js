@@ -167,7 +167,7 @@ describe('Meals API', function() {
         .delete('/meals/'+mealId)
         .expect(200)
         .expect(function(response){
-          expect(response.body.message).to.equal('successfully deleted meal');
+          npexpect(response.body.message).to.equal('successfully deleted meal');
         })
       })
       .then(function(){

@@ -149,8 +149,8 @@ describe('Planner API', function() {
     });
 
   it('DELETE /api/planner/:id deletes a meal object', function(){
-      return singlePost(meal1, '/meals', 201)
-      .then(function(res){
+      return singlePost(meal1, '/planner', 201)
+      .then(function(response){
         var mealId = response.body.id
         return request(app)
         .delete('/planner/'+mealId)

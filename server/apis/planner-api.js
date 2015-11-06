@@ -110,24 +110,31 @@ PlannerAPI.put('/:id', function(req, res) {
 
 // GET /delete/:id deletes meal of id if owned by logged in user
 // TODO needs to be changed to a delete method, temporary for testing
-PlannerAPI.get('/delete/:id', function(req, res) {
+PlannerAPI.delete('/:id', function(req, res) {
+  console.log('in planner delete land'); 
   var mealid = req.params.id;
   // gets currently logged in user
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
-      Plannner.findOne(mealid)
+      Planner.findOne(mealid)
       .then(function(meal) {
+        if (!meal){
+          console.log('meal does not exist')
+          res.status(404).send();
+        }
         // if user.id doesn't match user id on attached meal send error
-        if (meal.user_id !== user.id) {
+        else if (meal.user_id !== user.id) {
           res.status(403).send({ error: 'User definitely is doing some fishy things' });
-          return;
         }
         // call destroy on the mealId
-        Planner.destroyOne(meal.id)
-        .then(function() {
-          // sends success message if it reaches here
-          res.send({ message: 'successfully deleted meals and entries' });
-        });
+        else {
+          Planner.destroyOne(meal.id)
+          .then(function() {
+            // sends success message if it reaches here
+            console.log('deleted!');
+            res.status(200).send({ message: 'successfully deleted meal' });
+          });
+        }
       });
     });
 });
