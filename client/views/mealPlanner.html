@@ -1,0 +1,49 @@
+<sidebar></sidebar>
+<div class="container" ng-controller="MealPlanner">
+  <h1>Meal Planner</h1>
+  <div class="row">
+    <div class="container">
+      <a type="button" class="btn-large new-btn" href="#addToPlannerModal" modal>New Meal</a>
+    </div>
+
+    <div id="addToPlannerModal" class="modal">
+      <form novalidate class="plannerForm">
+        Add to day :
+        <select material-select ng-model="mealDay">
+          <option ng-repeat="day in weekDays">{{day}}</option>
+        </select>
+
+        Meal Name : 
+        <input type="text" ng-model="mealName" /><br>
+
+        Type : 
+        <select material-select ng-model="mealType">
+          <option ng-repeat="type in types">
+            {{type}}
+          </option>
+        </select>
+        <br>
+        Notes : <textarea ng-model="mealNotes"></textarea>
+        <button ng-click="addToPlannerModal(day)">submit</button>
+      </form>
+    </div>
+
+
+    <div class="col s12">
+      <ul class="collapsible popout" data-collapsible="accordion" watch>
+        <li>
+          <ul ng-repeat="(day, meal) in days" data-collapsible="accordion" class="collapsible popout">
+            <li>
+              <div class="collapsible-header">{{day}}</div>
+              <div class="collapsible-body" ng-repeat="(key, prop) in meal">
+                <div>Meal Name : {{prop.name}}</div>
+                <div>Meal Type : {{prop.type}}</div>
+                <div>Notes : {{prop.notes}}</div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
