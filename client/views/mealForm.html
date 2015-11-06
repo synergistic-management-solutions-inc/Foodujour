@@ -1,56 +1,54 @@
 <!-- MEAL FORM VIEW -->
 <div id="mealFormModal" class="modal">
-  <div class="modal-content">
+  <div class="modal-content container">
   <h1 ng-show="mode.newMeal">Record Your Meal</h1>
   <h1 ng-hide="mode.newMeal">Update Your Meal</h1>
   <form name="mealForm" ng-submit="addMeal()">
-    <div class="row">
       <form class="col s12">
         <!-- Meal Name -->
-        <div class="row">
-          <div class="input-field col s6 offset-s1">
+ 
+          <div class="">
             <input ng-model="meal.name" id="mealName" type="text" class="validate" required>
             <label for="mealName">Meal Name</label>
           </div>
-        </div>
+
         <!-- Date/location -->
         <datepicker></datepicker>
         <!-- Notes -->
         <mealnotes></mealnotes>
         <!-- Rating/ImgURL -->
-        <div class="row">
+
           <!-- ADD ABILITY TO RATE HERE -->
-          <div class="col s6 offset-s1">
+          <div class="">
             <div ng-controller="StarRating">
               <span ng-repeat="rating in ratings">{{rating.current}} out of {{rating.max}}
               <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
               </span>
             </div>
-          </div>
         
           <div class="col offset-s1">
           <div>{{meal.image}}</div>
             <form action="#">
-              <button class="file-field input-field btn offset">
-                  Upload Image
-                  <input type="file" fileread="meal.image" />
-              </button>
+              <div class="row">
+                <button class="file-field input-field btn-large offset">
+                    Upload Image
+                    <input style="width:200px !important" type="file" fileread="meal.image" />
+                </button>
+                <button class="btn-large input-field" ng-click="addEntry()">Add Entry</button>
+              </div>
             </form>
           </div>
         </div>
       </form>
-    <entryview><entryview>
-    </div>
+<!--     <entryview><entryview> -->
+
     <div ng-repeat="entrys in entriesOnPage track by $index">
       <entryform></entryform>
     </div>
-    <button ng-click="addEntry()">Add Entry</button> 
 <!--   {{ meal.entries | json }} -->
   </form>
-  </div>
-    <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <span ng-show="mode.newMeal" ng-click="addMeal()" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit Meal</span>
-    <span ng-hide="mode.newMeal" ng-click="updateMeal(meal)" class=" modal-action modal-close waves-effect waves-green btn-flat">Update Meal</span>
+    <a href="#!" class=" modal-action modal-close waves-effect btn-large">Cancel</a>
+    <span ng-show="mode.newMeal" ng-click="addMeal()" class=" modal-action modal-close waves-effect btn-large">Submit Meal</span>
+    <span ng-hide="mode.newMeal" ng-click="updateMeal(meal)" class=" modal-action modal-close waves-effect btn-large">Update Meal</span>
   </div>
 </div>
