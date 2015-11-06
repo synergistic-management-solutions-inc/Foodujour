@@ -5,15 +5,18 @@
       <div class="container">
         <div>
           <a type="button" class="btn-large new-btn" href="#mealFormModal" modal ng-click="openForm()">New Meal</a>
-         </div>
+        </div>
       </div>
       <mealform></mealform>
     </div> 
   <input type="text" placeholder="Search Meals..." ng-model="mealSearch">
   <ul class="collapsible popout" data-collapsible="accordion" watch ng-controller= "MealView">
+    <div class="row">
+      <div class="toggle" ng-click="sortByDate()">Sort By Date</div>
+    </div>
     <li>
       <!-- Meals -->
-      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: 'created_at':true | filter: mealSearch">
+      <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: sortval:sortDir | filter: mealSearch">
         <li>
           <div class="collapsible-header">
             <div style= "float: left">{{meal.name}}</div>
