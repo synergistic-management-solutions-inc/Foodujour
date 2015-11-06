@@ -48,7 +48,6 @@ app.controller('entryStream', ['$scope', '$http', '$state', 'EntryEdit', 'Conver
   };
 
   $scope.showModal = function(m) {
-    EntryEdit.mode.editable = false;
     $scope.meal = m;
   };
 
