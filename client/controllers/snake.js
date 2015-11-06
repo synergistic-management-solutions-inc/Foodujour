@@ -10,10 +10,10 @@ app.controller('snakeCtrl', ['$scope', '$timeout', '$window' ,function($scope, $
   };
 
   var colors = {
-    game_over: '#820303',
-    fruit: '#E80505',
-    snakehead: '#078F00',
-    snakebody: '#0DFF00',
+    game_over: '#DDE8E0',
+    fruit: '#749CA8',
+    snakehead: '#BC5E21',
+    snakebody: '#F9E0A8',
     board: '#000'
   };
 
@@ -43,9 +43,9 @@ app.controller('snakeCtrl', ['$scope', '$timeout', '$window' ,function($scope, $
       return colors.snakehead;
     } else if ($scope.board[col][row] === true) {
       return colors.snakebody;
-    } else {
-      colors.board
     }
+    return  colors.board
+
   };
 
     function update() {
@@ -61,7 +61,7 @@ app.controller('snakeCtrl', ['$scope', '$timeout', '$window' ,function($scope, $
 
         snake.parts.unshift(newHead);
 
-        $scope.board[newHead.x][newHead.y] = true;
+        $scope.board[newHead.y][newHead.x] = true;
 
         snake.direction = tempdirection;
         $timeout(update, interval);
@@ -176,7 +176,7 @@ function getnewhead() {
         y: 10
       });
     }
-    fruitmove()
+    fruitmove();
     update();
   }
 
