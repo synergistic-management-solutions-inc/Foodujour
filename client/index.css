@@ -237,6 +237,7 @@ input {
 .modal {
   overflow-x: hidden;
   background-color: #fff;
+  min-height: 750px;
 }
 
 textarea {

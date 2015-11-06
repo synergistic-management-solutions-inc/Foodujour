@@ -1,54 +1,57 @@
 <!-- MEAL FORM VIEW -->
 <div id="mealFormModal" class="modal">
   <div class="modal-content container">
-  <h1 ng-show="mode.newMeal">Record Your Meal</h1>
-  <h1 ng-hide="mode.newMeal">Update Your Meal</h1>
-  <form name="mealForm" ng-submit="addMeal()">
-      <form class="col s12">
-        <!-- Meal Name -->
- 
-          <div class="">
-            <input ng-model="meal.name" id="mealName" type="text" class="validate" required>
-            <label for="mealName">Meal Name</label>
-          </div>
-
-        <!-- Date/location -->
-        <datepicker></datepicker>
-        <!-- Notes -->
-        <mealnotes></mealnotes>
-        <!-- Rating/ImgURL -->
-
-          <!-- ADD ABILITY TO RATE HERE -->
-          <div class="">
-            <div ng-controller="StarRating">
-              <span ng-repeat="rating in ratings">{{rating.current}} out of {{rating.max}}
-              <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
-              </span>
+    <h1 ng-show="mode.newMeal">Record Your Meal</h1>
+    <h1 ng-hide="mode.newMeal">Update Your Meal</h1>
+    <div class="row">
+    <form name="mealForm" ng-submit="addMeal()">
+        <form class="col s12">
+          <!-- Meal Name -->
+   
+            <div class="">
+              <input ng-model="meal.name" id="mealName" type="text" class="validate" required>
+              <label for="mealName">Meal Name</label>
             </div>
-        
-          <div class="col offset-s1">
-          <div>{{meal.image}}</div>
-            <form action="#">
-              <div class="row">
-                <button class="file-field input-field btn-large offset">
-                    Upload Image
-                    <input style="width:200px !important" type="file" fileread="meal.image" />
-                </button>
-                <button class="btn-large input-field" ng-click="addEntry()">Add Entry</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </form>
-<!--     <entryview><entryview> -->
 
-    <div ng-repeat="entrys in entriesOnPage track by $index">
-      <entryform></entryform>
+          <!-- Date/location -->
+          <datepicker></datepicker>
+          <!-- Notes -->
+          <mealnotes></mealnotes>
+          <!-- Rating/ImgURL -->
+
+            <!-- ADD ABILITY TO RATE HERE -->
+          
+            <div class="col offset-s2">
+            <div>{{meal.image}}</div>
+              <form action="#">
+                <div class="row">
+                <div class="container">
+                  <div ng-controller="StarRating">
+                    <span ng-repeat="rating in ratings">{{rating.current}} out of {{rating.max}}
+                    <div star-rating rating-value="rating.current" max="rating.max" on-rating-selected="getSelectedRating(rating)"></div>
+                    </span>
+                  </div>
+                  <button class="file-field input-field btn-large offset">
+                      Upload Image
+                      <input style="width:200px !important" type="file" fileread="meal.image" />
+                  </button>
+                  <button class="btn-large input-field" ng-click="addEntry()">Add Entry</button>
+                </div>
+                <a href="#!" class=" modal-action modal-close waves-effect btn-large">
+                  Cancel
+                </a>
+                <span ng-show="mode.newMeal" ng-click="addMeal()" class=" modal-action modal-close waves-effect btn-large">Submit Meal</span>
+                <span ng-hide="mode.newMeal" ng-click="updateMeal(meal)" class=" modal-action modal-close waves-effect btn-large">Update Meal</span>
+              </form>
+            </div>
+          </div>
+        </form>
+  <!--     <entryview><entryview> -->
+      <div ng-repeat="entrys in entriesOnPage track by $index">
+        <entryform></entryform>
+      </div>
+    <!--   {{ meal.entries | json }} -->
+      </form>
     </div>
-<!--   {{ meal.entries | json }} -->
-  </form>
-    <a href="#!" class=" modal-action modal-close waves-effect btn-large">Cancel</a>
-    <span ng-show="mode.newMeal" ng-click="addMeal()" class=" modal-action modal-close waves-effect btn-large">Submit Meal</span>
-    <span ng-hide="mode.newMeal" ng-click="updateMeal(meal)" class=" modal-action modal-close waves-effect btn-large">Update Meal</span>
   </div>
 </div>
