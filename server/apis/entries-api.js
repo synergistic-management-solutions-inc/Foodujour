@@ -65,25 +65,28 @@ EntriesAPI.put('/:id', function(req, res) {
     });
 });
 
-// GET /api/entries/:id deletes the current entry if logged in user owns it
-// TODO change to .delete eventually
-EntriesAPI.get('/delete/:id', function(req, res) {
+// DELETE /api/entries/:id deletes the current entry if logged in user owns it
+EntriesAPI.delete('/:id', function(req, res) {
   var entryid = req.params.id;
 
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
       Entry.findOne(entryid)
         .then(function(entry) {
-          if (entry.user_id !== user.id) {
+          if (!entry){
+            res.status(404).send()
+          }
+          else if (entry.user_id !== user.id) {
             res.status(403).send({ error: 'User definitely is doing some fishy things' });
-            return;
           }
           // call destroy on the entryId
-          Entry.destroyOne(entry.id)
-            .then(function() {
-              // sends success message if it reaches here
-              res.send({ message: 'successfully deleted entry' });
-            });
+          else {
+            Entry.destroyOne(entry.id)
+              .then(function() {
+                // sends success message if it reaches here
+                res.status(200).send({ message: 'successfully deleted entry' });
+              });
+          }
         });
     });
 });
