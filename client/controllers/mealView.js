@@ -76,10 +76,10 @@ app.controller('MealView', ['$scope', '$http', '$state', 'MealForm', 'EntryEdit'
   };
 
   $scope.sortByDate = function(index){
-      $scope.sortval = 'meals['+ index +'].value';
-      if ($scope.sortval === 'meals['+ index +'].value')
-          $scope.sortDir = !$scope.sortDir;
-    };
+    $scope.sortval = 'meals['+ index +'].value';
+    if ($scope.sortval === 'meals['+ index +'].value')
+      $scope.sortDir = !$scope.sortDir;
+  };
 
 }]);
 
