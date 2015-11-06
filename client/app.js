@@ -8,7 +8,8 @@ window.app = angular.module('myApp', [
   'ngCookies',
   'ui.router',
   'ui.materialize',
-  'ngImgur'
+  'ngImgur',
+  'ngMessages'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
