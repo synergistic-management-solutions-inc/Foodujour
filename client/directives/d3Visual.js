@@ -25,8 +25,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
 
        $http.get('/api/meals')
            .then(function(data){
-             console.log('Data: ', data.data);
-             scope.data = data.data
+             scope.data = data.data;
            });
 
           scope.$watch(function() {
@@ -50,9 +49,10 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                   height = scope.data.length * (barHeight + barPadding),
                   color = d3.scale.category10(),
                   xScale = d3.scale.linear()
-                    .domain([0, d3.max(data, function(d) {
-                      return d.rating;
-                    })])
+                    .domain([
+                      0, 5
+
+                  ])
                     .range([0, width]);
 
               svg.attr('height', height);
@@ -78,6 +78,7 @@ app.directive('d3Bars', ['$window', '$timeout', '$http', 'd3Service',
                     .attr('width', function(d) {
                       return xScale(d.rating);
                     });
+
               svg.selectAll('text')
                 .data(data)
                 .enter()
