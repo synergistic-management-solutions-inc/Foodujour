@@ -78,7 +78,7 @@ section {
 }
 
 .mainPageNav{
-  background-color: #BFBEC4;
+  background-color: #bfbec4;
 }
 
 .logo-wrapper:hover {
@@ -121,7 +121,7 @@ h1{
   background: #639FDE;
   border-radius: 28px;
   font-family: sans-serif;
-  color: #ffffff;
+  color: #fff;
   font-size: 20px;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
@@ -277,4 +277,22 @@ ul.rating {
 .entry-show {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.input-field {
+  margin-top: 0;
+}
+
+input {
+  padding: 0;
+}
+
+.modal {
+  overflow-x: hidden;
+  background-color: #fff;
+  min-height: 750px;
+}
+
+textarea {
+  border: none;
 }
