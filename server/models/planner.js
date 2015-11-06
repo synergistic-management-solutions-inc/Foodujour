@@ -9,7 +9,7 @@ Planner.all = function() {
 
 // Finds all meals associated with user, by user_id
 Planner.findByUser = function(userId) {
-  return db('planne').select('*').where({user_id: userId});
+  return db('planner').select('*').where({user_id: userId});
 };
 
 // singular meals
