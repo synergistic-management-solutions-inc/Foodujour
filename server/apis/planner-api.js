@@ -6,20 +6,20 @@ var PlannerAPI = express.Router();
 var Planner = require('../models/planner');
 var User = require('../models/user');
 
-// GET /meals/all Returns all meals for every user for testing
+// GET /planner/all Returns all meals for every user for testing
 PlannerAPI.get('/all', function(req, res) {
   console.log('req user?', req.session.passport);
-  Meal.all()
+  Planner.all()
     .then(function(meals) {
       res.send(meals);
     })
     .catch(function(err) {
-      console.log('Meals GET /meals/all Error-' + err);
+      console.log('Planner GET /planner/all Error-' + err);
       res.status(400).send();
     });
 });
 
-// GET /meals Returns meals for currently logged in user (no entries)
+// GET /planner Returns meals for currently logged in user
 PlannerAPI.get('/', function(req, res) {
   // finds user by username logged in to session.passport
   User.findByUsername(req.session.passport.user)
@@ -35,10 +35,6 @@ PlannerAPI.get('/', function(req, res) {
 
 // POST /meals accepts meal with entries to create new meal
 PlannerAPI.post('/', function(req, res) {
-  // pulls entries array from request
-  var entries = req.body.entries;
-  var hasEntries = Array.isArray(entries) && entries.length > 0;
-  delete req.body.entries;
   var meal = req.body;
 
   // gets currently logged in user from session.passport
@@ -49,38 +45,14 @@ PlannerAPI.post('/', function(req, res) {
       return meal;
     })
     .then(function(meal) {
-      // create meal with meal input without entries and added user id
-      return Meal.create(meal);
+      // create meal with meal input added user id
+      return Planner.create(meal);
     })
     .then(function(newMeal) {
       meal = newMeal;
-      if (hasEntries) {
-        // if entries isn't empty return meal for further promises
-        return meal;
-      } else {
-        // entries is either non existent or an empty array, add it to meal
-        meal.entries = [];
-        // send back a 201 with created meal (don't have to add entries first)
-        res.status(201).send(meal);
-      }
-    })
-    .then(function(meal) {
-      // create entries with appropriate meal_id
-      // Promise.all takes an array of promises, once all are fulfilled it
-      // returns an array of values of the resolved promises
-      if (hasEntries) {
-        Promise.all(entries.map(function(entry) {
-          // map the entries array, to return an array of Entry.create promises
-          entry.meal_id = meal.id;
-          entry.user_id = meal.user_id;
-          return Entry.create(entry);
-        }))
-        .then(function(results) {
-          // results are the array of entries, add them as meal.entries
-          meal.entries = results;
-          // respond with the meal with added entries
-          res.status(201).send(meal);
-        });
+
+      // send back a 201 with created meal 
+      res.status(201).send(meal);
       }
     })
     .catch(function(err) {
@@ -95,14 +67,10 @@ PlannerAPI.get('/:id', function(req, res) {
 
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
-      Meal.findOne(mealId)
+      Planner.findOne(mealId)
         .then(function(meal) {
           if (meal && user.id === meal.user_id) {
-            Entry.findMealEntries(meal.id)
-            .then(function(entries) {
-              meal.entries = entries;
-              res.send(meal);
-            });
+            res.send(meal);
           } else if (meal && user.id !== meal.user_id) {
             res.status(403).send({error: 'User doesn\'t own this meal.'});
           } else {
@@ -119,10 +87,6 @@ PlannerAPI.get('/:id', function(req, res) {
 // PUT /meals/:id attempts to update meal of id if belonging to logged in user
 // requires all attributes a meal expects
 PlannerAPI.put('/:id', function(req, res) {
-  // stores entries in separate array to Promise.all later
-  var entries = req.body.entries;
-  // deletes req.body entries for no conflicts on updating meal
-  delete req.body.entries;
 
   User.findByUsername(req.session.passport.user)
     .then(function(user) {
@@ -139,39 +103,9 @@ PlannerAPI.put('/:id', function(req, res) {
           // call updateOne that updates at id and where user id matches logged in
           // user
           if (meal && user.id === meal.user_id) {
-            // if there are entries in the entries array iterate over and make
-            // sure to update each entry
-            if (Array.isArray(entries) && entries.length > 0) {
-              Promise.all(entries.map(function(entry) {
-                // map the entries array, to return an array of Entry.create promises
-                return Entry.updateOne(entry);
-              }))
-              .then(function(updatedEntries) {
-                // get entries from database and append to meal so response back
-                // has up to date entries list with updated meal
-                Entry.findMealEntries(meal.id)
-                  .then(function(entries) {
-                    meal.entries = entries;
-                    res.send(meal);
-                  });
-              });
-            } else {
-              // there are no entries to worry about to update so just get
-              // meals entries to append on response
-              Entry.findMealEntries(meal.id)
-                .then(function(entries) {
-                  meal.entries = entries;
-                  res.send(meal);
-                });
-            }
-          } else if (user.id !== meal.user_id) {
-            // send error user doesn't match owner of meal
-            res.status(403).send({ error: 'User doesn\'t own this meal.' });
-          } else {
-            // some other error
-            res.status(400).send();
+            res.send(meal);
           }
-        });
+        })        
     });
 });
 
