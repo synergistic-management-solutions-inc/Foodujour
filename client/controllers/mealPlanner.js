@@ -1,5 +1,6 @@
-app.controller('MealPlanner', ['$scope', 'Planner', function($scope, Planner){
+var moment = require('moment');
 
+app.controller('MealPlanner', ['$scope', 'Planner', function($scope, Planner){
 
   $scope.weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
