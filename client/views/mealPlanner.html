@@ -7,7 +7,7 @@
     </div>
 
     <div id="addToPlannerModal" class="modal">
-      <form class="plannerForm" name="mealPlannerForm">
+      <form class="plannerForm" name="mealPlannerForm" novalidate>
 
         Add to day :
         <select material-select ng-model="mealDay" required>
@@ -31,7 +31,7 @@
         <br>
         Notes : <textarea ng-model="mealNotes"></textarea>
         <div class="modal-footer">
-          <a ng-click="addToPlannerModal()" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Submit:</a>
+          <button ng-click="addToPlannerModal()" href="#!" class=" modal-action modal-close waves-effect waves btn-flat" ng-disabled='mealName.length===0'>Submit:</button>
         </div>
       </form>
     </div>
