@@ -14,7 +14,7 @@
         <li>
           <ul class="collapsible" data-collapsible="accordion" ng-controller="entryView" ng-repeat="entry in entries | orderBy: sortField: sortDirection | filter: entrySearch" >
             <li>
-              <div class="collapsible-header">
+              <div class="collapsible-header row" style="margin-bottom: 0">
                 <span class="col s4" style="text-align: left">{{entry.name}}</span>
                 <span class="col s4" style="text-align: right">{{entry.date}}</span>
               </div>

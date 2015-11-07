@@ -22,7 +22,7 @@
       <!-- Meals -->
       <ul class="collapsible" data-collapsible="accordion" ng-repeat= "meal in meals | orderBy: sortField: sortDirection | filter: mealSearch">
         <li>
-          <div class="collapsible-header">
+          <div class="collapsible-header row" style="margin-bottom: 0">
             <span class="col s4" style="text-align: left">{{meal.name}}</span>
             <span class="col s4" ng-controller="StarRating">
               <span ng-repeat="rating in ratings">
@@ -33,7 +33,6 @@
           </div>
           <div class="collapsible-body">
             <div class= "row">
-
               <div class= "mealImg">
                 <img materialboxed src="{{meal.image}}" class="materialboxed responsive-img" />
                 <br>
